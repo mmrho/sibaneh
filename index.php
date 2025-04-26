@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="./assets/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="./style.css">
 </head>
-
+<?php
+get_header(); ?>
 <body>
     <div class="container">
         <!-- Header -->

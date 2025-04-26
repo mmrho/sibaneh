@@ -1,0 +1,108 @@
+.assign-content {
+  width: 100%;
+
+  .assign-list {
+    margin-top: 20px;
+
+    ul {
+      margin-bottom: 20px !important;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 10px;
+
+        fieldset {
+          width: 50%;
+          margin-left: 15px;
+
+          &:last-child {
+            margin-left: 0;
+          }
+
+          label {
+            margin-bottom: 5px;
+          }
+
+          &:last-child {
+            width: 10%;
+            align-self: center;
+            position: relative;
+            text-align: center;
+            margin-top: 25px;
+          }
+
+          span {
+            &.remove-item {
+              font-size: 30px;
+              position: absolute;
+              line-height: 0;
+              color: #ff0100;
+              cursor: pointer;
+            }
+          }
+        }
+
+        &:nth-child(even) {
+          background: #e9edf4;
+        }
+      }
+    }
+  }
+}
+
+.uploadStat {
+  position: relative;
+
+  span {
+    &.stat {
+      display: block;
+      width: 100%;
+      height: 3px;
+      margin-top: 10px;
+      background: #eeee;
+    }
+
+    &.bar {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: #0079d2;
+      width: 0;
+      height: 3px;
+      transition-duration: 0.2s;
+      max-width: 100%;
+
+      &.complete {
+        background: #0a0;;
+      }
+
+      &.error {
+        background: #ff0000;
+      }
+    }
+  }
+}
+
+.assign-panel {
+  table {
+    td.actions {
+      span {
+        cursor: pointer;
+
+        i {
+          font-size: 18px;
+        }
+
+        &.approve {
+          color: #00aa00;
+        }
+
+        &.notApprove {
+          color: #ef0000;
+        }
+      }
+    }
+  }
+}

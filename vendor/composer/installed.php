@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => null,
-        'name' => 'sibaneh/wp-theme-sibaneh',
+        'reference' => '432bda9560fb955e958346f621eb5165151bb92a',
+        'name' => 'mohammadreza/sibaneh',
         'dev' => true,
     ),
     'versions' => array(
-        'sibaneh/wp-theme-sibaneh' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+        'mohammadreza/sibaneh' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => null,
+            'reference' => '432bda9560fb955e958346f621eb5165151bb92a',
             'dev_requirement' => false,
         ),
     ),

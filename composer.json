@@ -1,23 +1,39 @@
 {
-    "name": "mohammadreza/sibaneh",
-    "description": "Custom WordPress theme for Sibaneh project",
-    "license": "proprietary",
-    "authors": [
-      {
-        "name": "Mohammadreza",
-        "email": "mmohammadrezaho@gmail.com"
-      }
-    ],
-    "autoload": {
-      "psr-4": {
-        "Sibaneh\\WpTheme\\": "src/"
-      },
-      "files": [
-        "inc/functions/helpers.php"
-      ]
+  "name": "mohammadreza/sibaneh",
+  "description": "Custom WordPress theme for Sibaneh project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Mohammadreza",
+      "email": "mmohammadrezaho@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Sibaneh\\WpTheme\\": "src/"
     },
-    "require": {
-        "php": "^8.1",
-        "ext-json": "*"
-      }
+    "files": [
+      "class/WbsUtility.php",
+      "inc/functions/proper-parse.php",
+      "inc/functions/PageNav.php",
+      "inc/functions/user-custom-fields.php",
+      "inc/functions/global-create-tables.php",
+      "inc/functions/remove-email-required.php",
+      "inc/functions/hide-admin-bar.php",
+      "inc/functions/SMS-ir.php",
+      "inc/functions/global-ajax.php",
+      "inc/functions/admin-menu.php",
+      "inc/functions/start_session.php",
+      "inc/functions/wp-enqueue.php",
+      "inc/functions/disable-wp-admin.php",
+      "inc/functions/add-roles.php",
+      "inc/functions/theme-options.php",
+      "inc/functions/menu.php",
+      "lib/Login/wbsLogin.php"
+    ]
+  },
+  "require": {
+    "php": "^8.1",
+    "ext-json": "*"
   }
+}

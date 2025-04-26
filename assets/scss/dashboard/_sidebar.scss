@@ -1,0 +1,154 @@
+.sidebar-p {
+  .dashboard-sidebar {
+    background: $button_bg;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    transition-duration: 0.3s;
+    width: 244px;
+
+    .sidebar-header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding: 25px 20px;
+
+      span {
+        color: #fff;
+        font-size: 14px;
+      }
+
+      button {
+        background: none;
+        border: none;
+        color: $dashboard_btn_color;
+      }
+    }
+
+    .profile-sec {
+      margin: 30px 0 10px;
+      text-align: center;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .username-sec {
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .dashboard-menu {
+      background: $dashboard_menu_color;
+      height: 100vh;
+      margin-top: 20px;
+      overflow: auto;
+
+      ul {
+
+        li {
+          border-bottom: 1px solid $button_bg;
+          cursor: pointer;
+          display: block;
+          position: relative;
+
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          &.has-child {
+
+            &:after {
+              color: #fff;
+              content: "\f004";
+              font-family: 'icons';
+              font-size: 14px;
+              left: 0;
+              margin-left: 20px;
+              position: absolute;
+              top: 20px;
+              transition-duration: 0.2s;
+            }
+
+            &.active {
+              &:after {
+                top: 17px;
+                transform: rotate(180deg);
+              }
+            }
+
+            ul {
+              background: $dashboard_menu_color;
+              display: none;
+              margin: 15px 0 !important;
+
+              li {
+                border: none;
+                padding: 15px 0;
+
+                &:after {
+                  background: none;
+                }
+
+                &:hover {
+                  background: none;
+                }
+
+                i {
+                  color: #858585;
+                }
+
+                a {
+                  color: #858585;
+
+                  &:after {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+
+          a {
+            color: $dashboard_menu_text_color;
+            display: block;
+            font-size: 14px;
+            padding: 15px 20px;
+            transition-duration: 0.2s;
+
+            &:hover, &.active {
+              background: $default_color;
+
+              i {
+                color: #fff;
+              }
+
+              a {
+                color: #fff;
+              }
+            }
+
+            i {
+              color: $dashboard_menu_text_color;
+              display: inline-block;
+              font-size: 14px;
+              margin-left: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.close {
+    width: 0;
+
+    .dashboard-sidebar {
+      right: -100%;
+    }
+  }
+  
+}

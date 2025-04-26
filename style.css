@@ -1,1 +1,326 @@
-/*# sourceMappingURL=style.css.map */
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 900;
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Black.eot");
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Black.eot?#iefix") format("embedded-opentype"), url("assets/fonts/iransans/woff2/IRANSansWeb(FaNum)_Black.woff2") format("woff2"), url("assets/fonts/iransans/woff/IRANSansWeb(FaNum)_Black.woff") format("woff"), url("assets/fonts/iransans/ttf/IRANSansWeb(FaNum)_Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: bold;
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Bold.eot");
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Bold.eot?#iefix") format("embedded-opentype"), url("assets/fonts/iransans/woff2/IRANSansWeb(FaNum)_Bold.woff2") format("woff2"), url("assets/fonts/iransans/woff/IRANSansWeb(FaNum)_Bold.woff") format("woff"), url("assets/fonts/iransans/ttf/IRANSansWeb(FaNum)_Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 500;
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Medium.eot");
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Medium.eot?#iefix") format("embedded-opentype"), url("assets/fonts/iransans/woff2/IRANSansWeb(FaNum)_Medium.woff2") format("woff2"), url("assets/fonts/iransans/woff/IRANSansWeb(FaNum)_Medium.woff") format("woff"), url("assets/fonts/iransans/ttf/IRANSansWeb(FaNum)_Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 300;
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Light.eot");
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_Light.eot?#iefix") format("embedded-opentype"), url("assets/fonts/iransans/woff2/IRANSansWeb(FaNum)_Light.woff2") format("woff2"), url("assets/fonts/iransans/woff/IRANSansWeb(FaNum)_Light.woff") format("woff"), url("assets/fonts/iransans/ttf/IRANSansWeb(FaNum)_Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: 200;
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_UltraLight.eot");
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum)_UltraLight.eot?#iefix") format("embedded-opentype"), url("assets/fonts/iransans/woff2/IRANSansWeb(FaNum)_UltraLight.woff2") format("woff2"), url("assets/fonts/iransans/woff/IRANSansWeb(FaNum)_UltraLight.woff") format("woff"), url("assets/fonts/iransans/ttf/IRANSansWeb(FaNum)_UltraLight.ttf") format("truetype");
+}
+@font-face {
+  font-family: IRANSans;
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum).eot");
+  src: url("assets/fonts/iransans/eot/IRANSansWeb(FaNum).eot?#iefix") format("embedded-opentype"), url("assets/fonts/iransans/woff2/IRANSansWeb(FaNum).woff2") format("woff2"), url("assets/fonts/iransans/woff/IRANSansWeb(FaNum).woff") format("woff"), url("assets/fonts/iransans/ttf/IRANSansWeb(FaNum).ttf") format("truetype");
+}
+body {
+  background: #fff;
+  font-family: "iransans";
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0 !important;
+  list-style: none;
+}
+
+a,
+a:hover,
+a:active,
+a:focus {
+  outline: none !important;
+  text-decoration: none !important;
+}
+
+.hew-button {
+  color: #fff !important;
+  border: 1px solid transparent;
+  border-radius: 40px;
+  padding: 10px 20px 10px 10px;
+  font-size: 14px;
+  transition-duration: 0.3s;
+  background: #2A3143;
+}
+.hew-button:hover {
+  background: #EF7301;
+  border-color: #EF7301;
+}
+.hew-button.bordered {
+  color: #fff;
+  border: 1px solid #fff;
+  background: none;
+  padding: 10px 20px;
+}
+.hew-button.bordered:hover {
+  background: #2A3143;
+  border-color: #2A3143;
+}
+.hew-button.secondary {
+  background: #f5f5f5;
+  color: #4b0f52 !important;
+  border-radius: 10px;
+  border: none;
+  transition-duration: 0.3s;
+  padding: 10px 20px;
+}
+.hew-button.secondary:hover {
+  background: #f0f0f0;
+}
+
+.hew-card {
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.05);
+  display: flex;
+  border-radius: 24px;
+  padding: 25px 25px;
+  align-items: center;
+  margin: 0 0 25px;
+  text-align: right;
+  transition-duration: 0.2s;
+}
+.hew-card:hover {
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
+}
+.hew-card form {
+  width: 100%;
+}
+.hew-card.no-hover:hover {
+  box-shadow: 0 4px 50px rgba(0, 0, 0, 0.05);
+}
+.hew-card .left-sec {
+  margin-right: 30px;
+  width: 70%;
+}
+.hew-card .left-sec.no-thumb {
+  margin-right: 0 !important;
+}
+.hew-card .left-sec a strong {
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #7A7A7A;
+  transition-duration: 0.2s;
+}
+.hew-card .left-sec a:hover strong {
+  color: #EF7301;
+}
+.hew-card .left-sec p {
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-size: 13px;
+  color: #858585;
+  line-height: 25px;
+}
+.hew-card .left-sec i {
+  color: #8b8b8b;
+  font-size: 14px;
+}
+.hew-card .left-sec span {
+  color: #8b8b8b;
+  font-size: 14px;
+}
+.hew-card .left-sec .more-panel {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hew-card .left-sec .more-panel a.hew-button:hover {
+  color: #EF7301 !important;
+}
+.hew-card .left-sec .more-panel a.see-more {
+  color: #EF7301;
+  transition-duration: 0.3s;
+}
+.hew-card .left-sec .more-panel a.see-more i {
+  color: #EF7301;
+  transition-duration: 0.3s;
+  float: left;
+  margin-top: 3px;
+}
+.hew-card .left-sec .more-panel a.see-more:hover {
+  color: #2A3143;
+}
+.hew-card .left-sec .more-panel a.see-more:hover i {
+  color: #2A3143;
+}
+
+.wbs-dropdown ul li {
+  background: #fafafa;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.wbs-dropdown ul li header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 15px 18px;
+  cursor: pointer;
+}
+.wbs-dropdown ul li header h5 {
+  margin-bottom: 0;
+  font-size: 17px;
+  color: #484848;
+}
+.wbs-dropdown ul li header i {
+  transition-duration: 0.2s;
+  line-height: 0;
+  color: #484848;
+}
+.wbs-dropdown ul li footer {
+  padding: 5px 15px 20px;
+  display: none;
+}
+.wbs-dropdown ul li.open header i {
+  transform: rotate(180deg);
+}
+
+.timer-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timer-panel .timer-box {
+  width: auto !important;
+}
+
+.loginRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+.loginRow .loginFooterImage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.loginRow .loginFooterImage img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#site-main {
+  flex: 1;
+}
+
+.wbsloading {
+  background: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 5px;
+  right: 0;
+  top: 0;
+  z-index: 1000000;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  /* Safari */
+}
+.wbsloading.full {
+  width: 100%;
+  left: 0;
+}
+.wbsloading.no-bg {
+  background: transparent;
+}
+.wbsloading.has-radius {
+  border-radius: 20px;
+}
+.wbsloading.no-radius {
+  border-radius: 0;
+}
+.wbsloading.fixed {
+  position: fixed;
+}
+.wbsloading .wbsloader {
+  border-radius: 50%; /* Safari */
+  animation: spin 0.4s linear infinite;
+}
+.wbsloading .wbsloader.normal {
+  border: 7px solid #fff;
+  border-top: 7px solid #EF7301;
+  width: 45px;
+  height: 45px;
+}
+.wbsloading .wbsloader.small {
+  border: 4px solid #fff;
+  border-radius: 50%;
+  border-top: 4px solid #EF7301;
+  width: 30px;
+  height: 30px;
+}
+.wbsloading .wbsloader.x-small {
+  border: 4px solid #fff;
+  border-radius: 50%;
+  border-top: 4px solid #EF7301;
+  width: 20px;
+  height: 20px;
+}
+.wbsloading.dark-border .wbsloader {
+  border: 4px solid #eee !important;
+  border-top: 4px solid #55bbf9 !important;
+}
+.wbsloading.fast .wbsloader { /* Safari */
+  animation: spin 0.4s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.pageLoader {
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  right: 0;
+  top: 0;
+  z-index: 10000000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pageLoader img {
+  width: 60%;
+}/*# sourceMappingURL=style.css.map */
