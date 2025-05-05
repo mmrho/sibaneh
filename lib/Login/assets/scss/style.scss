@@ -21,13 +21,32 @@ body {
             flex-direction: row;
             justify-content: center;
             width: 100%;
+            .loginExit {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                align-content: center;
+                width: 100%;
+                margin-top: 30px;
+                margin-left: 30px;
+                a{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    align-items: center;
+                    align-content: center;
+                    gap: 6px;
+                }
+    
+            }
             .loginLogo {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
                 height: 100%;
                 width: 100%;
-                margin-top: 50px;
+                margin-top: 20px;
                 margin-bottom: 20px;
                 img {
                     height: 100px;
@@ -38,23 +57,23 @@ body {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                margin-top: 20px;
-                margin-bottom: 25px;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
             .loginInput {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
                 width: 100%;
-                margin-top: 25px;
+                margin-top: 20px;
                 margin-bottom: 10px;
-                
+
                 label {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
                     width: 100%;
-                    
+
                     .input-container {
                         position: relative;
                         display: flex;
@@ -62,7 +81,7 @@ body {
                         justify-content: center;
                         width: 100%;
                         max-width: 400px;
-                        
+
                         input {
                             width: 100%;
                             max-width: 400px;
@@ -73,7 +92,7 @@ body {
                                 text-align: center;
                             }
                         }
-                        
+
                         span {
                             position: absolute;
                             display: flex;
@@ -82,7 +101,7 @@ body {
                             transform: translateY(-50%);
                             right: 90%;
                             font-size: 35px;
-                            
+
                             i {
                                 font-size: 25px;
                             }
@@ -98,8 +117,8 @@ body {
                 margin-top: 10px;
                 margin-bottom: 10px;
                 button {
-                    width: 100%; 
-                        max-width: 400px;
+                    width: 100%;
+                    max-width: 400px;
                     border-radius: 7px;
                     height: 50px;
                     border: none;

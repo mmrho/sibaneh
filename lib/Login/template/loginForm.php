@@ -1,5 +1,10 @@
 <form id="loginForm" class="login-form" method="post">
     <section class="loginRow">
+        <div class="loginExit">
+            <a href="">بازگشت<i class="icon-left-open"></i></a>
+        </div>
+    </section>
+    <section class="loginRow">
         <div class="loginLogo">
             <img src="<?php echo get_template_directory_uri(); ?>/images/temp/sibaneh-login-logo.png" alt="سیبانه لوگو">
         </div>
@@ -17,7 +22,7 @@
                     <span class="input-icon"> | <i class="icon-iphone-icon"></i></span>
                 </div>
             </label>
-           
+
         </div>
     </section>
     <section class="loginRow">
