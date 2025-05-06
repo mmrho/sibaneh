@@ -16,9 +16,9 @@
                 <a href="#" class="hero-section-learn-more">آشنایی با اپ‌استور سیبانه</a>
                 <div class="hero-section-img-container">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/temp/appstore-background-img.png" alt="appstore-background-img"
-                        class="hero-section-background-img" id="background-image">
+                        class="hero-section-background-img" id="appstore-background-img">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/temp/appstore-main-img.png" alt="appstore-main-img"
-                        class="hero-section-img" id="foreground-image">
+                        class="hero-section-img" id="appstore-main-img">
                 </div>
             </div>
         </section>
@@ -92,7 +92,7 @@
                     <button class="nav-btn next"><i class="icon-right-open"></i></button>
                     <button class="nav-btn prev"><i class="icon-left-open"></i></button>
                 </div>
-                <button class="play-btn"><i class="icon-play-in-circle"></i></button>
+                <button class="play-btn">||</button>
             </div>
         </section>
         <section class="carousel-section">
@@ -111,9 +111,6 @@
         </section>
         <section class="hero-section pink-background">
             <div class="hero-section-container">
-                <div class="wave-container">
-                    <canvas id="waveCanvas"></canvas>
-                </div>
                 <a href="#" class="hero-section-logo-container">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/temp/sibaneh-logo-pink.png" alt="sibaneh-logo-pink"
                         class="hero-section-logo">
@@ -122,8 +119,13 @@
                 <h2>قدرتمندترین مک‌استور ایرانی را هم اکنون تجربه کنید</h2>
                 <p class="hero-section-subtitle">دسترسی آسان به نرم‌افزارهای مک به همراه آموزش‌های جامع نصب و
                     استفاده</p>
-                <a href="https://www.apple.com/" class="hero-section-learn-more">آشنایی با مک‌استور سیبانه</a>
-                <img src="<?php echo get_template_directory_uri(); ?>/images/temp/macstore-main-img.png" alt="macstore-main-img" class="hero-section-img">
+                <a href="#" class="hero-section-learn-more">آشنایی با مک‌استور سیبانه</a>
+                <div class="hero-section-img-container">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/temp/macstore-background-img.png" alt="macstore-background-img"
+                        class="hero-section-background-img" id="macstore-background-img">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/temp/macstore-main-img.png" alt="macstore-main-img"
+                        class="hero-section-img" id="macstore-main-img">
+                </div>
             </div>
         </section>
         <section class="card-section pink-background">
@@ -178,9 +180,6 @@
         </section>
         <section class="hero-section orange-background">
             <div class="hero-section-container">
-                <div class="wave-container">
-                    <canvas id="waveCanvas-1"></canvas>
-                </div>
                 <a href="#" class="hero-section-logo-container">
                     <img src="<?php echo get_template_directory_uri(); ?>/images/temp/sibaneh-logo-orange.png" alt="sibaneh-logo-orange"
                         class="hero-section-logo">
@@ -189,9 +188,14 @@
                 <h2>به عنوان یک توسعه‌دهنده و برنامه‌نویس هم‌اکنون شروع کنید</h2>
                 <p class="hero-section-subtitle">بدون محدودیت از اپلیکیشن خود در اپ‌استور اپل و اپ‌استور سیبانه کسب
                     درآمد کنید</p>
-                <a href="https://www.apple.com/" class="hero-section-learn-more">آشنایی با سرویس توسعه‌دهندگان
+                <a href="#" class="hero-section-learn-more">آشنایی با سرویس توسعه‌دهندگان
                     سیبانه</a>
-                <img src="<?php echo get_template_directory_uri(); ?>/images/temp/dev-main-img.png" alt="dev-main-img" class="hero-section-img">
+                <div class="hero-section-img-container">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/temp/dev-background-img.png" alt="dev-background-img"
+                        class="hero-section-background-img" id="dev-background-img">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/temp/dev-main-img.png" alt="dev-main-img"
+                        class="hero-section-img" id="dev-main-img">
+                </div>
             </div>
         </section>
         <section class="card-section orange-background">

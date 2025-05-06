@@ -33,35 +33,60 @@
                                         خانه
                                     </a>
                                 </li>
-                                <li class="site-nav-item">
+                                <li class="site-nav-item has-submenu">
                                     <a class="site-nav-link" href="#">
                                         اپ‌استور
                                         <i class="icon-down-open"></i>
                                     </a>
+                                    <ul class="submenu">
+                                        <li><a href="#">آیتم زیرمنو 1</a></li>
+                                        <li><a href="#">آیتم زیرمنو 2</a></li>
+                                        <li><a href="#">آیتم زیرمنو 3</a></li>
+                                    </ul>
                                 </li>
-                                <li class="site-nav-item">
+                                <li class="site-nav-item has-submenu">
                                     <a class="site-nav-link" href="#">
                                         مک‌استور
                                         <i class="icon-down-open"></i>
                                     </a>
+                                    <ul class="submenu">
+                                        <li><a href="#">آیتم زیرمنو 1</a></li>
+                                        <li><a href="#">آیتم زیرمنو 2</a></li>
+                                        <li><a href="#">آیتم زیرمنو 3</a></li>
+                                    </ul>
                                 </li>
-                                <li class="site-nav-item">
+                                <li class="site-nav-item has-submenu">
                                     <a class="site-nav-link" href="#">
                                         توسعه‌دهندگان
                                         <i class="icon-down-open"></i>
                                     </a>
+                                    <ul class="submenu">
+                                        <li><a href="#">آیتم زیرمنو 1</a></li>
+                                        <li><a href="#">آیتم زیرمنو 2</a></li>
+                                        <li><a href="#">آیتم زیرمنو 3</a></li>
+                                    </ul>
                                 </li>
-                                <li class="site-nav-item">
+                                <li class="site-nav-item has-submenu">
                                     <a class="site-nav-link" href="#">
                                         آموزش
                                         <i class="icon-down-open"></i>
                                     </a>
+                                    <ul class="submenu">
+                                        <li><a href="#">آیتم زیرمنو 1</a></li>
+                                        <li><a href="#">آیتم زیرمنو 2</a></li>
+                                        <li><a href="#">آیتم زیرمنو 3</a></li>
+                                    </ul>
                                 </li>
-                                <li class="site-nav-item">
+                                <li class="site-nav-item has-submenu">
                                     <a class="site-nav-link" href="#">
                                         بلاگ
                                         <i class="icon-down-open"></i>
                                     </a>
+                                    <ul class="submenu">
+                                        <li><a href="#">آیتم زیرمنو 1</a></li>
+                                        <li><a href="#">آیتم زیرمنو 2</a></li>
+                                        <li><a href="#">آیتم زیرمنو 3</a></li>
+                                    </ul>
                                 </li>
                                 <li class="site-nav-item">
                                     <a class="site-nav-link" href="#">

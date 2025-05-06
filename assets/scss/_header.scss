@@ -9,7 +9,7 @@
     width: 100%;
     padding-left: 3px;
     padding-right: 3px;
-    overflow-x: hidden;
+    overflow-x: visible !important;
     .site-header-top {
         display: flex;
         flex-direction: row;
@@ -75,6 +75,8 @@
         padding-bottom: 0rem;
         padding-right: 2.5rem;
         padding-left: 2rem;
+        position: relative;
+        z-index: 10;
         .site-nav {
             flex: 1 1 auto;
 
@@ -85,7 +87,11 @@
                 margin: 0;
                 padding: 0;
                 list-style: none;
+                position: relative;
+
                 .site-nav-item {
+                    position: relative;
+
                     .site-nav-link {
                         display: flex;
                         align-items: center;
@@ -93,11 +99,59 @@
                         text-decoration: none;
                         color: #000;
                         font-weight: 500;
+                        position: relative;
+                        z-index: 5;
                         padding-right: 1rem;
                         padding-left: 1rem;
                         padding-bottom: 0.5rem;
                         i {
                             font-size: 0.8rem;
+                            transition: transform 0.3s ease;
+                        }
+                    }
+
+                    .submenu {
+                        position: absolute;
+                        top: 100%;
+                        right: 0;
+                        min-width: 200px;
+                        background-color: #fff;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                        border-radius: 8px;
+                        padding: 0.5rem 0;
+                        margin-top: 0.5rem;
+                        opacity: 0;
+                        visibility: visible;
+                        transform: translateY(10px);
+                        transition: all 0.3s ease;
+                        z-index: 1000;
+
+                        li {
+                            list-style: none;
+
+                            a {
+                                display: block;
+                                padding: 0.5rem 1rem;
+                                color: #000;
+                                text-decoration: none;
+                                transition: background-color 0.3s ease;
+
+                                &:hover {
+                                    background-color: rgba(0, 123, 255, 0.1);
+                                }
+                            }
+                        }
+                    }
+
+                    &.has-submenu:hover {
+                        .submenu {
+                            opacity: 1;
+                            visibility: visible;
+                            transform: translateY(0);
+                        }
+
+                        .site-nav-link i {
+                            transform: rotate(180deg);
                         }
                     }
                 }
@@ -150,20 +204,35 @@
             transition: all 0.2s ease;
             color: white;
             border: none;
-            padding: 0.75rem 0.75rem;
-            font-weight: 600;
-            border-radius: 8px;
+            padding: 11px 21px;
+            border-radius: 980px;
+            font-size: 16px;
             white-space: nowrap;
+            &:hover{
+                color: #000;
+            }
         }
 
         .login-button {
-            padding: 0.75rem 1.25rem;
-            font-weight: 600;
-            border-radius: 8px;
+            padding: 11px 21px;
+            border-radius: 980px;
+            font-size: 16px;
             white-space: nowrap;
             background: none;
             border: 1px solid #f857a6;
             color: #000;
+            &:hover{
+                color: white;
+                background: linear-gradient(
+                    120deg,
+                    $sibaneh_blue_color 0%,
+                    $sibaneh_pink_color 40%,
+                    $sibaneh_pink_color 60%,
+                    $sibaneh_orange_color 100%
+                )
+                border-box;
+
+            }
         }
 
         @include media_queries("sm") {

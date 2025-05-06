@@ -4,7 +4,6 @@
     font-size: 0.9rem;
     .site-footer-container {
         .footer-column {
-            
             h5 {
                 font-weight: bold;
                 margin-bottom: 1rem;
@@ -27,7 +26,7 @@
             justify-content: space-between;
             align-items: center;
             align-content: center;
-            margin-top: 0;
+            margin-top: 5rem;
             p {
                 margin-bottom: 0;
             }
@@ -42,12 +41,13 @@
             padding-top: 0;
             margin-top: 0;
             font-size: 0.9rem;
-            .footer-bottom-title {
+            .social-icons {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
+                justify-content: center;
                 align-items: center;
                 align-content: center;
+                gap: 1rem;
             }
         }
     }

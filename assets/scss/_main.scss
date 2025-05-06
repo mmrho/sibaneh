@@ -131,12 +131,18 @@
                 background-color: $sibaneh-blue-color;
                 color: white;
                 border: none;
-                border-radius: 20px;
-                padding: 8px 20px;
-                font-size: 14px;
+                padding: 11px 21px;
+                border-radius: 980px;
+                font-size: 16px;
                 &:hover {
                     color: $primary_text_color;
                 }
+            }
+            .pink {
+                background-color: $sibaneh_pink_color;
+            }
+            .orange {
+                background-color: $sibaneh_orange_color;
             }
             .card-section-img-container {
                 display: flex;
@@ -190,11 +196,12 @@
                 margin-bottom: 2rem;
             }
             .download-btn {
-                padding: 12px 24px;
+                padding: 11px 21px;
+                font-size: 16px;
+                border-radius: 980px;
                 background: $primary_color;
                 color: $primary_text_color;
                 text-decoration: none;
-                border-radius: 25px;
                 font-weight: bold;
                 display: inline-block;
                 &:hover {
@@ -277,6 +284,64 @@
                         flex-direction: row-reverse;
                     }
                 }
+                .game-card {
+                    width: 300px;
+                    height: 170px;
+                    flex-shrink: 0;
+                    background: $primary_color;
+                    border-radius: 1rem;
+                    overflow: hidden;
+                    margin-right: 1rem;
+                    .game-image-container {
+                        position: relative;
+                        height: 170px;
+                        .game-image {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                        .game-info {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            padding: 1rem;
+                            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                            color: $secondary_text_color;
+                            direction: ltr;
+                            text-align: left;
+                            .game-category {
+                                font-size: 0.875rem;
+                                color: $secondary_text_color;
+                                margin-bottom: 0.25rem;
+                            }
+
+                            .game-title {
+                                font-size: 1.125rem;
+                                color: $secondary_text_color;
+                                font-weight: bold;
+                            }
+                        }
+                        .game-button {
+                            position: absolute;
+                            bottom: 0;
+                            right: -10px;
+                            display: flex;
+                            margin: 1rem;
+                            padding: 11px 21px;
+                            border-radius: 980px;
+                            font-size: 0.75rem;
+                            background: $primary_color;
+                            color: $primary_text_color;                           
+                            border: none;                          
+                            cursor: pointer;
+                            transition: background-color 0.2s;
+                            &:hover {
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -286,15 +351,32 @@
         align-items: center;
         margin: 1rem auto;
         width: fit-content;
-        padding: 0.5rem 1rem;
+        padding: 11px 21px;
+        border-radius: 980px;
+        font-size: 16px;
         background: none;
         border: 1px solid $sibaneh_blue_color;
         color: $sibaneh_blue_color;
-        border-radius: 6rem;
         cursor: pointer;
         transition: background-color 0.2s;
         &:hover {
             background-color: $sibaneh_blue_color;
+            color: $secondary_text_color;
+        }
+    }
+    .pink-button {
+        color: $sibaneh_pink_color;
+        border: 1px solid $sibaneh_pink_color;
+        &:hover {
+            background-color: $sibaneh_pink_color;
+            color: $secondary_text_color;
+        }
+    }
+    .orange-button {
+        color: $sibaneh_orange_color;
+        border: 1px solid $sibaneh_orange_color;
+        &:hover {
+            background-color: $sibaneh_orange_color;
             color: $secondary_text_color;
         }
     }
@@ -326,7 +408,7 @@
                 z-index: -1;
             }
             .logo {
-                background: linear-gradient(90deg, #00B4DB 0%, #e0338c 100%);
+                background: linear-gradient(90deg, #00b4db 0%, #e0338c 100%);
                 -webkit-background-clip: text;
                 background-clip: text;
                 color: transparent;
@@ -335,12 +417,10 @@
                 position: relative;
             }
             .subtitle {
-                color: #00B4DB;
+                color: #00b4db;
                 font-size: 1.2rem;
                 margin-bottom: 2rem;
             }
-            
-            
         }
         .content {
             color: #ffffff;
@@ -349,7 +429,7 @@
             padding: 0 15px;
         }
         .link-custom {
-            color: #00B4DB;
+            color: #00b4db;
             text-decoration: none;
             display: inline-block;
             margin-top: 20px;
@@ -357,6 +437,11 @@
                 color: #e0338c;
             }
         }
-        
     }
+}
+.pink-background {
+    background-color: $sibaneh_pink_background_color;
+}
+.orange-background {
+    background-color: $sibaneh_orange_background_color;
 }
