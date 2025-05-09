@@ -20,23 +20,28 @@
                 opacity: 0.7;
             }
             .hero-section-logo {
-                width: 5rem;
-                height: 5rem;
-                margin: 1.25rem;
+                width: 85px;
+                height: 85px;
+                margin-top: 80px;
+                margin-bottom: 20px;
             }
             .hero-section-logo-subtitle {
                 margin: 0;
-                font-size: 0.7rem;
+                font-size: 16px;
             }
         }
         h2 {
-            font-size: 3rem;
+            font-size: 44px;
             font-weight: bold;
             margin-top: 2.5rem;
             margin-bottom: 2.5rem;
+            padding-right: 10px;
+            padding-left: 10px;
         }
         .hero-section-subtitle {
             font-size: 1.5rem;
+            padding-right: 10px;
+            padding-left: 10px;
         }
         .hero-section-learn-more {
             margin: 1rem 0;
@@ -324,20 +329,35 @@
                         }
                         .game-button {
                             position: absolute;
-                            bottom: 0;
-                            right: -10px;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) scale(0.5);
                             display: flex;
-                            margin: 1rem;
                             padding: 11px 21px;
                             border-radius: 980px;
                             font-size: 0.75rem;
                             background: $primary_color;
-                            color: $primary_text_color;                           
-                            border: none;                          
+                            color: $primary_text_color;
+                            border: none;
                             cursor: pointer;
-                            transition: background-color 0.2s;
+                            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                            opacity: 0;
+                            pointer-events: none;
                             &:hover {
                                 opacity: 0.8;
+                            }
+                        }
+                        &:hover {
+                            .game-image {
+                                opacity: 0.6;
+                            }
+                            .game-button {
+                                opacity: 1;
+                                transform: translate(-50%, -50%) scale(1);
+                                pointer-events: auto;
+                                &:hover {
+                                    opacity: 0.8;
+                                }
                             }
                         }
                     }
@@ -384,7 +404,7 @@
 .about-section {
     background-color: rgb(247, 247, 249);
     color: #fff;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0.5rem;
     .about-container {
         background-color: #000;
         border-radius: 32px;
@@ -394,30 +414,44 @@
         margin: 3rem auto;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         .logo-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             position: relative;
             margin-bottom: 2rem;
-            .grid-lines {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 100%;
-                max-width: 400px;
-                height: 100px;
-                border: 1px solid rgba(0, 180, 219, 0.2);
-                z-index: -1;
-            }
             .logo {
-                background: linear-gradient(90deg, #00b4db 0%, #e0338c 100%);
+                display: inline-block;
+                background: linear-gradient(
+                    120deg,
+                    $sibaneh_blue_color 0%,
+                    $sibaneh_pink_color 40%,
+                    $sibaneh_pink_color 60%,
+                    $sibaneh_orange_color 100%
+                );
+                background-size: 100% 100%;
                 -webkit-background-clip: text;
                 background-clip: text;
                 color: transparent;
                 font-size: 3.5rem;
                 font-weight: bold;
-                position: relative;
+                white-space: nowrap;
+                margin-bottom: 0px;
             }
             .subtitle {
-                color: #00b4db;
+                display: inline-block;
+                background: linear-gradient(
+                    120deg,
+                    $sibaneh_blue_color 0%,
+                    $sibaneh_pink_color 40%,
+                    $sibaneh_pink_color 60%,
+                    $sibaneh_orange_color 100%
+                );
+                background-size: 100% 100%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                white-space: nowrap;
                 font-size: 1.2rem;
                 margin-bottom: 2rem;
             }

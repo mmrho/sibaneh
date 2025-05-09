@@ -1,0 +1,91 @@
+.ribbon-section {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    max-height: 100px;
+    opacity: 0;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition:
+        transform 0.8s cubic-bezier(0.52, 0.16, 0.24, 1),
+        opacity 0.5s cubic-bezier(0.52, 0.16, 0.24, 1);
+    z-index: 1;
+
+    .ribbon-section-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        .ribbon-section-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            gap: 10px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-right: 10px;
+            padding-left: 10px;
+            span {
+                font-size: 13px;
+                color: $primary_text_color;
+                transition: color 0.5s ease;
+            }
+            a {
+                font-size: 13px;
+                color: $tertiary_text_color;
+                transition: color 0.5s ease;
+            }
+        }
+    }
+}
+.ribbon-section.visible {
+    opacity: 1;
+    transform: scaleY(1);
+    animation: changeColor 3s forwards;
+
+    .ribbon-section-content {
+        span {
+            animation: changeSpanTextColor 3s forwards;
+        }
+        a {
+            animation: changeLinkTextColor 3s forwards;
+        }
+    }
+}
+@keyframes changeColor {
+    0% {
+        background-color: $quaternary_color;
+    }
+    50% {
+        background-color: $quaternary_color;
+    }
+    100% {
+        background-color: $tertiary_color;
+    }
+}
+@keyframes changeSpanTextColor {
+    0% {
+        color: white;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: $primary_text_color;
+    }
+}
+@keyframes changeLinkTextColor {
+    0% {
+        color: white;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: $tertiary_text_color;
+    }
+}

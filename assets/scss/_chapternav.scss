@@ -1,0 +1,222 @@
+.chapternav {
+    background: rgba(245, 245, 247, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    font-size: 14px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 110px;
+    text-align: center;
+
+    .container-fluid {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 22px;
+        height: 100%;
+    }
+
+    .chapternav-items {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .chapternav-item {
+        position: relative;
+        height: 100%;
+        z-index: 1;
+        padding: 0 4px;
+        margin: 0 8px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .chapternav-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: 14px 0;
+        text-decoration: none;
+        color: #1d1d1f;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #06c;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .chapternav-icon {
+        margin: 0 auto 6px;
+        height: 54px;
+        width: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 44px;
+            line-height: 1;
+        }
+    }
+
+    .chapternav-label {
+        font-size: 12px;
+        line-height: 1.2;
+        font-weight: 400;
+        letter-spacing: -0.01em;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .chapternav-new {
+        display: block;
+        font-size: 10px;
+        line-height: 1.2;
+        margin-top: 3px;
+        color: #bf4800;
+        text-transform: uppercase;
+    }
+
+    @include media_queries("lg") {
+        height: 90px;
+
+        .chapternav-item {
+            margin: 0 6px;
+        }
+
+        .chapternav-icon {
+            height: 48px;
+            width: 48px;
+
+            i {
+                font-size: 38px;
+            }
+        }
+    }
+
+    @include media_queries("md") {
+        height: 80px;
+
+        .chapternav-item {
+            margin: 0 4px;
+        }
+
+        .chapternav-icon {
+            height: 40px;
+            width: 40px;
+
+            i {
+                font-size: 32px;
+            }
+        }
+
+        .chapternav-label {
+            font-size: 11px;
+        }
+    }
+
+    @include media_queries("sm") {
+        height: 70px;
+
+        .chapternav-item {
+            margin: 0 3px;
+        }
+
+        .chapternav-icon {
+            height: 36px;
+            width: 36px;
+
+            i {
+                font-size: 28px;
+            }
+        }
+
+        .chapternav-label {
+            font-size: 10px;
+        }
+    }
+
+    @include media_queries("xs") {
+        height: 65px;
+
+        .chapternav-item {
+            margin: 0 2px;
+        }
+
+        .chapternav-icon {
+            height: 32px;
+            width: 32px;
+
+            i {
+                font-size: 24px;
+            }
+        }
+    }
+
+    @include media_queries("small") {
+        height: 60px;
+
+        .chapternav-icon {
+            height: 28px;
+            width: 28px;
+
+            i {
+                font-size: 22px;
+            }
+        }
+
+        .chapternav-label {
+            font-size: 9px;
+        }
+    }
+
+    @include media_queries("xsmall") {
+        height: 55px;
+
+        .chapternav-icon {
+            height: 24px;
+            width: 24px;
+            margin-bottom: 4px;
+
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+}
+.chapternav-item {
+    &:hover {
+        .chapternav-link {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    }
+}
+.chapternav-sticky {
+    position: sticky;
+    top: 0;
+}

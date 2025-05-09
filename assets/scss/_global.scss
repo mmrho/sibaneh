@@ -2,8 +2,23 @@
 body {
   background: #fff;
   font-family: "iransans";
+  overflow-x: hidden;
+  position: relative;
 }
-
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#site-main {
+  flex: 1;
+}
+.container-fluid{
+  padding: 0 !important;
+}
+.row{
+  margin: 0 !important;
+}
 ul,
 ol {
   padding: 0;
@@ -230,13 +245,4 @@ a:focus {
       height: auto;
     }
   }
-}
-.wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-#site-main {
-  flex: 1;
 }
