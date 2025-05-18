@@ -7,11 +7,13 @@
         <h2>استانداردی منحصر بفرد برای آیفون و آیپد در ایران</h2>
         <p class="hero-section-subtitle">دسترسی امن و آسان به هزاران اپلیکیشن اورجینال iOS</p>
         <a href="#" class="hero-section-learn-more">آشنایی با اپ‌استور سیبانه</a>
-        <div class="hero-section-img-container">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/appstore-background-img.png" alt="appstore-background-img"
-                class="hero-section-background-img" id="appstore-background-img">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/appstore-main-img.png" alt="appstore-main-img"
-                class="hero-section-img" id="appstore-main-img">
+        <div class="hero-section-img-container rev-slider-effect">
+            <div class="rev-slider-wrapper">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/temp/appstore-background-img.png" alt="appstore-background-img"
+                    class="hero-section-background-img rev-slider-bg" id="appstore-background-img">
+                <img src="<?php echo get_template_directory_uri(); ?>/images/temp/appstore-main-img.png" alt="appstore-main-img"
+                    class="hero-section-img rev-slider-fg" id="appstore-main-img">
+            </div>
         </div>
     </div>
 </section>

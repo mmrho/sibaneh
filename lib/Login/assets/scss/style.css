@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html,
 body {
   height: 100%;
@@ -152,4 +153,99 @@ body {
 .loginContainer form .loginRow .loginFooterImage img {
   height: 100px;
   width: 100px;
+}
+
+.SignUpForm {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* ردیف‌های فرم */
+}
+.SignUpForm .SignUpRow {
+  margin-bottom: 15px;
+  /* لینک بازگشت */
+  /* لوگو */
+  /* عنوان فرم */
+  /* ورودی‌های فرم */
+  /* دکمه ثبت اطلاعات */
+}
+.SignUpForm .SignUpRow:last-child {
+  margin-bottom: 0;
+}
+.SignUpForm .SignUpRow .SignUpExit a {
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.SignUpForm .SignUpRow .SignUpExit a i {
+  margin-left: 5px;
+}
+.SignUpForm .SignUpRow .SignUpExit a:hover {
+  color: #333;
+}
+.SignUpForm .SignUpRow .SignUpLogo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.SignUpForm .SignUpRow .SignUpLogo a img {
+  width: 120px;
+  height: auto;
+}
+.SignUpForm .SignUpRow .SignUpTitle h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+.SignUpForm .SignUpRow .SignUpInput fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px;
+}
+.SignUpForm .SignUpRow .SignUpInput fieldset legend {
+  font-size: 1.1rem;
+  color: #666;
+  padding: 0 10px;
+}
+.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item {
+  margin-bottom: 10px;
+}
+.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item input:focus {
+  outline: none;
+  border-color: #009688;
+}
+.SignUpForm .SignUpRow .SignUpButton {
+  text-align: center;
+}
+.SignUpForm .SignUpRow .SignUpButton button {
+  background-color: #009688;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.SignUpForm .SignUpRow .SignUpButton button:hover {
+  background-color: #00796b;
 }/*# sourceMappingURL=style.css.map */
