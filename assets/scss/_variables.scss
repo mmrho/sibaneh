@@ -1,21 +1,24 @@
-$default_color: #EF7301;
+// Colors - Primary Set
+$default_color: #084bb8;
 $button_bg: #2A3143;
 $button_bg_hover: #017DEF;
-$second_color: #7801EF;
-$default_text_color: #7A7A7A;
-$text_color_hover: #000000;
+$second_color: #f0f0f0;
+$default_text_color: #666666;
+$text_color_hover: #084bb8;
 $panelMarginTop: 150px;
-$defaultTitleColor: #444444;
+$defaultTitleColor: #333333;
 $dashboard_menu_color: #353D51;
 $dashboard_btn_color: #D9D9D9;
 $dashboard_menu_text_color: #E2E2E2;
 $dashboard_subMenu_text_color: #858585;
 
-
+// Colors - Main Set
 $primary_color: #FFFFFF;
 $secondary_color: #FFFFFF;
 $tertiary_color: #F2F2F5;
 $quaternary_color: #0A59DC;
+
+// Sibaneh Brand Colors
 $sibaneh_header_background_color: #FFFFFF;
 $sibaneh_footer_background_color: #F7F7F9;
 $sibaneh_blue_color: #00C5FF;
@@ -24,6 +27,61 @@ $sibaneh_pink_color: #E35599;
 $sibaneh_pink_background_color: #FEEDFB;
 $sibaneh_orange_color: #FF5300;
 $sibaneh_orange_background_color: #FFEDE1;
+
+// Text Colors
 $primary_text_color: #000000;
 $secondary_text_color: #FFFFFF;
 $tertiary_text_color: #06c;
+
+// Spacing Variables
+$base_spacing: 1rem;
+$xlarge_spacing: 3rem;
+$large_spacing: 2rem;
+$medium_spacing: 1.5rem;
+$small_spacing: 1rem;
+$xsmall_spacing: 0.5rem;
+
+// Typography
+$font_family_primary:  'IRANSans', sans-serif;
+$font_family_secondary: 'IRANSans', sans-serif;
+
+// Font Sizes
+$font_size_small: 0.875rem;
+$font_size_medium: 1rem;
+$font_size_large: 1.25rem;
+$font_size_xlarge: 1.5rem;
+$font_size_xxlarge: 2rem;
+
+// Font Weights
+$font_weight_normal: 400;
+$font_weight_medium: 500;
+$font_weight_semibold: 600;
+$font_weight_bold: 700;
+
+// Border Radius
+$border_radius_small: 4px;
+$border_radius_medium: 8px;
+$border_radius_large: 12px;
+$border_radius_xlarge: 20px;
+
+// Shadows
+$shadow_small: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow_medium: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow_large: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition_fast: 0.2s ease;
+$transition_medium: 0.3s ease;
+$transition_slow: 0.5s ease;
+
+// Z-index
+$z_index_dropdown: 1000;
+$z_index_modal: 1050;
+$z_index_tooltip: 1070;
+
+// Breakpoints
+$breakpoint_xs: 575.98px;
+$breakpoint_sm: 767.98px;
+$breakpoint_md: 991.98px;
+$breakpoint_lg: 1199.98px;
+$breakpoint_xl: 1400px;

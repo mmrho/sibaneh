@@ -23,6 +23,8 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         'df17d88f00d7373d412c1aa16d832c92' => __DIR__ . '/../..' . '/inc/functions/add-roles.php',
         'c208f475b61717233f8225fa0353d0ae' => __DIR__ . '/../..' . '/inc/functions/theme-options.php',
         '6dbfdeef30519b60233492cac6d4f3a6' => __DIR__ . '/../..' . '/inc/functions/menu.php',
+        'df53d277755d918b806079c00bbff810' => __DIR__ . '/../..' . '/inc/functions/calculate-reading-time.php',
+        '442372707671c4b594c4f301c760150e' => __DIR__ . '/../..' . '/inc/functions/get-safe-persian-date.php',
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
     );
 

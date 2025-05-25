@@ -1,15 +1,69 @@
+// Import math module for division
+@use "sass:math";
+
+// Media Queries Mixin
 @mixin media_queries($name) {
-  $breakpoints: (
+        $breakpoints: (
           'xsmall' : (max-width: 380px),
           'small' : (max-width: 480px),
           'xs' : (max-width: 575.98px),
           'sm' : (max-width: 767.98px),
           'md' : (max-width: 991.98px),
           'lg' : (max-width: 1199.98px)
-  );
-  @if map-has-key($breakpoints, $name) {
-    @media #{inspect(map-get($breakpoints, $name))} {
-      @content;
-    }
-  }
+        );
+        @if map-has-key($breakpoints, $name) {
+          @media #{inspect(map-get($breakpoints, $name))} {
+            @content;
+          }
+        }
+}
+
+// Text Style Mixin
+@mixin text_style($size, $weight, $color) {
+        font-size: $size;
+        font-weight: $weight;
+        color: $color;
+}
+
+// Button Mixin
+@mixin button_style($bg-color, $text-color, $hover-bg: null) {
+        background-color: $bg-color;
+        color: $text-color;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: $border_radius_medium;
+        cursor: pointer;
+        transition: $transition_medium;
+  
+        @if $hover-bg {
+          &:hover {
+            background-color: $hover-bg;
+          }
+        }
+}
+
+// Flexbox Center Mixin
+@mixin flex_center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+// Card Style Mixin - Updated to accept parameters
+@mixin card_style($padding: $medium_spacing, $border-radius: $border_radius_large) {
+        background: $primary_color;
+        border-radius: $border-radius;
+        box-shadow: $shadow_medium;
+        padding: $padding;
+        border: 1px solid $tertiary_color;
+}
+
+// Transition Mixin
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+        transition: $property $duration $timing;
+}
+
+// Division Helper Function
+@function divide($dividend, $divisor) {
+  @return math.div($dividend, $divisor);
 }

@@ -1,6 +1,4 @@
-
 <?php
-
 class WbsUtility
 {
     public static function inputClean($input)

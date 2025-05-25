@@ -29,6 +29,8 @@
       "inc/functions/add-roles.php",
       "inc/functions/theme-options.php",
       "inc/functions/menu.php",
+      "inc/functions/calculate-reading-time.php",
+      "inc/functions/get-safe-persian-date.php",
       "lib/Login/wbsLogin.php"
     ]
   },

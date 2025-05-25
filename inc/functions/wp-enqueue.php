@@ -12,6 +12,7 @@ function wbs_enqueue_scripts()
         wp_enqueue_script('slider', THEME_ASSETS . 'js/Modules/slider.js', array('jquery'), THEME_VERSION, true);
         wp_enqueue_script('ribbon', THEME_ASSETS . 'js/Modules/ribbon.js', array('jquery'), THEME_VERSION, true);
         wp_enqueue_script('carousel', THEME_ASSETS . 'js/Modules/carousel.js', array('jquery'), THEME_VERSION, true);
+        wp_enqueue_script('swing', THEME_ASSETS . 'js/Modules/swing.js', array('jquery'), THEME_VERSION, true);
     }
 
 
