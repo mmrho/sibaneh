@@ -46,6 +46,7 @@
 @mixin flex_center {
         display: flex;
         align-items: center;
+        align-content: center;
         justify-content: center;
 }
 

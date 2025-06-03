@@ -4,10 +4,7 @@ add_action('wp_enqueue_scripts', 'wbs_enqueue_scripts');
 function wbs_enqueue_scripts()
 {
     require_once "globalEnqueue.php";
-
-   if (is_page_template('login.php')) {
-        require_once get_template_directory() . "/lib/Login/functions/wp-enqueue.php";
-    }
+    
     if (is_front_page() || is_home()) {
         wp_enqueue_script('slider', THEME_ASSETS . 'js/Modules/slider.js', array('jquery'), THEME_VERSION, true);
         wp_enqueue_script('ribbon', THEME_ASSETS . 'js/Modules/ribbon.js', array('jquery'), THEME_VERSION, true);

@@ -8,6 +8,9 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
 {
     public static $files = array (
         'b921cbe71015ab88f1303c3f2da73e4f' => __DIR__ . '/../..' . '/class/WbsUtility.php',
+        'd92100d97b1c6956c69b29ec38c98a6f' => __DIR__ . '/../..' . '/class/calculate-reading-time.php',
+        '3e931f6749a57dac0e04ffa8e83cff81' => __DIR__ . '/../..' . '/class/copy-link.php',
+        'dd64e540f99ce8d7014553c8d43ce992' => __DIR__ . '/../..' . '/class/split-post-content.php',
         'cac77d3b20e71eafbee73ae7a96dfa35' => __DIR__ . '/../..' . '/inc/functions/proper-parse.php',
         '9d80bc40cdd8c4617f85deff64ca474c' => __DIR__ . '/../..' . '/inc/functions/PageNav.php',
         '88b81fda764f5ef43ed005963c136e3a' => __DIR__ . '/../..' . '/inc/functions/user-custom-fields.php',
@@ -23,8 +26,6 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         'df17d88f00d7373d412c1aa16d832c92' => __DIR__ . '/../..' . '/inc/functions/add-roles.php',
         'c208f475b61717233f8225fa0353d0ae' => __DIR__ . '/../..' . '/inc/functions/theme-options.php',
         '6dbfdeef30519b60233492cac6d4f3a6' => __DIR__ . '/../..' . '/inc/functions/menu.php',
-        'df53d277755d918b806079c00bbff810' => __DIR__ . '/../..' . '/inc/functions/calculate-reading-time.php',
-        '442372707671c4b594c4f301c760150e' => __DIR__ . '/../..' . '/inc/functions/get-safe-persian-date.php',
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
     );
 

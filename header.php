@@ -10,107 +10,17 @@
 <body <?php body_class(); ?>>
     <!-- Header -->
     <header id="site-header">
-        <div class="container-fluid site-header-container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="site-header-top">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="site-header-top-brand">
-                            <img class="img-fluid site-header-top-brand-logo" src="<?php echo get_template_directory_uri() ?>/images/temp/sibaneh-logo.png" alt="سیبانه">
-                            <h1 class="site-header-top-brand-name">سیبانه</h1>
-                        </a>
-                        <div class="site-header-top-support-sale">
-                            <span class="site-header-top-sale-number">واحد فروش : ۰۹۹۹۹۸۸۶۲۰۲</span>
-                            <a href="#" class="site-header-top-support-online-a"><i class="icon-Online-Support"></i>پشتیبانی</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="site-header-bottom">
-                        <nav class="site-nav">
-                            <ul class="site-nav-list">
-                                <li class="site-nav-item">
-                                    <a class="site-nav-link" href="#">
-                                        خانه
-                                    </a>
-                                </li>
-                                <li class="site-nav-item has-submenu">
-                                    <a class="site-nav-link" href="#">
-                                        اپ‌استور
-                                        <i class="icon-down-open"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="#">آیتم زیرمنو 1</a></li>
-                                        <li><a href="#">آیتم زیرمنو 2</a></li>
-                                        <li><a href="#">آیتم زیرمنو 3</a></li>
-                                    </ul>
-                                </li>
-                                <li class="site-nav-item has-submenu">
-                                    <a class="site-nav-link" href="#">
-                                        مک‌استور
-                                        <i class="icon-down-open"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="#">آیتم زیرمنو 1</a></li>
-                                        <li><a href="#">آیتم زیرمنو 2</a></li>
-                                        <li><a href="#">آیتم زیرمنو 3</a></li>
-                                    </ul>
-                                </li>
-                                <li class="site-nav-item has-submenu">
-                                    <a class="site-nav-link" href="#">
-                                        توسعه‌دهندگان
-                                        <i class="icon-down-open"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="#">آیتم زیرمنو 1</a></li>
-                                        <li><a href="#">آیتم زیرمنو 2</a></li>
-                                        <li><a href="#">آیتم زیرمنو 3</a></li>
-                                    </ul>
-                                </li>
-                                <li class="site-nav-item has-submenu">
-                                    <a class="site-nav-link" href="#">
-                                        آموزش
-                                        <i class="icon-down-open"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="#">آیتم زیرمنو 1</a></li>
-                                        <li><a href="#">آیتم زیرمنو 2</a></li>
-                                        <li><a href="#">آیتم زیرمنو 3</a></li>
-                                    </ul>
-                                </li>
-                                <li class="site-nav-item has-submenu">
-                                    <a class="site-nav-link" href="#">
-                                        بلاگ
-                                        <i class="icon-down-open"></i>
-                                    </a>
-                                    <ul class="submenu">
-                                        <li><a href="#">آیتم زیرمنو 1</a></li>
-                                        <li><a href="#">آیتم زیرمنو 2</a></li>
-                                        <li><a href="#">آیتم زیرمنو 3</a></li>
-                                    </ul>
-                                </li>
-                                <li class="site-nav-item">
-                                    <a class="site-nav-link" href="#">
-                                        چرا سیبانه؟
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="search-container">
-                            <button class="search-icon" onclick="toggleSearch()">
-                                <i class="icon-search-1"></i>
-                            </button>
-                            <div class="search-bar" id="search-bar">
-                                <input type="text" placeholder="جستجو..." />
-                            </div>
-                        </div>
-                        <button class="service-button">
-                            <span class="service-button-text">سرویس‌های سیبانه</span>
-                        </button>
-                        <button class="login-button">
-                            <span class="login-button-text">ورود</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <!-- H1 -->
+        <h1 class="sr-only"><?php bloginfo('name'); ?></h1>
+        
+        <!-- mobile-header -->
+        <div class="mobile-header">
+            <?php require_once THEME_TEMPLATE . 'header/mobile-header.php'; ?>
+        </div>
+        
+        <!-- desktop-header -->
+        <div class="desktop-header">
+            <?php require_once THEME_TEMPLATE . 'header/desktop-header-top.php'; ?>
+            <?php require_once THEME_TEMPLATE . 'header/desktop-header-bottom.php'; ?>
         </div>
     </header>

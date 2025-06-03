@@ -1,6 +1,6 @@
 <?php
 wp_enqueue_style('bootstrap', THEME_CSS . 'bootstrap.rtl.min.css');
-wp_enqueue_style('swiper', THEME_CSS . 'swiper-bundle.min.css');
+//wp_enqueue_style('swiper', THEME_CSS . 'swiper-bundle.min.css');
 wp_enqueue_style('sweetalert2', THEME_ASSETS . 'plugins/sweetalert2/dist/sweetalert2.min.css');
 wp_enqueue_style('icons', THEME_ASSETS . 'fonts/icons/style.css');
 wp_enqueue_style('style', get_stylesheet_uri(), [], THEME_VERSION);

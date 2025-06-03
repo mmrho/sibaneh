@@ -3,8 +3,6 @@ $default_color: #084bb8;
 $button_bg: #2A3143;
 $button_bg_hover: #017DEF;
 $second_color: #f0f0f0;
-$default_text_color: #666666;
-$text_color_hover: #084bb8;
 $panelMarginTop: 150px;
 $defaultTitleColor: #333333;
 $dashboard_menu_color: #353D51;
@@ -19,7 +17,7 @@ $tertiary_color: #F2F2F5;
 $quaternary_color: #0A59DC;
 
 // Sibaneh Brand Colors
-$sibaneh_header_background_color: #FFFFFF;
+$sibaneh_header_background_color: #FAFAFD;
 $sibaneh_footer_background_color: #F7F7F9;
 $sibaneh_blue_color: #00C5FF;
 $sibaneh_blue_background_color: #DEF4F9;
@@ -29,9 +27,11 @@ $sibaneh_orange_color: #FF5300;
 $sibaneh_orange_background_color: #FFEDE1;
 
 // Text Colors
+$default_text_color: #000000;
 $primary_text_color: #000000;
 $secondary_text_color: #FFFFFF;
 $tertiary_text_color: #06c;
+$text_color_hover: #084bb8;
 
 // Spacing Variables
 $base_spacing: 1rem;

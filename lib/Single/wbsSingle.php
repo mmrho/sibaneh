@@ -10,5 +10,5 @@ require_once "functions/ajax.php";
 
 function wbsLoadLoginForm()
 {
-    require_once "template/loginForm.php";
+    require_once "template/singlePage.php";
 }
