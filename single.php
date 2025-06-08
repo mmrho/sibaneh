@@ -35,7 +35,6 @@ get_header();
                             </div>
                         </div>
 
-
                         <!-- Component Content (first paragraph) -->
                         <?php if (!empty($split_content['component'])) : ?>
                             <div class="component-content">
@@ -80,38 +79,26 @@ get_header();
 
                         <!-- Post Actions -->
                         <div class="post-actions">
-                            <div class="reading-time">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
-                                </svg>
-                                <span><?php echo calculate_reading_time(get_the_content()); ?> دقیقه مطالعه</span>
+                            <div class="metadata">
+                                <div class="metadata-item">
+                                    <div class="metadata-value"><?php echo calculate_reading_time(get_the_content()); ?> دقیقه</div>
+                                    <div class="metadata-label">مدت زمان مطالعه</div>
+                                </div>
+                                <div class="metadata-separator"></div>
+                                <div class="metadata-item">
+                                    <button class="download-button">
+                                        <div class="metadata-value"><i class="icon-play-in-circle"></i></div>
+                                        <div class="metadata-label">دانلود برنامه <?php the_title(); ?></div>
+                                    </button>
+                                </div>
+                                <div class="metadata-separator"></div>
+                                <div class="metadata-item">
+                                    <a href="<?php echo get_post_meta(get_the_ID(), 'video_review_url', true); ?>" class="video-link">
+                                        <div class="metadata-value"><i class="icon-video-player"></i></div>
+                                        <div class="metadata-label">ویدیو بررسی</div>
+                                    </a>
+                                </div>
                             </div>
-
-                            <?php
-                            $video_link = get_post_meta(get_the_ID(), 'video_review_link', true);
-                            $download_link = get_post_meta(get_the_ID(), 'download_link', true);
-                            ?>
-
-                            <?php if ($video_link) : ?>
-                                <a href="<?php echo esc_url($video_link); ?>" class="action-btn video-btn" target="_blank" rel="noopener">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                    <span>ویدیو بررسی</span>
-                                </a>
-                            <?php endif; ?>
-
-                            <?php if ($download_link) : ?>
-                                <a href="<?php echo esc_url($download_link); ?>" class="action-btn download-btn" target="_blank" rel="noopener">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                                        <polyline points="7,10 12,15 17,10" />
-                                        <line x1="12" y1="15" x2="12" y2="3" />
-                                    </svg>
-                                    <span>دانلود از دیجی‌کالا</span>
-                                </a>
-                            <?php endif; ?>
-
                         </div>
                     </div>
                     <!-- Post Content (Rest of Content) -->

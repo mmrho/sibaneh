@@ -1509,8 +1509,6 @@ a:focus {
   overflow: hidden;
   margin-bottom: 40px;
   /* Post Header */
-  /* Post Author */
-  /* Social Share */
   /* Post Content */
   /* Post Navigation */
 }
@@ -1520,8 +1518,12 @@ a:focus {
   justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
-  padding: 20px;
+  padding: 15px;
   max-width: 653px;
+  gap: 30px;
+  /* Post Author */
+  /* Social Share */
+  /* Post Actions */
 }
 @media (max-width: 767.98px) {
   .main-content .container .single-post-article .post-header {
@@ -1556,68 +1558,115 @@ a:focus {
   font-size: 15px;
   color: #3498db;
 }
-.main-content .container .single-post-article .post-author {
+.main-content .container .single-post-article .post-header .post-author {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
   gap: 10px;
-  padding: 25px 20px;
+  padding: 0px;
   border-top: 1px solid #eee;
   background: #FFFFFF;
 }
-.main-content .container .single-post-article .post-author .author-avatar img {
+.main-content .container .single-post-article .post-header .post-author .author-avatar img {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   border: 3px solid white;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
-.main-content .container .single-post-article .post-author .author-details .author-name {
+.main-content .container .single-post-article .post-header .post-author .author-details .author-name {
   display: block;
   font-weight: 600;
   color: #2c3e50;
   font-size: 1.1rem;
   margin-bottom: 5px;
 }
-.main-content .container .single-post-article .post-author .author-details .author-bio {
+.main-content .container .single-post-article .post-header .post-author .author-details .author-bio {
   color: #5a6c7d;
   font-size: 14px;
   line-height: 1.5;
   margin: 0;
 }
-.main-content .container .single-post-article .social-share {
+.main-content .container .single-post-article .post-header .social-share {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
   gap: 15px;
-  margin: 25px 20px;
+  padding: 0px;
 }
-.main-content .container .single-post-article .social-share .social-buttons {
+.main-content .container .single-post-article .post-header .social-share .social-buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: center;
   gap: 20px;
-  font-size: 30px;
+  font-size: 25px;
 }
-.main-content .container .single-post-article .social-share .social-buttons .copy-link {
+.main-content .container .single-post-article .post-header .social-share .social-buttons .copy-link {
   border: none;
   background-color: #FFFFFF;
   color: #5b5a5f;
 }
-.main-content .container .single-post-article .social-share .social-buttons a {
+.main-content .container .single-post-article .post-header .social-share .social-buttons a {
   color: #5b5a5f;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  gap: 15px;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata .metadata-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  gap: 0px;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata .metadata-item .download-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: transparent;
+  border: none;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata .metadata-item .download-button i {
+  font-size: 32px;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata .metadata-item .video-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata .metadata-item .video-link i {
+  font-size: 32px;
+}
+.main-content .container .single-post-article .post-header .post-actions .metadata .metadata-separator {
+  width: 2px;
+  height: 60px;
+  background-color: #e0e0e0;
+  margin: 0 5px;
+  display: inline-block;
 }
 .main-content .container .single-post-article .post-content {
   padding: 20px;
   font-size: 18px;
   line-height: 1.8;
   color: #000000;
+  padding-bottom: 50px;
 }
 .main-content .container .single-post-article .post-content h1 {
   font-size: 44px;
