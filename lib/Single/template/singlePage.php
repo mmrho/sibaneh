@@ -1,0 +1,262 @@
+<div class="container">
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <?php
+            // Get the split content
+            $split_content = split_post_content();
+            ?>
+
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb">
+                <?php if (function_exists('yoast_breadcrumb')) {
+                    yoast_breadcrumb('<div class="breadcrumb-wrapper">', '</div>');
+                } ?>
+            </nav>
+
+            <!-- Post Article -->
+            <article class="single-post-article">
+                <!-- Post Info -->
+                <div class="post-header">
+                    <!-- Post Meta -->
+                    <div class="post-meta">
+                        <div class="meta-item">
+                            <span>بروزرسانی</span>
+                        </div>
+                        <div class="meta-item">
+                            <span><?php echo get_the_date('j F Y'); ?></span>
+                        </div>
+                    </div>
+
+                    <!-- Component Content -->
+                    <?php if (!empty($split_content['component'])) : ?>
+                        <div class="component-content">
+                            <?php echo $split_content['component']; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Author Info -->
+                    <div class="post-author">
+                        <div class="author-avatar">
+                            <?php echo get_avatar(get_the_author_meta('ID'), 60); ?>
+                        </div>
+                        <div class="author-details">
+                            <span class="author-name">نویسنده: <?php the_author(); ?></span>
+                        </div>
+                    </div>
+
+                    <!-- Social Share -->
+                    <div class="social-share">
+                        <div class="social-buttons">
+                            <button class="social-btn copy-link" onclick="copyToClipboard('<?php echo get_permalink(); ?>')" title="کپی لینک">
+                                <i class="icon-link"></i>
+                            </button>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
+                                target="_blank" class="social-btn instagram" title="اشتراک در اینستاگرام">
+                                <i class="icon-instagram"></i>
+                            </a>
+                            <a href="https://telegram.me/share/url?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                                target="_blank" class="social-btn telegram" title="اشتراک در تلگرام">
+                                <i class="icon-telegram"></i>
+                            </a>
+
+                            <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                                target="_blank" class="social-btn twitter" title="اشتراک در ایکس">
+                                <i class="icon-x"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Post Actions -->
+                    <div class="post-actions">
+                        <div class="metadata">
+                            <div class="metadata-item">
+                                <div class="metadata-item-container">
+                                    <div class="metadata-value-time">
+                                        <?php
+                                        $yoast_reading_time = get_post_meta(get_the_ID(), '_yoast_wpseo_estimated-reading-time-minutes', true);
+                                        echo $yoast_reading_time ? $yoast_reading_time : calculate_reading_time(get_the_content());
+                                        ?> دقیقه
+                                    </div>
+                                    <div class="metadata-label-title">مدت زمان مطالعه</div>
+                                </div>
+                            </div>
+                            <div class="metadata-separator"></div>
+                            <div class="metadata-item">
+                                <button class="download-button metadata-item-container">
+                                    <div class="metadata-value"><i class="icon-circle"></i></div>
+                                    <div class="metadata-label">دانلود برنامه <?php the_title(); ?></div>
+                                </button>
+                            </div>
+                            <div class="metadata-separator"></div>
+                            <div class="metadata-item">
+                                <a class="metadata-item-container" href="<?php echo get_post_meta(get_the_ID(), 'video_review_url', true); ?>">
+                                    <div class="metadata-value"><i class="icon-video-player"></i></div>
+                                    <div class="metadata-label">ویدیو بررسی</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Post Content (Rest of Content) -->
+                <?php if (!empty($split_content['pagebody'])) : ?>
+                    <div class="post-content">
+                        <div class="pagebody">
+                            <?php echo $split_content['pagebody']; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+            </article>
+
+            <!-- Frequently Asked Questions -->
+            <section class="questions-section">
+                <h2 class="questions-title">سوالات متداول؟</h2>
+                <h3 class="answers-title">پاسخ‌ها.</h3>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <div class="faq-icon"><i class="icon-circle"></i></div>
+                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-icon"><i class="icon-circle"></i></div>
+                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-icon"><i class="icon-circle"></i></div>
+                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-icon"><i class="icon-circle"></i></div>
+                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comments Section -->
+            <section class="comments-section">
+                <?php
+                if (comments_open() || get_comments_number()) {
+                    comments_template();
+                }
+                ?>
+            </section>
+
+            <!-- Related Posts 
+            <section class="related-posts">
+                <h3>مطالب مرتبط</h3>
+                <div class="related-posts-grid">
+                    <?php
+                    $related = get_posts(array(
+                        'category__in' => wp_get_post_categories($post->ID),
+                        'numberposts' => 3,
+                        'post__not_in' => array($post->ID)
+                    ));
+
+                    if ($related) foreach ($related as $post) {
+                        setup_postdata($post); ?>
+                        <article class="related-post-item">
+                            <a href="<?php the_permalink(); ?>" class="related-post-link">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <div class="related-post-thumb">
+                                        <?php the_post_thumbnail('medium'); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="related-post-content">
+                                    <h4 class="related-post-title"><?php the_title(); ?></h4>
+                                    <span class="related-post-date"><?php echo get_the_date(); ?></span>
+                                </div>
+                            </a>
+                        </article>
+                    <?php }
+                    wp_reset_postdata(); ?>
+                </div>
+            </section>  -->
+            <!-- Similar Tutorials -->
+            <section class="related-posts similar-tutorials">
+                <h3>آموزش‌های مشابه و بیشتر</h3>
+                <div class="related-posts-grid">
+                    <?php
+                    $current_post_id = get_the_ID();
+                    $categories = wp_get_post_categories($current_post_id);
+
+                    echo '<pre>Post ID: ' . $current_post_id . ', Categories: ' . print_r($categories, true) . '</pre>';
+
+                    if (!empty($categories)) {
+                        $related = get_posts(array(
+                            'category__in' => $categories,
+                            'numberposts' => 3,
+                            'post__not_in' => array($current_post_id),
+                            'post_status' => 'publish',
+                            'suppress_filters' => false
+                        ));
+
+
+                        echo '<pre>Related posts count: ' . count($related) . '</pre>';
+
+                        if ($related && !empty($related)) {
+                            foreach ($related as $related_post) {
+                                setup_postdata($related_post); ?>
+                                <article class="related-post-item tutorial-item">
+                                    <a href="<?php the_permalink(); ?>" class="related-post-link">
+                                        <div class="related-post-content">
+                                            <span class="tutorial-category">
+                                                <?php
+                                                $post_categories = get_the_category();
+                                                if (!empty($post_categories)) {
+                                                    echo 'آموزش‌های ' . esc_html($post_categories[0]->name);
+                                                } else {
+                                                    echo 'آموزش‌های سیبانه';
+                                                }
+                                                ?>
+                                            </span>
+                                            <h4 class="related-post-title"><?php the_title(); ?></h4>
+                                        </div>
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <div class="related-post-thumb">
+                                                <?php the_post_thumbnail('medium'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </a>
+                                </article>
+                                <?php }
+                            wp_reset_postdata();
+                        } else {
+                            // اگر پست دسته‌بندی ندارد، آخرین پست‌ها را نمایش دهید
+                            $related = get_posts(array(
+                                'numberposts' => 3,
+                                'post__not_in' => array($current_post_id),
+                                'post_status' => 'publish'
+                            ));
+
+                            if ($related) {
+                                foreach ($related as $related_post) {
+                                    setup_postdata($related_post); ?>
+                                    <article class="related-post-item tutorial-item">
+                                        <a href="<?php the_permalink(); ?>" class="related-post-link">
+                                            <div class="related-post-content">
+                                                <span class="tutorial-category">آموزش‌های سیبانه</span>
+                                                <h4 class="related-post-title"><?php the_title(); ?></h4>
+                                            </div>
+                                            <?php if (has_post_thumbnail()) : ?>
+                                                <div class="related-post-thumb">
+                                                    <?php the_post_thumbnail('medium'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                        </a>
+                                    </article>
+                    <?php }
+                                wp_reset_postdata();
+                            } else {
+                                echo '<p>هیچ مطلبی برای نمایش یافت نشد.</p>';
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+            </section>
+
+    <?php endwhile;
+    endif; ?>
+</div>

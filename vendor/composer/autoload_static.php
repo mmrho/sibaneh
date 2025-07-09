@@ -27,6 +27,7 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         'c208f475b61717233f8225fa0353d0ae' => __DIR__ . '/../..' . '/inc/functions/theme-options.php',
         '6dbfdeef30519b60233492cac6d4f3a6' => __DIR__ . '/../..' . '/inc/functions/menu.php',
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
+        'ded4fcffe7fd07b9bf363d649b367048' => __DIR__ . '/../..' . '/lib/Single/wbsSingle.php',
     );
 
     public static $prefixLengthsPsr4 = array (

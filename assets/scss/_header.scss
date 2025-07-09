@@ -1,5 +1,5 @@
 #site-header {
-    padding: 20px 0;
+    padding: 0px;
     /* Hide H1 for SEO */
     .sr-only {
         position: absolute;
@@ -12,26 +12,21 @@
         white-space: nowrap;
         border: 0;
     }
-    @include media_queries("sm") {
-        margin-top: 25px;
-    }
 
-    // Hide all headers by default
-    .mobile-header,
-    .desktop-header {
+    // Hide mobile header by default, show on mobile
+    .mobile-header {
         display: none;
-    }
 
-    // Show mobile header on small screens
-    @include media_queries("sm") {
-        .mobile-header {
+        @include media-max(mobile-max) {
             display: block;
         }
     }
 
-    // Show desktop header on larger screens
-    @media (min-width: 768px) {
-        .desktop-header {
+    // Hide desktop header by default, show on desktop
+    .desktop-header {
+        display: none;
+
+        @include media-min(desktop-min) {
             display: block;
         }
     }
@@ -42,6 +37,8 @@
     .desktop-header-container {
         max-width: 100%;
         width: 100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
         padding-left: 3px;
         padding-right: 3px;
         overflow-x: visible !important;
@@ -103,22 +100,28 @@
         .site-header-bottom {
             display: flex;
             align-items: center;
+            align-content: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
             padding-top: 0rem;
             padding-bottom: 0rem;
-            padding-right: 2.5rem;
-            padding-left: 2rem;
+            padding-right: 33px;
+            padding-left: 30px;
             position: relative;
             z-index: 10;
             .site-nav {
                 flex: 1 1 auto;
+               
 
                 .site-nav-list {
                     display: flex;
-                    flex-wrap: wrap;
-                    gap: 2rem;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    align-content: center;
+                    flex-wrap: nowrap;
+                    gap: 5px;
                     margin: 0;
                     padding: 0;
                     list-style: none;
@@ -130,15 +133,17 @@
                         .site-nav-link {
                             display: flex;
                             align-items: center;
-                            gap: 0.25rem;
+                            gap: 5px;
                             text-decoration: none;
                             color: #000;
-                            font-weight: 500;
+                            font-weight: 400;
+                            font-size: 15px;
                             position: relative;
                             z-index: 5;
-                            padding-right: 1rem;
-                            padding-left: 1rem;
-                            padding-bottom: 0.5rem;
+                            padding-right: 10px;
+                            padding-left: 10px;
+                            padding-bottom: 0px;
+                            text-wrap: nowrap;
                             i {
                                 font-size: 0.8rem;
                                 transition: transform 0.3s ease;
@@ -236,7 +241,7 @@
                 transition: all 0.2s ease;
                 color: white;
                 border: none;
-                padding: 11px 21px;
+                padding: 10px 16px;
                 border-radius: 8px;
                 font-size: 16px;
                 white-space: nowrap;
@@ -246,7 +251,7 @@
             }
 
             .login-button {
-                padding: 11px 21px;
+                padding: 10px 16px;
                 border-radius: 8px;
                 font-size: 16px;
                 white-space: nowrap;
@@ -301,10 +306,8 @@
     // ====================
     // Mobile Header Styles
     // ====================
-
-    // Mobile Header Container
     .mobile-header-container {
-        display: none;
+        display: block;
         position: fixed;
         top: 0;
         left: 0;
@@ -316,11 +319,7 @@
         z-index: 1000;
         padding: 12px 0;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-        @include media_queries("sm") {
-            display: block !important;
-        }
-
+       
         // Scrolled state
         &.scrolled {
             background: $sibaneh_header_background_color;
@@ -383,7 +382,7 @@
                 .mobile-search-btn {
                     background: none;
                     border: none;
-                    font-size: 1.1rem;
+                    font-size: 20px;
                     cursor: pointer;
                     padding: 10px;
                     color: $primary_text_color;
@@ -399,7 +398,7 @@
                     }
 
                     i {
-                        font-size: 1.2rem;
+                        font-size: 20px;
                     }
                 }
 
@@ -412,35 +411,12 @@
                     flex-direction: column;
                     gap: 5px;
                     transition: transform 0.2s ease;
+                    font-size: 30px;
 
                     &:active {
                         transform: scale(0.9);
                     }
 
-                    .hamburger-line {
-                        width: 18px;
-                        height: 2px;
-                        background-color: #1d1d1f;
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                        border-radius: 1px;
-                    }
-
-                    &.active {
-                        .hamburger-line {
-                            background-color: #007aff;
-
-                            &:nth-child(1) {
-                                transform: rotate(45deg) translate(4px, 4px);
-                            }
-                            &:nth-child(2) {
-                                opacity: 0;
-                                transform: scale(0);
-                            }
-                            &:nth-child(3) {
-                                transform: rotate(-45deg) translate(5px, -5px);
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -800,7 +776,7 @@
         }
 
         // Responsive adjustments
-        @media (max-width: 480px) {
+        @media (max-width: 835px) {
             .mobile-nav-content .mobile-nav-list .mobile-nav-item .mobile-nav-link {
                 font-size: 24px;
                 padding: 18px 20px;
@@ -897,3 +873,4 @@
         }
     }
 }
+

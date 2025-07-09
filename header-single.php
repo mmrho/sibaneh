@@ -8,12 +8,10 @@
 </head>
 
 <body <?php body_class(); ?>>
+
     <!-- Header -->
     <header id="site-header">
-        
-        <!-- H1 -->
-        <h1 class="sr-only"><?php bloginfo('name'); ?></h1>
-        
+
         <!-- mobile-header -->
         <div class="mobile-header">
             <?php require_once THEME_TEMPLATE . 'header/mobile-header.php'; ?>
@@ -24,4 +22,5 @@
             <?php require_once THEME_TEMPLATE . 'header/desktop-header-top.php'; ?>
             <?php require_once THEME_TEMPLATE . 'header/desktop-header-bottom.php'; ?>
         </div>
+
     </header>

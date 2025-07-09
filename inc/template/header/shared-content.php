@@ -46,7 +46,7 @@ $main_menu = [
         ]
     ],
     [
-        'title' => 'آموزش',
+        'title' => 'آموزش و مقالات',
         'url' => '#',
         'has_submenu' => true,
         'submenu' => [

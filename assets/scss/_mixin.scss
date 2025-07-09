@@ -3,65 +3,167 @@
 
 // Media Queries Mixin
 @mixin media_queries($name) {
-        $breakpoints: (
-          'xsmall' : (max-width: 380px),
-          'small' : (max-width: 480px),
-          'xs' : (max-width: 575.98px),
-          'sm' : (max-width: 767.98px),
-          'md' : (max-width: 991.98px),
-          'lg' : (max-width: 1199.98px)
-        );
-        @if map-has-key($breakpoints, $name) {
-          @media #{inspect(map-get($breakpoints, $name))} {
-            @content;
-          }
-        }
+  $breakpoints: (
+    "xsmall": (
+      max-width: 380px
+    ),
+    "small": (
+      max-width: 480px
+    ),
+    "xs": (
+      max-width: 575.98px
+    ),
+    "sm": (
+      max-width: 767.98px
+    ),
+    "md": (
+      max-width: 991.98px
+    ),
+    "lg": (
+      max-width: 1199.98px
+    ),
+    "xl": (
+      max-width: 1279.98px
+      )
+  );
+  @if map-has-key($breakpoints, $name) {
+    @media #{inspect(map-get($breakpoints, $name))} {
+      @content;
+    }
+  }
 }
+
+
+// Standard breakpoints up to 2560px
+$breakpoints: (
+  xs: 320px,     // very small phones (e.g. iPhone SE)
+  sm: 480px,     // small phones
+  md: 768px,     // tablets (portrait)
+  mobile-max: 849.98px, // mobile up to just before 835px
+  desktop-min: 850px,     // desktop from 835px and above
+  lg: 992px,     // tablets (landscape) / large phones
+  l:1050,      // مشکل داریم
+  xl: 1200px,    // standard laptops
+  xxl: 1440px,   // standard desktops
+  ultra: 1920px, // Full HD screens
+  max: 2560px    // large 2K/4K displays
+);
+
+// Get breakpoint value by key
+@function bp-get($key) {
+  @if map-has-key($breakpoints, $key) {
+    @return map-get($breakpoints, $key);
+  }
+  @warn "Breakpoint `#{$key}` not found.";
+  @return null;
+}
+
+// Media query for min-width
+@mixin media-min($key) {
+  $size: bp-get($key);
+  @if $size {
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+// Media query for max-width
+@mixin media-max($key) {
+  $size: bp-get($key);
+  @if $size {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+// Media query between two breakpoints
+@mixin media-between($from, $to) {
+  $min: bp-get($from);
+  $max: bp-get($to);
+  @if $min and $max {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @warn "Invalid range: `#{$from}` to `#{$to}`.";
+  }
+}
+
+// Smart media mixin: accepts sm-min, xl-max, md-only
+@mixin media($query) {
+  $parts: str-split($query, "-");
+  $key: nth($parts, 1);
+  $modifier: if(length($parts) > 1, nth($parts, 2), null);
+
+  @if $modifier == "min" {
+    @include media-min($key) { @content; }
+
+  } @else if $modifier == "max" {
+    @include media-max($key) { @content; }
+
+  } @else if $modifier == "only" {
+    $keys: map-keys($breakpoints);
+    $i: index($keys, $key);
+    @if $i and $i < length($keys) {
+      $next-key: nth($keys, $i + 1);
+      @include media-between($key, $next-key) { @content; }
+    } @else {
+      @warn "Cannot resolve `#{$key}-only` range.";
+    }
+
+  } @else {
+    @warn "Invalid format `#{$query}`. Use: key-min, key-max, or key-only.";
+  }
+}
+
+
 
 // Text Style Mixin
 @mixin text_style($size, $weight, $color) {
-        font-size: $size;
-        font-weight: $weight;
-        color: $color;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
 }
 
 // Button Mixin
 @mixin button_style($bg-color, $text-color, $hover-bg: null) {
-        background-color: $bg-color;
-        color: $text-color;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: $border_radius_medium;
-        cursor: pointer;
-        transition: $transition_medium;
-  
-        @if $hover-bg {
-          &:hover {
-            background-color: $hover-bg;
-          }
-        }
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: $border_radius_medium;
+  cursor: pointer;
+  transition: $transition_medium;
+
+  @if $hover-bg {
+    &:hover {
+      background-color: $hover-bg;
+    }
+  }
 }
 
 // Flexbox Center Mixin
 @mixin flex_center {
-        display: flex;
-        align-items: center;
-        align-content: center;
-        justify-content: center;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }
 
 // Card Style Mixin - Updated to accept parameters
 @mixin card_style($padding: $medium_spacing, $border-radius: $border_radius_large) {
-        background: $primary_color;
-        border-radius: $border-radius;
-        box-shadow: $shadow_medium;
-        padding: $padding;
-        border: 1px solid $tertiary_color;
+  background: $primary_color;
+  border-radius: $border-radius;
+  box-shadow: $shadow_medium;
+  padding: $padding;
+  border: 1px solid $tertiary_color;
 }
 
 // Transition Mixin
 @mixin transition($property: all, $duration: 0.3s, $timing: ease) {
-        transition: $property $duration $timing;
+  transition: $property $duration $timing;
 }
 
 // Division Helper Function

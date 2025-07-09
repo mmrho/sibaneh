@@ -18,9 +18,7 @@
                 <i class="icon-search-1"></i>
             </button>
             <button class="mobile-menu-toggle" type="button">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+                <i class="icon-menu"></i>
             </button>
         </div>
     </div>
@@ -38,8 +36,8 @@
         </div>
         <div class="search-content">
             <div class="search-suggestions">
-               <span>GTA</span>
-               <span>اسنپ</span>
+                <span>GTA</span>
+                <span>اسنپ</span>
             </div>
         </div>
     </div>
@@ -61,18 +59,18 @@
 
         <div class="mobile-nav-content">
             <ul class="mobile-nav-list">
-                <?php foreach($main_menu as $menu_item): ?>
+                <?php foreach ($main_menu as $menu_item): ?>
                     <li class="mobile-nav-item <?php echo $menu_item['has_submenu'] ? 'has-submenu' : ''; ?>">
-                        <a class="mobile-nav-link" href="<?php echo $menu_item['url']; ?>" 
-                           <?php echo $menu_item['has_submenu'] ? 'data-has-submenu="true"' : ''; ?>>
+                        <a class="mobile-nav-link" href="<?php echo $menu_item['url']; ?>"
+                            <?php echo $menu_item['has_submenu'] ? 'data-has-submenu="true"' : ''; ?>>
                             <?php echo $menu_item['title']; ?>
-                            <?php if($menu_item['has_submenu']): ?>
+                            <?php if ($menu_item['has_submenu']): ?>
                                 <i class="icon-down-open"></i>
                             <?php endif; ?>
                         </a>
-                        <?php if($menu_item['has_submenu'] && isset($menu_item['submenu'])): ?>
+                        <?php if ($menu_item['has_submenu'] && isset($menu_item['submenu'])): ?>
                             <ul class="mobile-submenu">
-                                <?php foreach($menu_item['submenu'] as $sub_item): ?>
+                                <?php foreach ($menu_item['submenu'] as $sub_item): ?>
                                     <li><a href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?></a></li>
                                 <?php endforeach; ?>
                             </ul>

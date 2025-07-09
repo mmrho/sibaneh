@@ -1,6 +1,6 @@
 <?php require_once THEME_TEMPLATE . 'header/shared-content.php'; ?>
 
-<div class="container-fluid desktop-header-container">
+<div class="desktop-header-container">
     <div class="row">
         <div class="col-12">
             <div class="site-header-top">
