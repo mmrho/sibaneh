@@ -107,33 +107,6 @@
 
             </article>
 
-            <!-- Frequently Asked Questions -->
-            <section class="questions-section">
-                <h2 class="questions-title">سوالات متداول؟</h2>
-                <h3 class="answers-title">پاسخ‌ها.</h3>
-                <div class="faq-items">
-                    <div class="faq-item">
-                        <div class="faq-icon"><i class="icon-circle"></i></div>
-                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-icon"><i class="icon-circle"></i></div>
-                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-icon"><i class="icon-circle"></i></div>
-                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-icon"><i class="icon-circle"></i></div>
-                        <div class="faq-question">چگونه اشتراک سیبانه را تهیه کنم؟</div>
-                    </div>
-                </div>
-            </section>
-
             <!-- Comments Section -->
             <section class="comments-section">
                 <?php
@@ -143,36 +116,6 @@
                 ?>
             </section>
 
-            <!-- Related Posts 
-            <section class="related-posts">
-                <h3>مطالب مرتبط</h3>
-                <div class="related-posts-grid">
-                    <?php
-                    $related = get_posts(array(
-                        'category__in' => wp_get_post_categories($post->ID),
-                        'numberposts' => 3,
-                        'post__not_in' => array($post->ID)
-                    ));
-
-                    if ($related) foreach ($related as $post) {
-                        setup_postdata($post); ?>
-                        <article class="related-post-item">
-                            <a href="<?php the_permalink(); ?>" class="related-post-link">
-                                <?php if (has_post_thumbnail()) : ?>
-                                    <div class="related-post-thumb">
-                                        <?php the_post_thumbnail('medium'); ?>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="related-post-content">
-                                    <h4 class="related-post-title"><?php the_title(); ?></h4>
-                                    <span class="related-post-date"><?php echo get_the_date(); ?></span>
-                                </div>
-                            </a>
-                        </article>
-                    <?php }
-                    wp_reset_postdata(); ?>
-                </div>
-            </section>  -->
             <!-- Similar Tutorials -->
             <section class="related-posts similar-tutorials">
                 <h3>آموزش‌های مشابه و بیشتر</h3>
