@@ -117,14 +117,14 @@
             </section>
 
             <!-- Similar Tutorials -->
-            <section class="related-posts similar-tutorials">
-                <h3>آموزش‌های مشابه و بیشتر</h3>
+            <section class="related-posts similar-and-more-tutorials">
+                <div class="related-posts-header">
+                    <h2>آموزش‌های مشابه و بیشتر</h2>
+                </div>
                 <div class="related-posts-grid">
                     <?php
                     $current_post_id = get_the_ID();
                     $categories = wp_get_post_categories($current_post_id);
-
-                    echo '<pre>Post ID: ' . $current_post_id . ', Categories: ' . print_r($categories, true) . '</pre>';
 
                     if (!empty($categories)) {
                         $related = get_posts(array(
@@ -135,16 +135,20 @@
                             'suppress_filters' => false
                         ));
 
-
-                        echo '<pre>Related posts count: ' . count($related) . '</pre>';
+                        $total_posts = count($related);
 
                         if ($related && !empty($related)) {
-                            foreach ($related as $related_post) {
+                            foreach ($related as $index => $related_post) {
                                 setup_postdata($related_post); ?>
                                 <article class="related-post-item tutorial-item">
                                     <a href="<?php the_permalink(); ?>" class="related-post-link">
+                                        <?php if (has_post_thumbnail()) : ?>
+                                            <div class="related-post-thumb">
+                                                <?php the_post_thumbnail('medium'); ?>
+                                            </div>
+                                        <?php endif; ?>
                                         <div class="related-post-content">
-                                            <span class="tutorial-category">
+                                            <h3 class="tutorial-category">
                                                 <?php
                                                 $post_categories = get_the_category();
                                                 if (!empty($post_categories)) {
@@ -153,47 +157,52 @@
                                                     echo 'آموزش‌های سیبانه';
                                                 }
                                                 ?>
-                                            </span>
+                                            </h3>
                                             <h4 class="related-post-title"><?php the_title(); ?></h4>
                                         </div>
+                                    </a>
+                                </article>
+                                <?php if ($index < $total_posts - 1) : ?>
+                                    <hr>
+                                <?php endif;
+                            }
+                            wp_reset_postdata();
+                        }
+                    }
+
+                    if (empty($categories) || !$related) {
+                        // If the post has no category, or no related posts were found, display the latest posts.
+                        $related = get_posts(array(
+                            'numberposts' => 3,
+                            'post__not_in' => array($current_post_id),
+                            'post_status' => 'publish'
+                        ));
+
+                        $total_posts = count($related);
+
+                        if ($related) {
+                            foreach ($related as $index => $related_post) {
+                                setup_postdata($related_post); ?>
+                                <article class="related-post-item tutorial-item">
+                                    <a href="<?php the_permalink(); ?>" class="related-post-link">
                                         <?php if (has_post_thumbnail()) : ?>
                                             <div class="related-post-thumb">
                                                 <?php the_post_thumbnail('medium'); ?>
                                             </div>
                                         <?php endif; ?>
+                                        <div class="related-post-content">
+                                            <h3 class="tutorial-category">آموزش‌های سیبانه</h3>
+                                            <h4 class="related-post-title"><?php the_title(); ?></h4>
+                                        </div>
                                     </a>
                                 </article>
-                                <?php }
+                                <?php if ($index < $total_posts - 1) : ?>
+                                    <hr>
+                    <?php endif;
+                            }
                             wp_reset_postdata();
                         } else {
-                            // اگر پست دسته‌بندی ندارد، آخرین پست‌ها را نمایش دهید
-                            $related = get_posts(array(
-                                'numberposts' => 3,
-                                'post__not_in' => array($current_post_id),
-                                'post_status' => 'publish'
-                            ));
-
-                            if ($related) {
-                                foreach ($related as $related_post) {
-                                    setup_postdata($related_post); ?>
-                                    <article class="related-post-item tutorial-item">
-                                        <a href="<?php the_permalink(); ?>" class="related-post-link">
-                                            <div class="related-post-content">
-                                                <span class="tutorial-category">آموزش‌های سیبانه</span>
-                                                <h4 class="related-post-title"><?php the_title(); ?></h4>
-                                            </div>
-                                            <?php if (has_post_thumbnail()) : ?>
-                                                <div class="related-post-thumb">
-                                                    <?php the_post_thumbnail('medium'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                        </a>
-                                    </article>
-                    <?php }
-                                wp_reset_postdata();
-                            } else {
-                                echo '<p>هیچ مطلبی برای نمایش یافت نشد.</p>';
-                            }
+                            echo '<p>هیچ مطلبی برای نمایش یافت نشد.</p>';
                         }
                     }
                     ?>

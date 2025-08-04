@@ -40,7 +40,7 @@ body {
 }
 
 .main-content {
-    padding: 20px 0;
+    padding: 10px 0;
     background-color: $primary_color;
     .container {
         max-width: 100%;
@@ -89,7 +89,7 @@ body {
             align-content: center;
             background: $primary_color;
             overflow: hidden;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
 
             /* Post Header */
             .post-header {
@@ -112,7 +112,7 @@ body {
                     padding: 11px;
                 }
                 @include media-max(sm) {
-                    max-width: 320px;
+                    max-width: 340px;
                     gap: 15px;
                     padding: 10px;
                 }
@@ -387,6 +387,7 @@ body {
                 align-items: flex-start;
                 align-content: flex-start;
                 max-width: 100%;
+                padding: 10px;
 
                 .pagebody {
                     display: flex;
@@ -396,7 +397,7 @@ body {
                     align-content: center;
                     padding: 0px;
                     color: $primary_text_color;
-                    padding-bottom: 50px;
+                    padding-bottom: 20px;
 
                     .headlines-wrapper {
                         max-width: 800px;
@@ -408,7 +409,7 @@ body {
                             max-width: 460px;
                         }
                         @include media-max(sm) {
-                            max-width: 320px;
+                            max-width: 340px;
                         }
 
                         h2 {
@@ -428,7 +429,7 @@ body {
                                 padding-bottom: 12px;
                             }
                             @include media-max(sm) {
-                                max-width: 320px;
+                                max-width: 340px;
                                 font-size: 20px;
                                 padding-bottom: 10px;
                             }
@@ -451,7 +452,7 @@ body {
                                 padding-bottom: 11px;
                             }
                             @include media-max(sm) {
-                                max-width: 320px;
+                                max-width: 340px;
                                 font-size: 15px;
                                 padding-bottom: 10px;
                             }
@@ -474,7 +475,7 @@ body {
                                 padding-bottom: 11px;
                             }
                             @include media-max(sm) {
-                                max-width: 320px;
+                                max-width: 340px;
                                 font-size: 15px;
                                 padding-bottom: 10px;
                             }
@@ -502,13 +503,16 @@ body {
                             padding-bottom: 8px;
                         }
                         @include media-max(sm) {
-                            max-width: 320px;
+                            max-width: 340px;
                             font-size: 11px;
                             padding-bottom: 6px;
                         }
                     }
                     ul,
                     ol {
+                        margin: 20px 0px;
+                        padding-right: 30px;
+                        border-right: 3px solid $primary_text_color;
                         max-width: 800px;
                         width: 100%;
                         @include media-max(mobile-max) {
@@ -518,11 +522,8 @@ body {
                             max-width: 460px;
                         }
                         @include media-max(sm) {
-                            max-width: 320px;
+                            max-width: 340px;
                         }
-                        margin: 20px 0;
-                        padding-right: 30px;
-                        border-right: 3px solid $primary_text_color;
                         li {
                             margin-bottom: 8px;
                             list-style: circle;
@@ -626,8 +627,8 @@ body {
                         margin-right: -50vw;
                         background: $black_color;
                         padding: 50px 0;
-                        margin-top: 40px;
-                        margin-bottom: 40px;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
 
                         .schema-faq-section {
                             margin-bottom: 15px;
@@ -645,7 +646,7 @@ body {
                                 max-width: 460px;
                             }
                             @include media-max(sm) {
-                                max-width: 320px;
+                                max-width: 340px;
                             }
 
                             .schema-faq-question {
@@ -662,7 +663,7 @@ body {
                                     max-width: 460px;
                                 }
                                 @include media-max(sm) {
-                                    max-width: 320px;
+                                    max-width: 340px;
                                 }
 
                                 &:hover {
@@ -723,8 +724,8 @@ body {
                 }
             }
         }
-        /* Questions Section */
-        .questions-section {
+        /* Related posts */
+        .related-posts {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -732,107 +733,128 @@ body {
             align-content: center;
             background: $primary_color;
             overflow: hidden;
-            margin-bottom: 40px;
-            .questions-container {
+            padding: 30px 10px;
+            .related-posts-header {
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 justify-content: center;
-                align-items: center;
-                align-content: center;
-                padding: 0px;
-                color: $primary_text_color;
-                max-width: 800px;
+                align-items: flex-start;
+                align-content: flex-start;
                 width: 100%;
+                max-width: 800px;
                 @include media-max(mobile-max) {
                     max-width: 530px;
+                    gap: 20px;
                 }
                 @include media-max(md) {
                     max-width: 460px;
+                    gap: 15px;
                 }
                 @include media-max(sm) {
-                    max-width: 320px;
+                    max-width: 340px;
+                    gap: 15px;
                 }
                 h2 {
-                    font-size: 32px;
-                    color: $primary_text_color;
-                    padding-bottom: 16px;
-                    margin-bottom: 0px;
-                    max-width: 800px;
-                    @include media-max(mobile-max) {
-                        max-width: 530px;
-                        font-size: 28px;
-                        padding-bottom: 14px;
-                    }
-                    @include media-max(md) {
-                        max-width: 460px;
-                        font-size: 24px;
-                        padding-bottom: 12px;
-                    }
-                    @include media-max(sm) {
-                        max-width: 320px;
-                        font-size: 20px;
-                        padding-bottom: 10px;
-                    }
+                    width: 100%;
+                    font-size: 30px;
                 }
-
-                h3 {
-                    font-size: 24px;
-                    color: $primary_text_color;
-                    padding-bottom: 14px;
-                    margin-bottom: 0px;
-                    max-width: 800px;
-                    @include media-max(mobile-max) {
-                        max-width: 530px;
-                        font-size: 22px;
-                        padding-bottom: 13px;
-                    }
-                    @include media-max(md) {
-                        max-width: 460px;
-                        font-size: 20px;
-                        padding-bottom: 11px;
-                    }
-                    @include media-max(sm) {
-                        max-width: 320px;
-                        font-size: 15px;
-                        padding-bottom: 10px;
-                    }
+            }
+            .related-posts-grid {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                align-content: center;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                gap: 25px;
+                width: 100%;
+                max-width: 800px;
+                @include media-max(mobile-max) {
+                    max-width: 530px;
+                    gap: 20px;
                 }
-                .faq-items {
+                @include media-max(md) {
+                    max-width: 460px;
+                    gap: 15px;
+                }
+                @include media-max(sm) {
+                    max-width: 340px;
+                    gap: 15px;
+                }
+                .related-post-item {
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     justify-content: center;
                     align-items: center;
                     align-content: center;
-                    .faq-item {
+                    width: 100%;
+                    a {
                         display: flex;
                         flex-direction: row;
                         justify-content: center;
                         align-items: center;
                         align-content: center;
-                        font-weight: 250;
-                        font-size: 16px;
-                        color: $primary_text_color;
-                        padding-bottom: 12px;
-                        margin-bottom: 0px;
-                        gap: 50px;
-                        max-width: 800px;
-                        text-align: justify;
-                        @include media-max(mobile-max) {
-                            max-width: 530px;
-                            font-size: 14px;
-                            padding-bottom: 10px;
+                        gap: 20px;
+                        width: 100%;
+
+                        .related-post-content {
+                            display: block;
+                            width: 100%;
+                            h3 {
+                                font-size: 20px;
+                                font-weight: 400;
+                                @include media-max(mobile-max) {
+                                    font-size: 18px;
+                                }
+                                @include media-max(md) {
+                                    font-size: 16px;
+                                }
+                                @include media-max(sm) {
+                                    font-size: 14px;
+                                }
+                            }
+                            h4 {
+                                font-size: 18px;
+                                font-weight: 300;
+                                @include media-max(mobile-max) {
+                                    font-size: 16px;
+                                }
+                                @include media-max(md) {
+                                    font-size: 14px;
+                                }
+                                @include media-max(sm) {
+                                    font-size: 12px;
+                                }
+                            }
                         }
-                        @include media-max(md) {
-                            max-width: 460px;
-                            font-size: 12px;
-                            padding-bottom: 8px;
-                        }
-                        @include media-max(sm) {
-                            max-width: 320px;
-                            font-size: 11px;
-                            padding-bottom: 6px;
+                        .related-post-thumb {
+                            padding: 0px;
+                            img {
+                                height: 100px;
+                                width: 180px;
+                                border: 2px solid #ccc;
+                                border-radius: 10px;
+                                @include media-max(mobile-max) {
+                                    height: 93px;
+                                    width: 93px;
+                                }
+                                @include media-max(md) {
+                                    height: 93px;
+                                    width: 93px;
+                                }
+                                @include media-max(sm) {
+                                    height: 93px;
+                                    width: 93px;
+                                }
+                            }
                         }
                     }
+                }
+                hr {
+                    width: 100%;
+                    border: 1.5px solid #d4d4d8;
+                    margin: 0;
                 }
             }
         }

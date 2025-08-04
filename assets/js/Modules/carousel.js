@@ -99,10 +99,3 @@ animateTrack(track1);
 animateTrack(track2, true);
 animateTrack(track3);
 animateTrack(track4, true);
-
-
-
-
-
-
-
