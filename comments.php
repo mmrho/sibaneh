@@ -284,61 +284,58 @@ $sample_comments = [
             submitComment();
         });
 
-        // Touch scroll for mobile - بهبود یافته
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        const slider = document.getElementById('comments-wrapper');
+        document.addEventListener("DOMContentLoaded", () => {
+            const slider = document.getElementById('comments-wrapper');
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-        // Mouse events
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.classList.add('active');
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-            e.preventDefault();
-        });
+            // 📱 انیمیشن برای جلب توجه کاربر موبایل
+            if (isTouchDevice) {
+                setTimeout(() => {
+                    slider.scrollBy({
+                        left: 40,
+                        behavior: 'smooth'
+                    });
+                    setTimeout(() => {
+                        slider.scrollBy({
+                            left: -40,
+                            behavior: 'smooth'
+                        });
+                    }, 300);
+                }, 800);
+            }
 
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-            slider.classList.remove('active');
-        });
+            // 🖱 درگ برای دسکتاپ
+            if (!isTouchDevice) {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
 
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.classList.remove('active');
-        });
+                slider.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    slider.classList.add('active');
+                    startX = e.pageX - slider.offsetLeft;
+                    scrollLeft = slider.scrollLeft;
+                    e.preventDefault();
+                });
 
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
-            slider.scrollLeft = scrollLeft - walk;
-        });
+                slider.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    slider.classList.remove('active');
+                });
 
-        // Touch events for mobile
-        let touchStartX = 0;
-        let touchScrollLeft = 0;
+                slider.addEventListener('mouseup', () => {
+                    isDown = false;
+                    slider.classList.remove('active');
+                });
 
-        slider.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].pageX;
-            touchScrollLeft = slider.scrollLeft;
-        }, {
-            passive: true
-        });
-
-        slider.addEventListener('touchmove', (e) => {
-            if (!touchStartX) return;
-            const x = e.touches[0].pageX;
-            const walk = (touchStartX - x) * 1.5;
-            slider.scrollLeft = touchScrollLeft + walk;
-        }, {
-            passive: true
-        });
-
-        slider.addEventListener('touchend', () => {
-            touchStartX = 0;
+                slider.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - slider.offsetLeft;
+                    const walk = (x - startX) * 2; // سرعت اسکرول
+                    slider.scrollLeft = scrollLeft - walk;
+                });
+            }
         });
 
         // Like/Dislike functionality
@@ -362,6 +359,7 @@ $sample_comments = [
                     btn.classList.add('selected');
                 }
             });
+
             // در آینده این کد با API واقعی جایگزین خواهد شد:
             /*
             fetch('/wp-json/api/v1/feedback', {
@@ -486,6 +484,7 @@ $sample_comments = [
             });
             */
         }
+
         function closeModal() {
             document.getElementById('comment-modal').classList.remove('active');
             document.getElementById('comment-text').value = '';

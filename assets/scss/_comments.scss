@@ -13,7 +13,7 @@ $error: #dc3545;
 .comments-area {
   width: 100%;
   margin: 0px;
-  padding: 10px;
+  padding: 10px 0px;
   font-family: "IRANSans", Arial, sans-serif;
   direction: rtl;
 }
@@ -165,17 +165,24 @@ $error: #dc3545;
     gap: 20px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    cursor: grab;
     -webkit-overflow-scrolling: touch;
-
-    &::-webkit-scrollbar {
-      display: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10px;
+    touch-action: pan-x;
+    cursor: grab;
+    padding-bottom: 16px;
+    @include media-max(mobile-max) {
+      padding-bottom: 12px;
+    }
+    @include media-max(md) {
+      padding-bottom: 12px;
+    }
+    @include media-max(sm) {
+      padding-bottom: 12px;
     }
 
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 
-    &:active {
+    &.active {
       cursor: grabbing;
     }
   }
@@ -187,8 +194,8 @@ $error: #dc3545;
     align-content: flex-start;
     align-items: flex-start;
     gap: 5px;
-    min-width: 320px;
-    max-width: 320px;
+    min-width: 340px;
+    max-width: 340px;
     height: 184px;
     background: $light-gray;
     border-radius: 12px;
@@ -196,17 +203,17 @@ $error: #dc3545;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
     transition: transform 0.2s ease;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+
     @include media-max(mobile-max) {
-      min-width: 300px;
-      max-width: 300px;
+      min-width: 90%;
     }
     @include media-max(md) {
-      min-width: 280px;
-      max-width: 280px;
+      min-width: 90%;
     }
     @include media-max(sm) {
-      min-width: 250px;
-      max-width: 250px;
+      min-width: 60%;
     }
 
     .comment-header {
@@ -242,6 +249,7 @@ $error: #dc3545;
         }
       }
     }
+
     .comment-title {
       display: flex;
       flex-direction: row;
@@ -249,10 +257,12 @@ $error: #dc3545;
       align-items: center;
       align-content: center;
       width: 100%;
+
       .title {
         font-size: 16px;
         font-weight: 400;
       }
+
       .comment-date {
         font-size: 10px;
         font-weight: 300;
@@ -271,6 +281,7 @@ $error: #dc3545;
         color: $primary-color;
         text-decoration: none;
         font-weight: 500;
+
         &:hover {
           text-decoration: underline;
         }

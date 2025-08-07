@@ -1,0 +1,862 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixin";
+/* ==========================================================================
+   Single Post Styles
+   ========================================================================== */
+body {
+    @include media-max(mobile-max) {
+        padding-top: 0px !important;
+
+        &.scrolled {
+            padding-top: 0px !important;
+        }
+    }
+}
+#site-header {
+    .mobile-header {
+        .mobile-header-container {
+            background-color: $sibaneh_single_page_header_background_color !important;
+            a,
+            span,
+            i {
+                color: $secondary_text_color !important;
+            }
+        }
+        .mobile-header-container {
+            position: sticky !important;
+        }
+    }
+
+    .desktop-header {
+        .desktop-header-container {
+            background-color: $sibaneh_single_page_header_background_color !important;
+            a,
+            span,
+            i {
+                color: $secondary_text_color !important;
+            }
+        }
+    }
+}
+
+.main-content {
+    padding: 10px 0;
+    background-color: $primary_color;
+    .container {
+        max-width: 100%;
+        margin: 0px;
+        padding: 0px;
+
+        /* Breadcrumb */
+        .breadcrumb {
+            align-self: stretch;
+
+            .breadcrumb-wrapper {
+                text-align: right;
+                max-width: 100%;
+                padding: 0 45px;
+                .breadcrumb-logo {
+                    display: inline-block;
+                    height: 15px;
+                    width: auto;
+                    vertical-align: middle;
+                    margin: 5px;
+                }
+                .breadcrumb_last {
+                    font-size: 14px;
+                    margin: 5px;
+                    color: #7f8c8d;
+                }
+
+                @include media-max(mobile-max) {
+                    padding: 0 30px;
+                }
+                @include media-max(md) {
+                    padding: 0 20px;
+                }
+                @include media-max(sm) {
+                    padding: 0 20px;
+                }
+            }
+        }
+
+        /* Post Article */
+        .single-post-article {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            background: $primary_color;
+            overflow: hidden;
+            margin-bottom: 10px;
+
+            /* Post Header */
+            .post-header {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                align-content: flex-start;
+                padding: 15px;
+                gap: 30px;
+                max-width: 800px;
+                @include media-max(mobile-max) {
+                    max-width: 530px;
+                    gap: 25px;
+                    padding: 13px;
+                }
+                @include media-max(md) {
+                    max-width: 460px;
+                    gap: 20px;
+                    padding: 11px;
+                }
+                @include media-max(sm) {
+                    max-width: 340px;
+                    gap: 15px;
+                    padding: 10px;
+                }
+
+                /* Post Meta */
+                .post-meta {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                    gap: 4px;
+                    flex-wrap: wrap;
+                    margin: 0px;
+
+                    .meta-item {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        align-content: center;
+                        gap: 8px;
+                        color: #7f8c8d;
+                        font-size: 15px;
+                        @include media-max(mobile-max) {
+                            font-size: 13px;
+                        }
+                        @include media-max(md) {
+                            font-size: 11px;
+                        }
+                        @include media-max(sm) {
+                            font-size: 10px;
+                        }
+                    }
+                }
+
+                /* Component Content*/
+                .component-content {
+                    h1 {
+                        font-size: 44px;
+                        color: $primary_text_color;
+                        padding-bottom: 20px;
+                        margin-bottom: 0px;
+                        text-align: justify;
+                        @include media-max(mobile-max) {
+                            font-size: 35px;
+                            padding-bottom: 18px;
+                        }
+                        @include media-max(md) {
+                            font-size: 30px;
+                            padding-bottom: 16px;
+                        }
+                        @include media-max(sm) {
+                            font-size: 25px;
+                            padding-bottom: 14px;
+                        }
+                    }
+                    p {
+                        font-size: 20px;
+                        color: $primary_text_color;
+                        font-weight: 280;
+                        margin-bottom: 0px;
+                        text-align: justify;
+                        @include media-max(mobile-max) {
+                            font-size: 18px;
+                        }
+                        @include media-max(md) {
+                            font-size: 16px;
+                        }
+                        @include media-max(sm) {
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                /* Post Author */
+                .post-author {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    align-content: center;
+                    gap: 10px;
+                    padding: 0px;
+                    background: $primary_color;
+
+                    .author-avatar {
+                        img {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%;
+                            border: 3px solid white;
+                            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                            @include media-max(mobile-max) {
+                                width: 35px;
+                                height: 35px;
+                            }
+                            @include media-max(md) {
+                                width: 30px;
+                                height: 30px;
+                            }
+                            @include media-max(sm) {
+                                width: 25px;
+                                height: 25px;
+                            }
+                        }
+                    }
+
+                    .author-details {
+                        .author-name {
+                            display: block;
+                            font-weight: 400;
+                            color: $primary_text_color;
+                            font-size: 15px;
+                            margin-bottom: 0px;
+                            @include media-max(mobile-max) {
+                                font-size: 13px;
+                            }
+                            @include media-max(md) {
+                                font-size: 11px;
+                            }
+                            @include media-max(sm) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+
+                /* Social Share */
+                .social-share {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+                    align-content: center;
+                    padding: 0px;
+                    @include media-max(mobile-max) {
+                        gap: 13px;
+                    }
+                    @include media-max(md) {
+                        gap: 11px;
+                    }
+                    @include media-max(sm) {
+                        gap: 9px;
+                    }
+                    .social-buttons {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        align-content: center;
+                        gap: 20px;
+                        font-size: 25px;
+                        @include media-max(mobile-max) {
+                            gap: 18px;
+                            font-size: 22px;
+                        }
+                        @include media-max(md) {
+                            gap: 16px;
+                            font-size: 19px;
+                        }
+                        @include media-max(sm) {
+                            gap: 14px;
+                            font-size: 16px;
+                        }
+
+                        .copy-link {
+                            border: none;
+                            background-color: $primary_color;
+                            color: #5b5a5f;
+                            padding: 0px;
+                        }
+                        a {
+                            color: #5b5a5f;
+                        }
+                    }
+                }
+
+                /* Post Actions */
+                .post-actions {
+                    .metadata {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: center;
+                        align-content: center;
+                        gap: 15px;
+                        @include media-max(mobile-max) {
+                            gap: 13px;
+                        }
+                        @include media-max(md) {
+                            gap: 11px;
+                        }
+                        @include media-max(sm) {
+                            gap: 9px;
+                        }
+                        .metadata-item {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            align-content: center;
+                            text-align: center;
+
+                            .metadata-item-container {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-around;
+                                align-items: center;
+                                align-content: center;
+                                background-color: transparent;
+                                border: none;
+                                color: $tertiary_text_color;
+                                gap: 5px;
+                                font-size: 14px;
+                                @include media-max(mobile-max) {
+                                    font-size: 13px;
+                                }
+                                @include media-max(md) {
+                                    font-size: 12px;
+                                }
+                                @include media-max(sm) {
+                                    font-size: 10px;
+                                }
+
+                                i {
+                                    font-size: 35px;
+                                    color: $primary_text_color;
+                                    @include media-max(mobile-max) {
+                                        font-size: 30px;
+                                    }
+                                    @include media-max(md) {
+                                        font-size: 25px;
+                                    }
+                                    @include media-max(sm) {
+                                        font-size: 20px;
+                                    }
+                                }
+                                .metadata-value-time {
+                                    font-size: 22px;
+                                    color: $primary_text_color;
+                                    @include media-max(mobile-max) {
+                                        font-size: 20px;
+                                    }
+                                    @include media-max(md) {
+                                        font-size: 18px;
+                                    }
+                                    @include media-max(sm) {
+                                        font-size: 16px;
+                                    }
+                                }
+                                .metadata-label-title {
+                                    color: $primary_text_color;
+                                }
+                            }
+                        }
+                        .metadata-separator {
+                            width: 2px;
+                            height: 60px;
+                            background-color: #e0e0e0;
+                            margin: 0 5px;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+
+            /* Post Content */
+            .post-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                align-content: flex-start;
+                max-width: 100%;
+                padding: 10px;
+
+                .pagebody {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    padding: 0px;
+                    color: $primary_text_color;
+                    padding-bottom: 20px;
+
+                    .headlines-wrapper {
+                        max-width: 800px;
+                        width: 100%;
+                        @include media-max(mobile-max) {
+                            max-width: 530px;
+                        }
+                        @include media-max(md) {
+                            max-width: 460px;
+                        }
+                        @include media-max(sm) {
+                            max-width: 340px;
+                        }
+
+                        h2 {
+                            font-size: 32px;
+                            color: $primary_text_color;
+                            padding-bottom: 16px;
+                            margin-bottom: 0px;
+                            max-width: 800px;
+                            @include media-max(mobile-max) {
+                                max-width: 530px;
+                                font-size: 28px;
+                                padding-bottom: 14px;
+                            }
+                            @include media-max(md) {
+                                max-width: 460px;
+                                font-size: 24px;
+                                padding-bottom: 12px;
+                            }
+                            @include media-max(sm) {
+                                max-width: 340px;
+                                font-size: 20px;
+                                padding-bottom: 10px;
+                            }
+                        }
+
+                        h3 {
+                            font-size: 24px;
+                            color: $primary_text_color;
+                            padding-bottom: 14px;
+                            margin-bottom: 0px;
+                            max-width: 800px;
+                            @include media-max(mobile-max) {
+                                max-width: 530px;
+                                font-size: 22px;
+                                padding-bottom: 13px;
+                            }
+                            @include media-max(md) {
+                                max-width: 460px;
+                                font-size: 20px;
+                                padding-bottom: 11px;
+                            }
+                            @include media-max(sm) {
+                                max-width: 340px;
+                                font-size: 15px;
+                                padding-bottom: 10px;
+                            }
+                        }
+
+                        h4 {
+                            font-size: 20px;
+                            color: $primary_text_color;
+                            padding-bottom: 14px;
+                            margin-bottom: 0px;
+                            max-width: 800px;
+                            @include media-max(mobile-max) {
+                                max-width: 530px;
+                                font-size: 18px;
+                                padding-bottom: 13px;
+                            }
+                            @include media-max(md) {
+                                max-width: 460px;
+                                font-size: 16px;
+                                padding-bottom: 11px;
+                            }
+                            @include media-max(sm) {
+                                max-width: 340px;
+                                font-size: 15px;
+                                padding-bottom: 10px;
+                            }
+                            i {
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+                    p {
+                        font-weight: 250;
+                        font-size: 16px;
+                        color: $primary_text_color;
+                        padding-bottom: 12px;
+                        margin-bottom: 0px;
+                        max-width: 800px;
+                        text-align: justify;
+                        @include media-max(mobile-max) {
+                            max-width: 530px;
+                            font-size: 14px;
+                            padding-bottom: 10px;
+                        }
+                        @include media-max(md) {
+                            max-width: 460px;
+                            font-size: 12px;
+                            padding-bottom: 8px;
+                        }
+                        @include media-max(sm) {
+                            max-width: 340px;
+                            font-size: 11px;
+                            padding-bottom: 6px;
+                        }
+                    }
+                    ul,
+                    ol {
+                        margin: 20px 0px;
+                        padding-right: 30px;
+                        border-right: 3px solid $primary_text_color;
+                        max-width: 800px;
+                        width: 100%;
+                        @include media-max(mobile-max) {
+                            max-width: 530px;
+                        }
+                        @include media-max(md) {
+                            max-width: 460px;
+                        }
+                        @include media-max(sm) {
+                            max-width: 340px;
+                        }
+                        li {
+                            margin-bottom: 8px;
+                            list-style: circle;
+                        }
+                    }
+                    figure {
+                        display: block;
+                        box-sizing: border-box;
+                        max-width: 1024px;
+                        width: 100% !important;
+                        height: auto !important;
+                        padding: 0px 30px;
+                        margin: 20px 0px;
+                        text-align: center;
+                        img {
+                            border-radius: 30px !important;
+                        }
+                        @include media-max(mobile-max) {
+                            img {
+                                border-radius: 0px !important;
+                            }
+                            max-width: 100%;
+                            width: 100% !important;
+                            padding: 0px;
+                            margin: 18px 0px;
+                        }
+                        @include media-max(md) {
+                            img {
+                                border-radius: 0px !important;
+                            }
+                            max-width: 100%;
+                            width: 100% !important;
+                            padding: 0px;
+                            margin: 16px 0px;
+                        }
+                        @include media-max(sm) {
+                            img {
+                                border-radius: 0px !important;
+                            }
+                            max-width: 100%;
+                            width: 100% !important;
+                            padding: 0px;
+                            margin: 14px 0px;
+                        }
+                    }
+                    .iframe_container {
+                        position: relative;
+                        display: block;
+                        box-sizing: border-box;
+                        width: 100% !important;
+                        padding: 0px 30px;
+                        margin: 20px 0px;
+                        max-width: 860px;
+                        @include media-max(mobile-max) {
+                            max-width: 580px;
+                            width: 100% !important;
+                            padding: 0px 25px;
+                            margin: 18px 0px;
+                        }
+                        @include media-max(md) {
+                            max-width: 500px;
+                            width: 100% !important;
+                            padding: 0px 20px;
+                            margin: 16px 0px;
+                        }
+                        @include media-max(sm) {
+                            max-width: 350px;
+                            width: 100% !important;
+                            padding: 0px 15px;
+                            margin: 14px 0px;
+                        }
+
+                        .iframe-wrapper {
+                            position: relative;
+                            width: 100%;
+                            height: 0;
+                            padding-bottom: 56.25%; // 16:9 aspect ratio
+                            border-radius: 15px;
+                            overflow: hidden;
+
+                            iframe {
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                            }
+                        }
+                    }
+                    .schema-faq {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100vw;
+                        position: relative;
+                        left: 0;
+                        right: 0;
+                        margin-left: -50vw;
+                        margin-right: -50vw;
+                        background: $black_color;
+                        padding: 50px 0;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+
+                        .schema-faq-section {
+                            margin-bottom: 15px;
+                            border: none;
+                            border-radius: 0;
+                            background: transparent;
+                            overflow: hidden;
+                            max-width: 800px;
+                            width: 90%;
+
+                            @include media-max(mobile-max) {
+                                max-width: 530px;
+                            }
+                            @include media-max(md) {
+                                max-width: 460px;
+                            }
+                            @include media-max(sm) {
+                                max-width: 340px;
+                            }
+
+                            .schema-faq-question {
+                                position: relative;
+                                padding: 20px 20px;
+                                font-weight: 600;
+                                color: #fff;
+                                cursor: pointer;
+                                background: $black_color;
+                                @include media-max(mobile-max) {
+                                    max-width: 530px;
+                                }
+                                @include media-max(md) {
+                                    max-width: 460px;
+                                }
+                                @include media-max(sm) {
+                                    max-width: 340px;
+                                }
+
+                                &:hover {
+                                    background: $black_color;
+                                }
+
+                                &:after {
+                                    content: "+";
+                                    position: absolute;
+                                    right: 780px;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    font-size: 22px;
+                                    color: #fff;
+                                    transition: all 0.3s ease;
+                                    @include media-max(mobile-max) {
+                                        right: 510px;
+                                    }
+                                    @include media-max(md) {
+                                        right: 440px;
+                                    }
+                                    @include media-max(sm) {
+                                        right: 290px;
+                                    }
+                                }
+
+                                &.active {
+                                    background: $black_color;
+
+                                    &:after {
+                                        content: "-";
+                                        transform: translateY(-50%) rotate(180deg);
+                                    }
+                                }
+                            }
+
+                            .schema-faq-answer {
+                                padding: 0;
+                                max-height: 0;
+                                overflow: hidden;
+                                transition: all 0.3s ease;
+                                background: $black_color;
+                                color: #fff;
+
+                                &.show {
+                                    padding: 20px;
+                                    max-height: 1000px;
+                                }
+
+                                p {
+                                    margin: 0;
+                                    line-height: 1.6;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /* Related posts */
+        .related-posts {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            background: $primary_color;
+            overflow: hidden;
+            padding: 30px 10px;
+            .related-posts-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                align-content: flex-start;
+                width: 100%;
+                max-width: 800px;
+                @include media-max(mobile-max) {
+                    max-width: 530px;
+                    gap: 20px;
+                }
+                @include media-max(md) {
+                    max-width: 460px;
+                    gap: 15px;
+                }
+                @include media-max(sm) {
+                    max-width: 340px;
+                    gap: 15px;
+                }
+                h2 {
+                    width: 100%;
+                    font-size: 30px;
+                }
+            }
+            .related-posts-grid {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                align-content: center;
+                padding-top: 15px;
+                padding-bottom: 15px;
+                gap: 25px;
+                width: 100%;
+                max-width: 800px;
+                @include media-max(mobile-max) {
+                    max-width: 530px;
+                    gap: 20px;
+                }
+                @include media-max(md) {
+                    max-width: 460px;
+                    gap: 15px;
+                }
+                @include media-max(sm) {
+                    max-width: 340px;
+                    gap: 15px;
+                }
+                .related-post-item {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    a {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        align-content: center;
+                        gap: 20px;
+                        width: 100%;
+
+                        .related-post-content {
+                            display: block;
+                            width: 100%;
+                            h3 {
+                                font-size: 20px;
+                                font-weight: 400;
+                                @include media-max(mobile-max) {
+                                    font-size: 18px;
+                                }
+                                @include media-max(md) {
+                                    font-size: 16px;
+                                }
+                                @include media-max(sm) {
+                                    font-size: 14px;
+                                }
+                            }
+                            h4 {
+                                font-size: 18px;
+                                font-weight: 300;
+                                @include media-max(mobile-max) {
+                                    font-size: 16px;
+                                }
+                                @include media-max(md) {
+                                    font-size: 14px;
+                                }
+                                @include media-max(sm) {
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                        .related-post-thumb {
+                            padding: 0px;
+                            img {
+                                height: 100px;
+                                width: 180px;
+                                border: 2px solid #ccc;
+                                border-radius: 10px;
+                                @include media-max(mobile-max) {
+                                    height: 93px;
+                                    width: 93px;
+                                }
+                                @include media-max(md) {
+                                    height: 93px;
+                                    width: 93px;
+                                }
+                                @include media-max(sm) {
+                                    height: 93px;
+                                    width: 93px;
+                                }
+                            }
+                        }
+                    }
+                }
+                hr {
+                    width: 100%;
+                    border: 1.5px solid #d4d4d8;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

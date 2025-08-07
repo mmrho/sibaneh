@@ -1703,7 +1703,7 @@ a:focus {
 .comments-area {
   width: 100%;
   margin: 0px;
-  padding: 10px;
+  padding: 10px 0px;
   font-family: "IRANSans", Arial, sans-serif;
   direction: rtl;
 }
@@ -1878,15 +1878,29 @@ a:focus {
   gap: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  cursor: grab;
   -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 10px;
+  touch-action: pan-x;
+  cursor: grab;
+  padding-bottom: 16px;
 }
-.comments-display-section .comments-wrapper::-webkit-scrollbar {
-  display: none;
+@media (max-width: 849.98px) {
+  .comments-display-section .comments-wrapper {
+    padding-bottom: 12px;
+  }
 }
-.comments-display-section .comments-wrapper:active {
+@media (max-width: 768px) {
+  .comments-display-section .comments-wrapper {
+    padding-bottom: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .comments-display-section .comments-wrapper {
+    padding-bottom: 12px;
+  }
+}
+.comments-display-section .comments-wrapper.active {
   cursor: grabbing;
 }
 .comments-display-section .comment-card {
@@ -1896,8 +1910,8 @@ a:focus {
   align-content: flex-start;
   align-items: flex-start;
   gap: 5px;
-  min-width: 320px;
-  max-width: 320px;
+  min-width: 340px;
+  max-width: 340px;
   height: 184px;
   background: #f6f6f6;
   border-radius: 12px;
@@ -1905,23 +1919,22 @@ a:focus {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
   transition: transform 0.2s ease;
+  scroll-snap-align: start;
+  box-sizing: border-box;
 }
 @media (max-width: 849.98px) {
   .comments-display-section .comment-card {
-    min-width: 300px;
-    max-width: 300px;
+    min-width: 90%;
   }
 }
 @media (max-width: 768px) {
   .comments-display-section .comment-card {
-    min-width: 280px;
-    max-width: 280px;
+    min-width: 90%;
   }
 }
 @media (max-width: 480px) {
   .comments-display-section .comment-card {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 60%;
   }
 }
 .comments-display-section .comment-card .comment-header {
