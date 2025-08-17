@@ -37,4 +37,3 @@ $instance = isset($GLOBALS['cta_instance']) ? $GLOBALS['cta_instance'] : 1;
         </div>
     </div>
 </div>
-

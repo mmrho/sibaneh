@@ -2,7 +2,7 @@
 @import "../../../../assets/scss/mixin";
 
 /* ==========================================================================
-   ctaToClustr Styles
+   ctaToClustr Styles - Apple-like Animation
    ========================================================================== */
 
 $lnav-height: 44px;
@@ -14,7 +14,8 @@ $sheet-shadow:
   0 20px 40px rgba(0, 0, 0, 0.1);
 $color-primary: #0071e3;
 $color-text: #000;
-$ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+$ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+$ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
 
 * {
   box-sizing: border-box;
@@ -39,7 +40,7 @@ body {
 
     .cta-spacer {
       height: 0px;
-      transition: height 0.3s ease;
+      transition: height 0.3s $ease-out;
       will-change: height;
     }
 
@@ -75,6 +76,7 @@ body {
         background: $nav-sheet-bg;
         -webkit-backdrop-filter: blur($nav-sheet-blur) saturate(180%);
         backdrop-filter: blur($nav-sheet-blur) saturate(180%);
+        border-radius: 12px 12px 0 0;
 
         .product {
           display: flex;
@@ -97,10 +99,11 @@ body {
             border-radius: 8px;
             transition: color 0.2s;
             font-size: 14px;
+
             i {
               width: 10px;
               height: 10px;
-              transition: transform 0.3s $ease;
+              transition: transform 0.35s $ease;
             }
 
             &[aria-expanded="true"] i {
@@ -162,7 +165,7 @@ body {
       backdrop-filter: blur(24px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.22s $ease;
+      transition: opacity 0.4s $ease-out;
       z-index: 998;
 
       &.active {
@@ -176,53 +179,86 @@ body {
       z-index: 999;
       left: 0;
       right: 0;
+      top: $lnav-height;
       background: $nav-sheet-bg;
       -webkit-backdrop-filter: blur($nav-sheet-blur) saturate(180%);
       backdrop-filter: blur($nav-sheet-blur) saturate(180%);
-      transform: translateY(-110%);
-      opacity: 0;
-      visibility: hidden;
-      transition:
-        transform 0.28s $ease,
-        opacity 0.28s $ease,
-        visibility 0s linear 0.28s;
+      border-radius: 0 0 12px 12px;
+      box-shadow: $sheet-shadow;
 
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.45s $ease;
+      will-change: clip-path;
+
+      max-height: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.45s $ease,
+        clip-path 0.45s $ease;
       &.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-        transition-delay: 0s, 0s, 0s;
+        clip-path: inset(0 0 0% 0);
+        max-height: 300px;
       }
 
       .sheet-inner {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         gap: 8px;
         max-width: 980px;
         margin: 0 auto;
-        padding: 12px;
+        padding: 16px 12px;
 
         .sheet-item {
           background: rgba(0, 0, 0, 0.04);
           border-radius: 10px;
-          padding: 8px;
-          text-align: center;
-          transition: background 0.2s;
+          padding: 12px 16px;
+          width: 100%;
+          text-align: start;
+          transition:
+            background 0.2s ease,
+            transform 0.3s $ease-out,
+            opacity 0.3s $ease-out;
+          transform: translateY(10px);
+          opacity: 0;
 
           &:hover {
             background: rgba(0, 0, 0, 0.08);
+            transform: translateY(0);
           }
 
           a {
             color: inherit;
             text-decoration: none;
             display: block;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 500;
           }
         }
       }
+
+      &.active .sheet-inner .sheet-item {
+        transform: translateY(0);
+        opacity: 1;
+
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            transition-delay: #{0.1 + ($i * 0.05)}s;
+          }
+        }
+      }
+    }
+
+    .local-nav .inner {
+      transition:
+        background 0.3s $ease-out,
+        border-radius 0.3s $ease-out;
+    }
+
+    .sheet.active ~ .local-nav .inner {
+      border-radius: 12px 12px 0 0;
+      box-shadow: none;
     }
   }
 }
@@ -231,5 +267,18 @@ html.scroll-lock,
 body.scroll-lock {
   overflow: hidden;
   padding-right: 0;
+}
+
+@keyframes subtle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+.ctaToClustr {
+  .ctaToClustr-container {
+    .local-nav .inner .product button:active {
+      animation: subtle-bounce 0.3s ease;
+    }
+  }
 }
 

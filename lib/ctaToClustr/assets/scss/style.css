@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ctaToClustr Styles
+   ctaToClustr Styles - Apple-like Animation
    ========================================================================== */
 * {
   box-sizing: border-box;
@@ -25,7 +25,7 @@ body {
 }
 .ctaToClustr .ctaToClustr-container .cta-spacer {
   height: 0px;
-  transition: height 0.3s ease;
+  transition: height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   will-change: height;
 }
 .ctaToClustr .ctaToClustr-container .local-nav {
@@ -58,6 +58,7 @@ body {
   background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   backdrop-filter: blur(28px) saturate(180%);
+  border-radius: 12px 12px 0 0;
 }
 .ctaToClustr .ctaToClustr-container .local-nav .inner .product {
   display: flex;
@@ -84,7 +85,7 @@ body {
 .ctaToClustr .ctaToClustr-container .local-nav .inner .product button i {
   width: 10px;
   height: 10px;
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.35s cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 .ctaToClustr .ctaToClustr-container .local-nav .inner .product button[aria-expanded=true] i {
   transform: rotate(180deg);
@@ -105,7 +106,7 @@ body {
   display: flex;
   align-items: center;
   opacity: 0.88;
-  transition: opacity 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 0.2s cubic-bezier(0.28, 0.11, 0.32, 1);
   font-size: 13px;
 }
 .ctaToClustr .ctaToClustr-container .local-nav .inner .nav-links a:hover {
@@ -134,7 +135,7 @@ body {
   backdrop-filter: blur(24px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.22s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   z-index: 998;
 }
 .ctaToClustr .ctaToClustr-container .overlay.active {
@@ -146,49 +147,110 @@ body {
   z-index: 999;
   left: 0;
   right: 0;
+  top: 44px;
   background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   backdrop-filter: blur(28px) saturate(180%);
-  transform: translateY(-110%);
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.28s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.28s cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0s linear 0.28s;
+  border-radius: 0 0 12px 12px;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.14), 0 20px 40px rgba(0, 0, 0, 0.1);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.45s cubic-bezier(0.28, 0.11, 0.32, 1);
+  will-change: clip-path;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.28, 0.11, 0.32, 1), clip-path 0.45s cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 .ctaToClustr .ctaToClustr-container .sheet.active {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-  transition-delay: 0s, 0s, 0s;
+  clip-path: inset(0 0 0% 0);
+  max-height: 300px;
 }
 .ctaToClustr .ctaToClustr-container .sheet .sheet-inner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 12px;
+  padding: 16px 12px;
 }
 .ctaToClustr .ctaToClustr-container .sheet .sheet-inner .sheet-item {
   background: rgba(0, 0, 0, 0.04);
   border-radius: 10px;
-  padding: 8px;
-  text-align: center;
-  transition: background 0.2s;
+  padding: 12px 16px;
+  width: 100%;
+  text-align: start;
+  transition: background 0.2s ease, transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateY(10px);
+  opacity: 0;
 }
 .ctaToClustr .ctaToClustr-container .sheet .sheet-inner .sheet-item:hover {
   background: rgba(0, 0, 0, 0.08);
+  transform: translateY(0);
 }
 .ctaToClustr .ctaToClustr-container .sheet .sheet-inner .sheet-item a {
   color: inherit;
   text-decoration: none;
   display: block;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item {
+  transform: translateY(0);
+  opacity: 1;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(5) {
+  transition-delay: 0.35s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(6) {
+  transition-delay: 0.4s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(7) {
+  transition-delay: 0.45s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(8) {
+  transition-delay: 0.5s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(9) {
+  transition-delay: 0.55s;
+}
+.ctaToClustr .ctaToClustr-container .sheet.active .sheet-inner .sheet-item:nth-child(10) {
+  transition-delay: 0.6s;
+}
+.ctaToClustr .ctaToClustr-container .local-nav .inner {
+  transition: background 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-radius 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.ctaToClustr .ctaToClustr-container .sheet.active ~ .local-nav .inner {
+  border-radius: 12px 12px 0 0;
+  box-shadow: none;
 }
 
 html.scroll-lock,
 body.scroll-lock {
   overflow: hidden;
   padding-right: 0;
+}
+
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.ctaToClustr .ctaToClustr-container .local-nav .inner .product button:active {
+  animation: subtle-bounce 0.3s ease;
 }/*# sourceMappingURL=style.css.map */
