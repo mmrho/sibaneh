@@ -1,9 +1,7 @@
 <?php
-defined('ABSPATH') || exit;
-/*
- * Login And Register
- */
 
+
+defined('ABSPATH') || exit;
 require_once "functions/wp-enqueue.php";
 require_once "functions/ajax.php";
 

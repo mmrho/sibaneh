@@ -4,6 +4,18 @@
             // Get the split content
             $split_content = split_post_content();
             ?>
+            <!-- callToActionToClustr -->
+            <section class="ctaToClustr" id="ctaToClustr">
+
+                <?php wbsLoadCtaToClustr('#site-header'); ?>
+
+            </section>
+            <!-- callToActionToClustr -->
+            <section class="ctaToClustr">
+
+                <?php wbsLoadCtaToClustr('#ctaToClustr'); ?>
+
+            </section>
 
             <!-- Breadcrumb -->
             <nav class="breadcrumb">
@@ -19,10 +31,7 @@
                     <!-- Post Meta -->
                     <div class="post-meta">
                         <div class="meta-item">
-                            <span>بروزرسانی</span>
-                        </div>
-                        <div class="meta-item">
-                            <span><?php echo get_the_date('j F Y'); ?></span>
+                            <span>بروز</span>
                         </div>
                     </div>
 
@@ -43,28 +52,6 @@
                         </div>
                     </div>
 
-                    <!-- Social Share -->
-                    <div class="social-share">
-                        <div class="social-buttons">
-                            <button class="social-btn copy-link" onclick="copyToClipboard('<?php echo get_permalink(); ?>')" title="کپی لینک">
-                                <i class="icon-link"></i>
-                            </button>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
-                                target="_blank" class="social-btn instagram" title="اشتراک در اینستاگرام">
-                                <i class="icon-instagram"></i>
-                            </a>
-                            <a href="https://telegram.me/share/url?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
-                                target="_blank" class="social-btn telegram" title="اشتراک در تلگرام">
-                                <i class="icon-telegram"></i>
-                            </a>
-
-                            <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
-                                target="_blank" class="social-btn twitter" title="اشتراک در ایکس">
-                                <i class="icon-x"></i>
-                            </a>
-                        </div>
-                    </div>
-
                     <!-- Post Actions -->
                     <div class="post-actions">
                         <div class="metadata">
@@ -81,10 +68,14 @@
                             </div>
                             <div class="metadata-separator"></div>
                             <div class="metadata-item">
-                                <button class="download-button metadata-item-container">
-                                    <div class="metadata-value"><i class="icon-circle"></i></div>
-                                    <div class="metadata-label">دانلود برنامه <?php the_title(); ?></div>
-                                </button>
+                                <div class="post-meta">
+                                    <div class="meta-item">
+                                        <span><?php echo get_the_date('j F Y'); ?></span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <span>تاریخ بروزرسانی</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="metadata-separator"></div>
                             <div class="metadata-item">
@@ -106,6 +97,75 @@
                 <?php endif; ?>
 
             </article>
+            <!-- Social Media -->
+            <section>
+                <!-- Social Share -->
+                <div class="social-share">
+                    <div>
+                        <span>
+                            اشتراک گذاری مطلب
+                        </span>
+                    </div>
+                    <div class="social-buttons">
+                        <button class="social-btn copy-link" onclick="copyToClipboard('<?php echo get_permalink(); ?>')" title="کپی لینک">
+                            <i class="icon-link"></i>
+                        </button>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
+                            target="_blank" class="social-btn instagram" title="اشتراک در اینستاگرام">
+                            <i class="icon-instagram"></i>
+                        </a>
+                        <a href="https://telegram.me/share/url?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                            target="_blank" class="social-btn telegram" title="اشتراک در تلگرام">
+                            <i class="icon-telegram"></i>
+                        </a>
+
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                            target="_blank" class="social-btn twitter" title="اشتراک در ایکس">
+                            <i class="icon-x"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="sibaneh-social-media">
+                    <div>
+                        <span>
+                            سیبانه در شبکه‌های اجتماعی
+                        </span>
+                    </div>
+                    <div class="social-buttons">
+                        <button class="social-btn copy-link" onclick="copyToClipboard('<?php echo get_permalink(); ?>')" title="کپی لینک">
+                            <i class="icon-link"></i>
+                        </button>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
+                            target="_blank" class="social-btn instagram" title="اشتراک در اینستاگرام">
+                            <i class="icon-instagram"></i>
+                        </a>
+                        <a href="https://telegram.me/share/url?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                            target="_blank" class="social-btn telegram" title="اشتراک در تلگرام">
+                            <i class="icon-telegram"></i>
+                        </a>
+
+                        <a href="https://twitter.com/intent/tweet?url=<?php echo urlencode(get_permalink()); ?>&text=<?php echo urlencode(get_the_title()); ?>"
+                            target="_blank" class="social-btn twitter" title="اشتراک در ایکس">
+                            <i class="icon-x"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="sibaneh-social-media">
+                    <div>
+                        <span>
+                            ارتباط با تیم تولید محتوای سیبانه
+                        </span>
+                    </div>
+                    <div class="social-buttons">
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<?php echo urlencode(get_permalink()); ?>"
+                            target="_blank" class="social-btn instagram" title="اشتراک در اینستاگرام">
+                            <span>
+                                press@sibaneh.com
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
             <!-- Comments Section -->
             <section class="comments-section">

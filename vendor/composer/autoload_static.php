@@ -28,6 +28,8 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         '6dbfdeef30519b60233492cac6d4f3a6' => __DIR__ . '/../..' . '/inc/functions/menu.php',
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
         'ded4fcffe7fd07b9bf363d649b367048' => __DIR__ . '/../..' . '/lib/Single/wbsSingle.php',
+        '701a5f9ee113dcb5a7e2c6b8dfd37c80' => __DIR__ . '/../..' . '/lib/EducationHub/wbsEducationHub.php',
+        '2605a04fcd6b6816ee5b3821ad1828bd' => __DIR__ . '/../..' . '/lib/CtaToClustr/wbsCtaToClustr.php',
     );
 
     public static $prefixLengthsPsr4 = array (

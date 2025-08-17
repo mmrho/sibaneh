@@ -11,23 +11,11 @@
 }
 
 #site-header .mobile-header .mobile-header-container {
-  background-color: #323232 !important;
-}
-#site-header .mobile-header .mobile-header-container a,
-#site-header .mobile-header .mobile-header-container span,
-#site-header .mobile-header .mobile-header-container i {
-  color: #FFFFFF !important;
-}
-#site-header .mobile-header .mobile-header-container {
   position: sticky !important;
+  border-bottom: 2px solid #dfdfdf;
 }
 #site-header .desktop-header .desktop-header-container {
-  background-color: #323232 !important;
-}
-#site-header .desktop-header .desktop-header-container a,
-#site-header .desktop-header .desktop-header-container span,
-#site-header .desktop-header .desktop-header-container i {
-  color: #FFFFFF !important;
+  border-bottom: 2px solid #dfdfdf;
 }
 
 .main-content {
@@ -49,6 +37,26 @@
   text-align: right;
   max-width: 100%;
   padding: 0 45px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+.main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active {
+  overflow-x: auto;
+}
+.main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active::-webkit-scrollbar {
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+.main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 3px;
+}
+.main-content .container .breadcrumb .breadcrumb-wrapper:not(.scroll-active):hover {
+  background-color: #f9f9f9;
 }
 .main-content .container .breadcrumb .breadcrumb-wrapper .breadcrumb-logo {
   display: inline-block;
@@ -56,11 +64,31 @@
   width: auto;
   vertical-align: middle;
   margin: 5px;
+  flex-shrink: 0;
 }
 .main-content .container .breadcrumb .breadcrumb-wrapper .breadcrumb_last {
   font-size: 14px;
   margin: 5px;
   color: #7f8c8d;
+  vertical-align: middle;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.main-content .container .breadcrumb .breadcrumb-wrapper .ellipsis {
+  display: inline-block;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: max-width 0.3s ease;
+  flex-shrink: 1;
+}
+.main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active .ellipsis {
+  max-width: none;
+  overflow-x: visible;
+  text-overflow: clip;
 }
 @media (max-width: 849.98px) {
   .main-content .container .breadcrumb .breadcrumb-wrapper {
@@ -435,7 +463,7 @@
   align-items: flex-start;
   align-content: flex-start;
   max-width: 100%;
-  padding: 10px;
+  padding: 0px;
 }
 .main-content .container .single-post-article .post-content .pagebody {
   display: flex;

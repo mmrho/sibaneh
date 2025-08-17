@@ -12,29 +12,19 @@ body {
         }
     }
 }
+
 #site-header {
     .mobile-header {
         .mobile-header-container {
-            background-color: $sibaneh_single_page_header_background_color !important;
-            a,
-            span,
-            i {
-                color: $secondary_text_color !important;
-            }
-        }
-        .mobile-header-container {
             position: sticky !important;
+            
+            border-bottom: 2px solid #dfdfdf;
         }
     }
 
     .desktop-header {
         .desktop-header-container {
-            background-color: $sibaneh_single_page_header_background_color !important;
-            a,
-            span,
-            i {
-                color: $secondary_text_color !important;
-            }
+            border-bottom: 2px solid #dfdfdf;
         }
     }
 }
@@ -55,17 +45,65 @@ body {
                 text-align: right;
                 max-width: 100%;
                 padding: 0 45px;
+
+                white-space: nowrap;
+                overflow-x: hidden; // اسکرول مخفی همیشه
+                cursor: pointer;
+                box-sizing: border-box;
+                transition: background-color 0.3s ease;
+
+                &.scroll-active {
+                    overflow-x: auto; // وقتی کلاس فعال شد، اسکرول فعال شود
+
+                    &::-webkit-scrollbar {
+                        height: 6px;
+                        background: rgba(0, 0, 0, 0.1);
+                        opacity: 1;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background-color: rgba(0, 0, 0, 0.4);
+                        border-radius: 3px;
+                    }
+                }
+
+                &:not(.scroll-active):hover {
+                    background-color: #f9f9f9;
+                }
+
                 .breadcrumb-logo {
                     display: inline-block;
                     height: 15px;
                     width: auto;
                     vertical-align: middle;
                     margin: 5px;
+                    flex-shrink: 0;
                 }
+
                 .breadcrumb_last {
                     font-size: 14px;
                     margin: 5px;
                     color: #7f8c8d;
+                    vertical-align: middle;
+                    flex-shrink: 0;
+                    white-space: nowrap;
+                }
+
+                .ellipsis {
+                    display: inline-block;
+                    max-width: 150px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    vertical-align: middle;
+                    cursor: pointer;
+                    transition: max-width 0.3s ease;
+                    flex-shrink: 1;
+                }
+
+                &.scroll-active .ellipsis {
+                    max-width: none;
+                    overflow-x: visible;
+                    text-overflow: clip;
                 }
 
                 @include media-max(mobile-max) {
@@ -387,7 +425,7 @@ body {
                 align-items: flex-start;
                 align-content: flex-start;
                 max-width: 100%;
-                padding: 10px;
+                padding: 0px;
 
                 .pagebody {
                     display: flex;
