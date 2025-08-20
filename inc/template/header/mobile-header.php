@@ -14,11 +14,15 @@
 
         <!-- Search and Menu Icons -->
         <div class="mobile-header-actions">
-            <button class="search-icon mobile-search-btn" type="button">
+            <button class="search-icon mobile-btn" type="button" id="searchIcon">
                 <i class="icon-search-1"></i>
             </button>
-            <button class="mobile-menu-toggle" type="button">
-                <i class="icon-menu"></i>
+            <button class="shopping-bag-icon mobile-btn" type="button" id="shoppingBagIcon">
+                <i class="icon-shopping-bag"></i>
+            </button>
+            <button class="mobile-menu-toggle" type="button" id="menuBtnIcon">
+                <span></span>
+                <span></span>
             </button>
         </div>
     </div>
@@ -101,3 +105,93 @@
         </div>
     </nav>
 </div>
+<script>
+    const btn = document.getElementById("menuBtnIcon");
+const nav = document.getElementById("mobile-nav");
+const overlay = document.getElementById("mobile-nav-overlay");
+const searchIcon = document.getElementById("searchIcon");
+const searchBar = document.getElementById("mobile-search-bar");
+const searchCancel = document.querySelector(".search-cancel");
+const body = document.body;
+
+// Menu Toggle
+btn.addEventListener("click", () => {
+    btn.classList.toggle("active");
+    nav.classList.toggle("active");
+    overlay.classList.toggle("active");
+    body.classList.toggle("menu-open");
+});
+
+// Close menu when overlay is clicked
+overlay.addEventListener("click", () => {
+    closeMenu();
+});
+
+// Close menu when close button is clicked
+document.querySelector(".mobile-nav-close").addEventListener("click", () => {
+    closeMenu();
+});
+
+function closeMenu() {
+    btn.classList.remove("active");
+    nav.classList.remove("active");
+    overlay.classList.remove("active");
+    body.classList.remove("menu-open");
+}
+
+// Search functionality
+searchIcon.addEventListener("click", () => {
+    searchBar.classList.add("active");
+    body.classList.add("search-open");
+    // Focus on input after animation
+    setTimeout(() => {
+        const searchInput = searchBar.querySelector('input');
+        if (searchInput) {
+            searchInput.focus();
+        }
+    }, 200);
+});
+
+searchCancel.addEventListener("click", () => {
+    closeSearch();
+});
+
+function closeSearch() {
+    searchBar.classList.remove("active");
+    body.classList.remove("search-open");
+}
+
+// Close search on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (searchBar.classList.contains('active')) {
+            closeSearch();
+        }
+        if (nav.classList.contains('active')) {
+            closeMenu();
+        }
+    }
+});
+
+// Submenu toggle for mobile
+document.querySelectorAll('.mobile-nav-link[data-has-submenu="true"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const parentItem = link.closest('.mobile-nav-item');
+        parentItem.classList.toggle('submenu-open');
+    });
+});
+
+// Handle scroll for header background
+let lastScrollY = window.scrollY;
+const mobileHeaderContainer = document.querySelector('.mobile-header-container');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        mobileHeaderContainer.classList.add('scrolled');
+    } else {
+        mobileHeaderContainer.classList.remove('scrolled');
+    }
+    lastScrollY = window.scrollY;
+});
+</script>

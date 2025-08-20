@@ -68,7 +68,7 @@ body {
       .inner {
         height: $lnav-height;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
         padding: 0 12px;
@@ -76,12 +76,13 @@ body {
         background: $nav-sheet-bg;
         -webkit-backdrop-filter: blur($nav-sheet-blur) saturate(180%);
         backdrop-filter: blur($nav-sheet-blur) saturate(180%);
-        border-radius: 12px 12px 0 0;
+        border-radius: 0px;
+        transition: background 0.3s $ease-out, border-radius 0.3s $ease-out;
 
         .product {
           display: flex;
           align-items: center;
-          width: 100%;
+          flex: 1; // Take remaining space
           gap: 4px;
           font-weight: 600;
           cursor: pointer;
@@ -93,7 +94,7 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 100%;
+            width: 100%; // fill remaining space
             gap: 4px;
             padding: 4px;
             border-radius: 8px;
@@ -114,11 +115,13 @@ body {
 
         .nav-links {
           display: flex;
-          min-width: 50%;
-          margin-inline-start: auto;
           gap: 6px;
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
+
+          .nav-link-item {
+            flex: 0 0 auto; // only take space needed by content
+          }
 
           a {
             color: inherit;
@@ -183,18 +186,15 @@ body {
       background: $nav-sheet-bg;
       -webkit-backdrop-filter: blur($nav-sheet-blur) saturate(180%);
       backdrop-filter: blur($nav-sheet-blur) saturate(180%);
-      border-radius: 0 0 12px 12px;
+      border-radius: 0px;
       box-shadow: $sheet-shadow;
-
       clip-path: inset(0 0 100% 0);
       transition: clip-path 0.45s $ease;
       will-change: clip-path;
-
       max-height: 0;
       overflow: hidden;
-      transition:
-        max-height 0.45s $ease,
-        clip-path 0.45s $ease;
+      transition: max-height 0.45s $ease, clip-path 0.45s $ease;
+
       &.active {
         clip-path: inset(0 0 0% 0);
         max-height: 300px;
@@ -212,14 +212,11 @@ body {
 
         .sheet-item {
           background: rgba(0, 0, 0, 0.04);
-          border-radius: 10px;
+          border-radius: 0px;
           padding: 12px 16px;
           width: 100%;
           text-align: start;
-          transition:
-            background 0.2s ease,
-            transform 0.3s $ease-out,
-            opacity 0.3s $ease-out;
+          transition: background 0.2s ease, transform 0.3s $ease-out, opacity 0.3s $ease-out;
           transform: translateY(10px);
           opacity: 0;
 
@@ -250,12 +247,6 @@ body {
       }
     }
 
-    .local-nav .inner {
-      transition:
-        background 0.3s $ease-out,
-        border-radius 0.3s $ease-out;
-    }
-
     .sheet.active ~ .local-nav .inner {
       border-radius: 12px 12px 0 0;
       box-shadow: none;
@@ -263,12 +254,14 @@ body {
   }
 }
 
+// Scroll lock
 html.scroll-lock,
 body.scroll-lock {
   overflow: hidden;
   padding-right: 0;
 }
 
+// Button subtle bounce
 @keyframes subtle-bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-2px); }
@@ -282,3 +275,23 @@ body.scroll-lock {
   }
 }
 
+// ===== Breakpoints =====
+@include media-max(mobile-max) {
+  .ctaToClustr {
+    .inner {
+      .product { flex: 0; }
+    }
+    .nav-links { display: none; }
+    .sheet .sheet-item { display: block; }
+  }
+}
+
+@include media-max(md) {
+  .ctaToClustr {
+    .nav-links { flex-wrap: wrap; }
+  }
+}
+
+@include media-max(sm) {
+  // Optional fine-tune spacing
+}

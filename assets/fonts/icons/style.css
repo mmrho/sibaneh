@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icons';
-  src:  url('fonts/icons.eot?mutrax');
-  src:  url('fonts/icons.eot?mutrax#iefix') format('embedded-opentype'),
-    url('fonts/icons.ttf?mutrax') format('truetype'),
-    url('fonts/icons.woff?mutrax') format('woff'),
-    url('fonts/icons.svg?mutrax#icons') format('svg');
+  src:  url('fonts/icons.eot?xqlzkz');
+  src:  url('fonts/icons.eot?xqlzkz#iefix') format('embedded-opentype'),
+    url('fonts/icons.ttf?xqlzkz') format('truetype'),
+    url('fonts/icons.woff?xqlzkz') format('woff'),
+    url('fonts/icons.svg?xqlzkz#icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -13,6 +13,7 @@
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icons' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -24,6 +25,9 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shopping-bag:before {
+  content: "\e90e";
+}
 .icon-telegram:before {
   content: "\e90b";
 }
@@ -69,8 +73,11 @@ i {
 .icon-cancel:before {
   content: "\e75d";
 }
-.icon-search:before {
+.icon-search-4:before {
   content: "\e800";
+}
+.icon-search-3:before {
+  content: "\e830";
 }
 .icon-graduation:before {
   content: "\e801";
@@ -209,6 +216,9 @@ i {
 }
 .icon-search-1:before {
   content: "\e82e";
+}
+.icon-search-2:before {
+  content: "\e82f";
 }
 .icon-eye:before {
   content: "\e83c";
