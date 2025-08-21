@@ -17,7 +17,7 @@ body {
     .mobile-header {
         .mobile-header-container {
             position: sticky !important;
-            
+
             border-bottom: 2px solid #dfdfdf;
         }
     }
@@ -40,26 +40,30 @@ body {
         /* Breadcrumb */
         .breadcrumb {
             align-self: stretch;
+            overflow-x: hidden; /* اسکرول مخفی پیش‌فرض */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
 
             .breadcrumb-wrapper {
+                display: flex;
+                align-items: center;
                 text-align: right;
                 max-width: 100%;
                 padding: 0 45px;
-
                 white-space: nowrap;
-                overflow-x: hidden; // اسکرول مخفی همیشه
-                cursor: pointer;
+                overflow-x: hidden;
                 box-sizing: border-box;
-                transition: background-color 0.3s ease;
+                gap: 0.5rem; /* فاصله بین آیتم‌ها */
 
                 &.scroll-active {
-                    overflow-x: auto; // وقتی کلاس فعال شد، اسکرول فعال شود
+                    overflow-x: auto; /* اسکرول با هاور/لمس */
 
                     &::-webkit-scrollbar {
                         height: 6px;
                         background: rgba(0, 0, 0, 0.1);
                         opacity: 1;
                     }
+
                     &::-webkit-scrollbar-thumb {
                         background-color: rgba(0, 0, 0, 0.4);
                         border-radius: 3px;
@@ -88,30 +92,39 @@ body {
                     white-space: nowrap;
                 }
 
-                .ellipsis {
-                    display: inline-block;
-                    max-width: 150px;
-                    white-space: nowrap;
+                .middle-items {
+                    display: flex;
+                    gap: 0.5rem;
                     overflow: hidden;
-                    text-overflow: ellipsis;
-                    vertical-align: middle;
-                    cursor: pointer;
-                    transition: max-width 0.3s ease;
-                    flex-shrink: 1;
+                    flex-shrink: 1; /* مسیرهای وسط می‌تونن کوچک بشن */
+                    white-space: nowrap;
                 }
 
-                &.scroll-active .ellipsis {
-                    max-width: none;
-                    overflow-x: visible;
-                    text-overflow: clip;
+                .ellipsis {
+                    display: inline-block;
+                    color: #7f8c8d;
+                    vertical-align: middle;
+                    margin: 0 5px;
+                    flex-shrink: 0;
+                }
+
+                /* Separatorها */
+                & > span:not(:last-child)::after,
+                .middle-items > span:not(:last-child)::after {
+                    content: " > "; /* separator، با خروجی Yoast هماهنگ */
+                    margin: 0 5px;
+                    color: #7f8c8d;
+                    flex-shrink: 0;
                 }
 
                 @include media-max(mobile-max) {
                     padding: 0 30px;
                 }
+
                 @include media-max(md) {
                     padding: 0 20px;
                 }
+
                 @include media-max(sm) {
                     padding: 0 20px;
                 }

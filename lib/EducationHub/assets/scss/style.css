@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ==========================================================================
    Single Post Styles
    ========================================================================== */
@@ -32,19 +33,24 @@
 }
 .main-content .container .breadcrumb {
   align-self: stretch;
+  overflow-x: hidden; /* اسکرول مخفی پیش‌فرض */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 .main-content .container .breadcrumb .breadcrumb-wrapper {
+  display: flex;
+  align-items: center;
   text-align: right;
   max-width: 100%;
   padding: 0 45px;
   white-space: nowrap;
   overflow-x: hidden;
-  cursor: pointer;
   box-sizing: border-box;
-  transition: background-color 0.3s ease;
+  gap: 0.5rem; /* فاصله بین آیتم‌ها */
+  /* Separatorها */
 }
 .main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active {
-  overflow-x: auto;
+  overflow-x: auto; /* اسکرول با هاور/لمس */
 }
 .main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active::-webkit-scrollbar {
   height: 6px;
@@ -74,21 +80,26 @@
   flex-shrink: 0;
   white-space: nowrap;
 }
+.main-content .container .breadcrumb .breadcrumb-wrapper .middle-items {
+  display: flex;
+  gap: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 1; /* مسیرهای وسط می‌تونن کوچک بشن */
+  white-space: nowrap;
+}
 .main-content .container .breadcrumb .breadcrumb-wrapper .ellipsis {
   display: inline-block;
-  max-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #7f8c8d;
   vertical-align: middle;
-  cursor: pointer;
-  transition: max-width 0.3s ease;
-  flex-shrink: 1;
+  margin: 0 5px;
+  flex-shrink: 0;
 }
-.main-content .container .breadcrumb .breadcrumb-wrapper.scroll-active .ellipsis {
-  max-width: none;
-  overflow-x: visible;
-  text-overflow: clip;
+.main-content .container .breadcrumb .breadcrumb-wrapper > span:not(:last-child)::after,
+.main-content .container .breadcrumb .breadcrumb-wrapper .middle-items > span:not(:last-child)::after {
+  content: " > "; /* separator، با خروجی Yoast هماهنگ */
+  margin: 0 5px;
+  color: #7f8c8d;
+  flex-shrink: 0;
 }
 @media (max-width: 849.98px) {
   .main-content .container .breadcrumb .breadcrumb-wrapper {

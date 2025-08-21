@@ -302,6 +302,7 @@
             }
         }
     }
+
     // ====================
     // Mobile Header Styles
     // ====================
@@ -446,27 +447,29 @@
         // Mobile Navigation Styles
         .mobile-nav {
             position: fixed;
-            top: 0;
-            right: -100%;
-            width: 85%;
-            max-width: 320px;
+            top: 0; // تغییر: از بالا شروع می‌کنه
+            left: 0;
+            width: 100%; // تغییر: تمام صفحه
             height: 100vh;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateY(-100%); // تغییر: از بالا پنهان می‌شه
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); // تغییر: انیمیشن کرکره‌ای مثل سرچ بار
             z-index: 1001;
-            overflow: hidden;
+            overflow: hidden; // برای جلوگیری از اسکرول اضافی
 
             &.active {
-                right: 0;
-
+                transform: translateY(0); // تغییر: به پایین می‌آد
                 .mobile-nav-content {
                     .mobile-nav-list {
                         .mobile-nav-item {
                             @for $i from 1 through 10 {
                                 &:nth-child(#{$i}) {
-                                    animation: slideInFromRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                                    animation: slideInFromBottom
+                                        0.6s
+                                        cubic-bezier(0.25, 0.46, 0.45, 0.94)
+                                        forwards; // تغییر: انیمیشن از پایین
                                     animation-delay: #{($i - 1) * 0.08}s;
                                 }
                             }
@@ -474,12 +477,12 @@
                     }
 
                     .mobile-nav-buttons {
-                        animation: slideInFromRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                        animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
                         animation-delay: 0.4s;
                     }
 
                     .mobile-nav-support {
-                        animation: slideInFromRight 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                        animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
                         animation-delay: 0.5s;
                     }
                 }
@@ -530,8 +533,8 @@
 
             .mobile-nav-content {
                 padding: 20px;
-                height: calc(100vh - 80px);
-                overflow-y: auto;
+                height: calc(100vh - 80px); // تغییر: ارتفاع برای اسکرول
+                overflow-y: auto; // تغییر: قابل اسکرول
 
                 .mobile-nav-list {
                     list-style: none;
@@ -540,7 +543,7 @@
 
                     .mobile-nav-item {
                         opacity: 0;
-                        transform: translateX(50px);
+                        transform: translateY(20px); // تغییر: انیمیشن از پایین
                         margin-bottom: 8px;
 
                         .mobile-nav-link {
@@ -602,7 +605,7 @@
                                 }
 
                                 .mobile-submenu {
-                                    max-height: 300px;
+                                    max-height: 300px; // تغییر: برای اسکرول در ساب‌منو
                                 }
                             }
                         }
@@ -611,7 +614,7 @@
 
                 .mobile-nav-buttons {
                     opacity: 0;
-                    transform: translateX(50px);
+                    transform: translateY(50px);
                     margin-top: 30px;
                     display: flex;
                     flex-direction: column;
@@ -664,7 +667,7 @@
 
                 .mobile-nav-support {
                     opacity: 0;
-                    transform: translateX(50px);
+                    transform: translateY(50px);
                     margin-top: 30px;
                     padding-top: 20px;
                     border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -711,19 +714,20 @@
             }
         }
 
-        // Animation keyframes
-        @keyframes slideInFromRight {
+        // Animation keyframes for menu from top
+        @keyframes slideInFromBottom {
+            // تغییر: انیمیشن آیتم‌ها از پایین
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
-        // Mobile Search Styles
+        // Mobile Search Styles (بدون تغییر، چون مثل این طراحی شده)
         .mobile-search-bar {
             position: fixed;
             top: 0;
@@ -843,7 +847,7 @@
             }
         }
 
-        // Animation keyframes for search
+        // Animation keyframes for search (بدون تغییر)
         @keyframes slideInFromTop {
             from {
                 opacity: 0;
@@ -866,7 +870,7 @@
             }
         }
 
-        // Body scroll lock
+        // Body scroll lock (بدون تغییر، اما مطمئن شو که اعمال می‌شه)
         body.menu-open,
         body.search-open {
             overflow: hidden;
@@ -875,5 +879,3 @@
         }
     }
 }
-
-
