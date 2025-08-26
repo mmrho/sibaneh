@@ -317,7 +317,6 @@
         -webkit-backdrop-filter: blur(10px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         z-index: 1000;
-        padding: 12px 0;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
         // Scrolled state
@@ -330,8 +329,8 @@
                 .mobile-header-brand {
                     .mobile-brand-link {
                         .site-header-top-brand-logo {
-                            max-height: 30px;
-                            width: 30px;
+                            max-height: 25px;
+                            width: 25px;
                         }
 
                         .site-header-top-brand-name {
@@ -349,6 +348,23 @@
             align-items: center;
             padding: 0 1.2rem;
             position: relative;
+            height: 72px;
+            z-index: 1002;
+
+            .header-element {
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.3s ease;
+            }
+
+            &.menu-open,
+            &.search-open,
+            &.shopping-open {
+                .header-element {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+            }
 
             .mobile-header-brand {
                 .mobile-brand-link {
@@ -361,8 +377,8 @@
                     overflow: hidden;
 
                     .site-header-top-brand-logo {
-                        max-height: 30px;
-                        width: 30px;
+                        max-height: 25px;
+                        width: 25px;
                     }
 
                     .site-header-top-brand-name {
@@ -397,36 +413,36 @@
                     }
 
                     i {
-                        font-size: 23px;
-                        font-weight: 600;
+                        font-size: 18px;
+                        font-weight: 200;
                     }
                 }
 
                 .mobile-menu-toggle {
-                    width: 25px;
-                    height: 25px;
+                    width: 14px;
+                    height: 18px;
                     position: relative;
                     cursor: pointer;
                     background: none;
                     border: none;
-                    padding: 10px;
+                    padding: 7px;
 
                     span {
                         position: absolute;
                         left: 0;
                         width: 100%;
-                        height: 2px;
+                        height: 1.2px;
                         background: #000;
                         border-radius: 2000px;
                         transform-origin: center;
                         transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
                         &:nth-child(1) {
-                            top: calc(50% - 4px); // line above center
+                            top: calc(50% - 3px);
                         }
 
                         &:nth-child(2) {
-                            top: calc(50% + 4px); // line below center
+                            top: calc(50% + 3px);
                         }
                     }
 
@@ -444,32 +460,31 @@
                 }
             }
         }
+
         // Mobile Navigation Styles
         .mobile-nav {
-            position: fixed;
-            top: 0; // تغییر: از بالا شروع می‌کنه
+            position: absolute;
+            top: 72px;
             left: 0;
-            width: 100%; // تغییر: تمام صفحه
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-height: 0;
+            background: $sibaneh_header_background_color;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            transform: translateY(-100%); // تغییر: از بالا پنهان می‌شه
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); // تغییر: انیمیشن کرکره‌ای مثل سرچ بار
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 1001;
-            overflow: hidden; // برای جلوگیری از اسکرول اضافی
+            overflow: hidden;
 
             &.active {
-                transform: translateY(0); // تغییر: به پایین می‌آد
+                max-height: calc(100vh - 72px);
+                overflow-y: auto;
+
                 .mobile-nav-content {
                     .mobile-nav-list {
                         .mobile-nav-item {
                             @for $i from 1 through 10 {
                                 &:nth-child(#{$i}) {
-                                    animation: slideInFromBottom
-                                        0.6s
-                                        cubic-bezier(0.25, 0.46, 0.45, 0.94)
-                                        forwards; // تغییر: انیمیشن از پایین
+                                    animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
                                     animation-delay: #{($i - 1) * 0.08}s;
                                 }
                             }
@@ -488,53 +503,14 @@
                 }
             }
 
-            .mobile-nav-header {
-                padding: 20px;
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-                .mobile-nav-header-content {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .mobile-nav-logo {
-                        display: flex;
-                        align-items: center;
-                        gap: 12px;
-
-                        img {
-                            width: 32px;
-                            height: 32px;
-                        }
-
-                        span {
-                            font-size: 1.1rem;
-                            font-weight: 600;
-                            color: #000;
-                        }
-                    }
-
-                    .mobile-nav-close {
-                        background: none;
-                        border: none;
-                        font-size: 24px;
-                        color: #000;
-                        cursor: pointer;
-                        padding: 8px;
-                        border-radius: 50%;
-                        transition: background-color 0.3s ease;
-
-                        &:hover {
-                            background-color: rgba(0, 0, 0, 0.1);
-                        }
-                    }
-                }
-            }
-
             .mobile-nav-content {
                 padding: 20px;
-                height: calc(100vh - 80px); // تغییر: ارتفاع برای اسکرول
-                overflow-y: auto; // تغییر: قابل اسکرول
+                opacity: 0;
+                transition: opacity 0.3s ease;
+
+                &.active {
+                    opacity: 1;
+                }
 
                 .mobile-nav-list {
                     list-style: none;
@@ -543,7 +519,7 @@
 
                     .mobile-nav-item {
                         opacity: 0;
-                        transform: translateY(20px); // تغییر: انیمیشن از پایین
+                        transform: translateY(20px);
                         margin-bottom: 8px;
 
                         .mobile-nav-link {
@@ -605,7 +581,7 @@
                                 }
 
                                 .mobile-submenu {
-                                    max-height: 300px; // تغییر: برای اسکرول در ساب‌منو
+                                    max-height: 300px;
                                 }
                             }
                         }
@@ -697,55 +673,43 @@
 
         .mobile-nav-overlay {
             position: fixed;
-            top: 0;
+            top: 72px;
             left: 0;
             width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0);
+            height: calc(100vh - 72px);
+            background: $sibaneh_header_background_color;
             z-index: 1000;
             visibility: hidden;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
             &.active {
-                background: rgba(0, 0, 0, 0.4);
+                background: $sibaneh_header_background_color;
                 visibility: visible;
                 backdrop-filter: blur(4px);
                 -webkit-backdrop-filter: blur(4px);
             }
         }
 
-        // Animation keyframes for menu from top
-        @keyframes slideInFromBottom {
-            // تغییر: انیمیشن آیتم‌ها از پایین
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        // Mobile Search Styles (بدون تغییر، چون مثل این طراحی شده)
+        // Mobile Search Styles
         .mobile-search-bar {
-            position: fixed;
-            top: 0;
+            position: absolute;
+            top: 72px;
             left: 0;
             width: 100%;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
+            max-height: 0;
+            background: $sibaneh_header_background_color;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 1002;
-            transform: translateY(-100%);
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
 
             &.active {
-                transform: translateY(0);
+                max-height: calc(100vh - 72px);
+                overflow-y: auto;
 
                 .search-header {
-                    animation: slideInFromTop 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                    animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
                 }
 
                 .search-content {
@@ -766,7 +730,7 @@
                 padding: 20px;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                 opacity: 0;
-                transform: translateY(-30px);
+                transform: translateY(20px);
 
                 .search-container {
                     display: flex;
@@ -802,17 +766,44 @@
                         }
                     }
 
-                    .search-cancel {
+                    .search-menu-toggle {
+                        width: 14px;
+                        height: 18px;
+                        position: relative;
+                        cursor: pointer;
                         background: none;
                         border: none;
-                        color: #007aff;
-                        font-size: 16px;
-                        cursor: pointer;
-                        padding: 8px;
-                        transition: color 0.3s ease;
+                        padding: 7px;
 
-                        &:hover {
-                            color: #0056b3;
+                        span {
+                            position: absolute;
+                            left: 0;
+                            width: 100%;
+                            height: 1.2px;
+                            background: #000;
+                            border-radius: 2000px;
+                            transform-origin: center;
+                            transition: none; // حذف انیمیشن برای sudden change
+
+                            &:nth-child(1) {
+                                top: calc(50% - 3px);
+                            }
+
+                            &:nth-child(2) {
+                                top: calc(50% + 3px);
+                            }
+                        }
+
+                        &.active {
+                            span:nth-child(1) {
+                                transform: rotate(45deg);
+                                top: 50%;
+                            }
+
+                            span:nth-child(2) {
+                                transform: rotate(-45deg);
+                                top: 50%;
+                            }
                         }
                     }
                 }
@@ -847,12 +838,91 @@
             }
         }
 
-        // Animation keyframes for search (بدون تغییر)
+        // Mobile Shopping Styles
+        .mobile-shopping-panel {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            max-height: 0;
+            background: $sibaneh_header_background_color;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1002;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
+
+            &.active {
+                max-height: calc(100vh - 72px);
+                overflow-y: auto;
+
+                .shopping-header {
+                    animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+                }
+            }
+
+            .shopping-header {
+                padding: 20px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transform: translateY(20px);
+
+                .shopping-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+
+                    .shopping-menu-toggle {
+                        width: 14px;
+                        height: 18px;
+                        position: relative;
+                        cursor: pointer;
+                        background: none;
+                        border: none;
+                        padding: 7px;
+
+                        span {
+                            position: absolute;
+                            left: 0;
+                            width: 100%;
+                            height: 1.2px;
+                            background: #000;
+                            border-radius: 2000px;
+                            transform-origin: center;
+                            transition: none;
+
+                            &:nth-child(1) {
+                                top: calc(50% - 3px);
+                            }
+
+                            &:nth-child(2) {
+                                top: calc(50% + 3px);
+                            }
+                        }
+
+                        &.active {
+                            span:nth-child(1) {
+                                transform: rotate(45deg);
+                                top: 50%;
+                            }
+
+                            span:nth-child(2) {
+                                transform: rotate(-45deg);
+                                top: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Animation keyframes
         @keyframes slideInFromTop {
             from {
                 opacity: 0;
                 transform: translateY(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -864,15 +934,17 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        // Body scroll lock (بدون تغییر، اما مطمئن شو که اعمال می‌شه)
+        // Body scroll lock
         body.menu-open,
-        body.search-open {
+        body.search-open,
+        body.shopping-open {
             overflow: hidden;
             position: fixed;
             width: 100%;

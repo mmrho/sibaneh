@@ -517,7 +517,6 @@ a:focus {
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   z-index: 1000;
-  padding: 12px 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #site-header .mobile-header-container.scrolled {
@@ -526,8 +525,8 @@ a:focus {
   padding: 8px 0;
 }
 #site-header .mobile-header-container.scrolled .mobile-header-content .mobile-header-brand .mobile-brand-link .site-header-top-brand-logo {
-  max-height: 30px;
-  width: 30px;
+  max-height: 25px;
+  width: 25px;
 }
 #site-header .mobile-header-container.scrolled .mobile-header-content .mobile-header-brand .mobile-brand-link .site-header-top-brand-name {
   display: none;
@@ -539,6 +538,15 @@ a:focus {
   align-items: center;
   padding: 0 1.2rem;
   position: relative;
+  height: 72px;
+  z-index: 1002;
+}
+#site-header .mobile-header-container .mobile-header-content .header-element {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#site-header .mobile-header-container .mobile-header-content.menu-open .header-element, #site-header .mobile-header-container .mobile-header-content.search-open .header-element, #site-header .mobile-header-container .mobile-header-content.shopping-open .header-element {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-brand .mobile-brand-link {
   display: flex;
@@ -550,8 +558,8 @@ a:focus {
   overflow: hidden;
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-brand .mobile-brand-link .site-header-top-brand-logo {
-  max-height: 30px;
-  width: 30px;
+  max-height: 25px;
+  width: 25px;
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-brand .mobile-brand-link .site-header-top-brand-name {
   display: none;
@@ -581,33 +589,33 @@ a:focus {
   transform: scale(1.1);
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-actions .mobile-btn i {
-  font-size: 23px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 200;
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-actions .mobile-menu-toggle {
-  width: 25px;
-  height: 25px;
+  width: 14px;
+  height: 18px;
   position: relative;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 10px;
+  padding: 7px;
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-actions .mobile-menu-toggle span {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1.2px;
   background: #000;
   border-radius: 2000px;
   transform-origin: center;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-actions .mobile-menu-toggle span:nth-child(1) {
-  top: calc(50% - 4px);
+  top: calc(50% - 3px);
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-actions .mobile-menu-toggle span:nth-child(2) {
-  top: calc(50% + 4px);
+  top: calc(50% + 3px);
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-actions .mobile-menu-toggle.active span:nth-child(1) {
   transform: rotate(45deg);
@@ -618,21 +626,21 @@ a:focus {
   top: 50%;
 }
 #site-header .mobile-header-container .mobile-nav {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 72px;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
+  max-height: 0;
+  background: #FAFAFD;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transform: translateY(-100%);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1001;
   overflow: hidden;
 }
 #site-header .mobile-header-container .mobile-nav.active {
-  transform: translateY(0);
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 #site-header .mobile-header-container .mobile-nav.active .mobile-nav-content .mobile-nav-list .mobile-nav-item:nth-child(1) {
   animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -682,46 +690,13 @@ a:focus {
   animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   animation-delay: 0.5s;
 }
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header {
-  padding: 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header .mobile-nav-header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header .mobile-nav-header-content .mobile-nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header .mobile-nav-header-content .mobile-nav-logo img {
-  width: 32px;
-  height: 32px;
-}
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header .mobile-nav-header-content .mobile-nav-logo span {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #000;
-}
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header .mobile-nav-header-content .mobile-nav-close {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #000;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  transition: background-color 0.3s ease;
-}
-#site-header .mobile-header-container .mobile-nav .mobile-nav-header .mobile-nav-header-content .mobile-nav-close:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
 #site-header .mobile-header-container .mobile-nav .mobile-nav-content {
   padding: 20px;
-  height: calc(100vh - 80px);
-  overflow-y: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#site-header .mobile-header-container .mobile-nav .mobile-nav-content.active {
+  opacity: 1;
 }
 #site-header .mobile-header-container .mobile-nav .mobile-nav-content .mobile-nav-list {
   list-style: none;
@@ -844,49 +819,40 @@ a:focus {
 }
 #site-header .mobile-header-container .mobile-nav-overlay {
   position: fixed;
-  top: 0;
+  top: 72px;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0);
+  height: calc(100vh - 72px);
+  background: #FAFAFD;
   z-index: 1000;
   visibility: hidden;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 #site-header .mobile-header-container .mobile-nav-overlay.active {
-  background: rgba(0, 0, 0, 0.4);
+  background: #FAFAFD;
   visibility: visible;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
 }
-@keyframes slideInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 #site-header .mobile-header-container .mobile-search-bar {
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 72px;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
+  max-height: 0;
+  background: #FAFAFD;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 1002;
-  transform: translateY(-100%);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
 }
 #site-header .mobile-header-container .mobile-search-bar.active {
-  transform: translateY(0);
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
 }
 #site-header .mobile-header-container .mobile-search-bar.active .search-header {
-  animation: slideInFromTop 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 #site-header .mobile-header-container .mobile-search-bar.active .search-content .search-suggestions span:nth-child(1) {
   animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -932,7 +898,7 @@ a:focus {
   padding: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(20px);
 }
 #site-header .mobile-header-container .mobile-search-bar .search-header .search-container {
   display: flex;
@@ -967,17 +933,38 @@ a:focus {
 #site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-input-wrapper input::placeholder {
   color: #999;
 }
-#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-cancel {
+#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-menu-toggle {
+  width: 14px;
+  height: 18px;
+  position: relative;
+  cursor: pointer;
   background: none;
   border: none;
-  color: #007aff;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 8px;
-  transition: color 0.3s ease;
+  padding: 7px;
 }
-#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-cancel:hover {
-  color: #0056b3;
+#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-menu-toggle span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.2px;
+  background: #000;
+  border-radius: 2000px;
+  transform-origin: center;
+  transition: none;
+}
+#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-menu-toggle span:nth-child(1) {
+  top: calc(50% - 3px);
+}
+#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-menu-toggle span:nth-child(2) {
+  top: calc(50% + 3px);
+}
+#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 50%;
+}
+#site-header .mobile-header-container .mobile-search-bar .search-header .search-container .search-menu-toggle.active span:nth-child(2) {
+  transform: rotate(-45deg);
+  top: 50%;
 }
 #site-header .mobile-header-container .mobile-search-bar .search-content {
   padding: 20px;
@@ -1003,6 +990,70 @@ a:focus {
   color: white;
   transform: translateY(18px);
 }
+#site-header .mobile-header-container .mobile-shopping-panel {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  background: #FAFAFD;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1002;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+#site-header .mobile-header-container .mobile-shopping-panel.active {
+  max-height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+#site-header .mobile-header-container .mobile-shopping-panel.active .shopping-header {
+  animation: slideInFromBottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container .shopping-menu-toggle {
+  width: 14px;
+  height: 18px;
+  position: relative;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 7px;
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container .shopping-menu-toggle span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.2px;
+  background: #000;
+  border-radius: 2000px;
+  transform-origin: center;
+  transition: none;
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container .shopping-menu-toggle span:nth-child(1) {
+  top: calc(50% - 3px);
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container .shopping-menu-toggle span:nth-child(2) {
+  top: calc(50% + 3px);
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container .shopping-menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 50%;
+}
+#site-header .mobile-header-container .mobile-shopping-panel .shopping-header .shopping-container .shopping-menu-toggle.active span:nth-child(2) {
+  transform: rotate(-45deg);
+  top: 50%;
+}
 @keyframes slideInFromTop {
   from {
     opacity: 0;
@@ -1024,7 +1075,8 @@ a:focus {
   }
 }
 #site-header .mobile-header-container body.menu-open,
-#site-header .mobile-header-container body.search-open {
+#site-header .mobile-header-container body.search-open,
+#site-header .mobile-header-container body.shopping-open {
   overflow: hidden;
   position: fixed;
   width: 100%;
