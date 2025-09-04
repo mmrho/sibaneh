@@ -1,9 +1,0 @@
-<?php
-add_submenu_page(
-    'sibaneh.php',
-    'ctaToClustr',
-    'ctaToClustr',
-    'manage_options',
-    'ctaToClustr.php',
-    'wbsSibanehCtaToClustr'
-);

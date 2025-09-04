@@ -626,7 +626,7 @@ a:focus {
   top: 50%;
 }
 #site-header .mobile-header-container .mobile-nav {
-  position: absolute;
+  position: fixed;
   top: 72px;
   left: 0;
   width: 100%;
@@ -835,7 +835,7 @@ a:focus {
   -webkit-backdrop-filter: blur(4px);
 }
 #site-header .mobile-header-container .mobile-search-bar {
-  position: absolute;
+  position: fixed;
   top: 72px;
   left: 0;
   width: 100%;
@@ -1074,9 +1074,10 @@ a:focus {
     transform: translateY(0);
   }
 }
-#site-header .mobile-header-container body.menu-open,
-#site-header .mobile-header-container body.search-open,
-#site-header .mobile-header-container body.shopping-open {
+
+body.menu-open,
+body.search-open,
+body.shopping-open {
   overflow: hidden;
   position: fixed;
   width: 100%;

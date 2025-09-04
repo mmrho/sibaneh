@@ -2,8 +2,8 @@
 defined('ABSPATH') || exit;
 
 // Get the target for this instance
-$target = isset($GLOBALS['cta_target']) ? $GLOBALS['cta_target'] : '#site-header';
-$instance = isset($GLOBALS['cta_instance']) ? $GLOBALS['cta_instance'] : 1;
+$target = isset($GLOBALS['toc_target']) ? $GLOBALS['toc_target'] : '#site-header';
+$instance = isset($GLOBALS['toc_instance']) ? $GLOBALS['toc_instance'] : 1;
 
 // Define your sheet items
 $sheet_items = [
@@ -15,8 +15,8 @@ $sheet_items = [
 ];
 ?>
 
-<div class="ctaToClustr-container" data-instance="cta-instance-<?php echo esc_attr($instance); ?>">
-    <div class="cta-spacer" data-spacer="cta-instance-<?php echo esc_attr($instance); ?>"></div>
+<div class="tableOfContents-container" data-instance="toc-instance-<?php echo esc_attr($instance); ?>">
+    <div class="toc-spacer" data-spacer="toc-instance-<?php echo esc_attr($instance); ?>"></div>
     
     <nav class="local-nav" aria-label="Local Nav" data-target="<?php echo esc_attr($target); ?>">
         <div class="inner">

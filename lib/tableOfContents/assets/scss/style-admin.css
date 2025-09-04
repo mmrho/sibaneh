@@ -1,0 +1,229 @@
+@charset "UTF-8";
+/* =============================
+   Modern Apple-like TOC (RTL) 
+================================ */
+#ctatoc-tree {
+  max-height: 600px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  margin-top: 15px;
+  font-family: "IRANSans", -apple-system, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1f2937;
+  direction: rtl;
+  text-align: right;
+  /* Root nodes */
+  /* Tree node */
+  /* Node link */
+  /* Selected node */
+  /* RTL indentation */
+  /* Whole-row fix */
+  /* Expander icons */
+  /* Remove default theme icon */
+}
+#ctatoc-tree > ul > li.jstree-node {
+  border-bottom: 1px solid #e5e7eb;
+}
+#ctatoc-tree > ul > li.jstree-node:last-child {
+  border-bottom: none;
+}
+#ctatoc-tree .jstree-node {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#ctatoc-tree .jstree-anchor {
+  display: block;
+  padding: 10px 5px;
+  margin-left: 5px;
+  color: #374151;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  /* Active states */
+}
+#ctatoc-tree .jstree-anchor:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+.jstree-closed #ctatoc-tree .jstree-anchor, .jstree-open #ctatoc-tree .jstree-anchor {
+  color: #2563eb;
+  font-weight: 500;
+}
+#ctatoc-tree .jstree-clicked {
+  background: transparent !important;
+  color: #2563eb !important;
+}
+#ctatoc-tree .jstree-clicked .jstree-anchor {
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 8px;
+}
+#ctatoc-tree .jstree-children {
+  padding-right: 32px;
+}
+#ctatoc-tree .jstree-wholerow,
+#ctatoc-tree .jstree-wholerow-hovered,
+#ctatoc-tree .jstree-wholerow-clicked {
+  height: 1px;
+}
+#ctatoc-tree .jstree-icon.jstree-ocl {
+  background: none !important;
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 22px;
+  color: #9ca3af;
+  cursor: pointer;
+  position: absolute;
+  right: -13px;
+  top: 13px;
+  transition: color 0.2s ease;
+}
+#ctatoc-tree .jstree-icon.jstree-ocl:hover {
+  color: #111827;
+}
+#ctatoc-tree .jstree-closed > .jstree-ocl:before {
+  content: "◀";
+}
+#ctatoc-tree .jstree-open > .jstree-ocl:before {
+  content: "▼";
+}
+#ctatoc-tree .jstree-leaf > .jstree-ocl {
+  display: none;
+}
+#ctatoc-tree .jstree-icon.jstree-themeicon {
+  display: none !important;
+}
+
+/* =============================
+     Admin Controls UI (Responsive & Balanced Buttons)
+================================ */
+.ctato-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 0;
+  /* Field groups */
+  /* Buttons group */
+}
+.ctato-controls .ctato-field-group {
+  flex: 1 1 200px;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 374px;
+}
+.ctato-controls .ctato-field-group select,
+.ctato-controls .ctato-field-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+.ctato-controls .ctato-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 8px;
+  height: 46px;
+  flex: 1 1 auto;
+}
+.ctato-controls .ctato-actions button {
+  flex: 1 1 auto;
+  min-width: 80px;
+  max-width: 250px;
+  padding: 0 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ctato-controls .ctato-actions button.button-success {
+  background: #10b981;
+  border-color: #059669;
+  color: #fff;
+}
+.ctato-controls .ctato-actions button.button-success:hover {
+  background: #059669;
+}
+.ctato-controls .ctato-actions button.button-danger {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #fff;
+}
+.ctato-controls .ctato-actions button.button-danger:hover {
+  background: #dc2626;
+}
+
+/* Edit controls below main row */
+.ctato-edit-controls {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 15px 0;
+}
+
+/* Buttons */
+.ctato-button {
+  display: inline-flex; /* keep inline with text flow */
+  align-items: center; /* vertical centering */
+  justify-content: center; /* useful for icon-only buttons */
+  gap: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  /* Dashicons inside buttons */
+}
+.ctato-button .dashicons {
+  font-size: 16px;
+  line-height: 1;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ctato-button.button-success {
+  background: #10b981;
+  border-color: #059669;
+  color: #fff;
+}
+.ctato-button.button-success:hover {
+  background: #059669;
+}
+.ctato-button.button-danger {
+  background: #ef4444;
+  border-color: #dc2626;
+  color: #fff;
+}
+.ctato-button.button-danger:hover {
+  background: #dc2626;
+}
+
+/* Help section */
+.ctato-help {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #6b7280;
+}
+.ctato-help details {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+.ctato-help details summary {
+  font-weight: 600;
+  color: #111827;
+}
+.ctato-help details p {
+  margin-top: 8px;
+}/*# sourceMappingURL=style-admin.css.map */

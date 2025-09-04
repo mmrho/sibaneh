@@ -1,0 +1,264 @@
+/* =============================
+   Modern Apple-like TOC (RTL) 
+================================ */
+#ctatoc-tree {
+  max-height: 600px;
+  overflow: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  margin-top: 15px;
+
+  font-family:
+    "IRANSans",
+    -apple-system,
+    Arial,
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1f2937;
+  direction: rtl;
+  text-align: right;
+
+  /* Root nodes */
+  > ul > li.jstree-node {
+    border-bottom: 1px solid #e5e7eb;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  /* Tree node */
+  .jstree-node {
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  /* Node link */
+  .jstree-anchor {
+    display: block;
+    padding: 10px 5px;
+    margin-left: 5px;
+    color: #374151;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #f3f4f6;
+      color: #2563eb;
+    }
+
+    /* Active states */
+    .jstree-closed &,
+    .jstree-open & {
+      color: #2563eb;
+      font-weight: 500;
+    }
+  }
+
+  /* Selected node */
+  .jstree-clicked {
+    background: transparent !important;
+    color: #2563eb !important;
+
+    .jstree-anchor {
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 8px;
+    }
+  }
+
+  /* RTL indentation */
+  .jstree-children {
+    padding-right: 32px;
+  }
+
+  /* Whole-row fix */
+  .jstree-wholerow,
+  .jstree-wholerow-hovered,
+  .jstree-wholerow-clicked {
+    height: 1px;
+  }
+
+  /* Expander icons */
+  .jstree-icon.jstree-ocl {
+    background: none !important;
+    width: 16px;
+    height: 16px;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 22px;
+    color: #9ca3af;
+    cursor: pointer;
+    position: absolute;
+    right: -13px;
+    top: 13px;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #111827;
+    }
+  }
+
+  .jstree-closed > .jstree-ocl:before {
+    content: "\25C0"; // ◀
+  }
+
+  .jstree-open > .jstree-ocl:before {
+    content: "\25BC"; // ▼
+  }
+
+  .jstree-leaf > .jstree-ocl {
+    display: none;
+  }
+
+  /* Remove default theme icon */
+  .jstree-icon.jstree-themeicon {
+    display: none !important;
+  }
+}
+
+/* =============================
+     Admin Controls UI (Responsive & Balanced Buttons)
+================================ */
+.ctato-controls {
+  display: flex;
+  flex-wrap: wrap;          // allow wrapping on small screens
+  align-items: flex-start;  // align fields to top
+  gap: 12px;
+  margin: 0;
+
+  /* Field groups */
+  .ctato-field-group {
+    flex: 1 1 200px;        // grow/shrink with minimum width 200px
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 374px;
+
+    select,
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+  }
+
+  /* Buttons group */
+  .ctato-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    height: 46px;
+    flex: 1 1 auto;          // allow actions container to take remaining space
+
+    button {
+      flex: 1 1 auto;        // each button grows proportionally to fill remaining space
+      min-width: 80px;       // optional minimum width
+      max-width: 250px;      // optional maximum width
+      padding: 0 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.button-success {
+        background: #10b981;
+        border-color: #059669;
+        color: #fff;
+        &:hover {
+          background: #059669;
+        }
+      }
+
+      &.button-danger {
+        background: #ef4444;
+        border-color: #dc2626;
+        color: #fff;
+        &:hover {
+          background: #dc2626;
+        }
+      }
+    }
+  }
+}
+
+/* Edit controls below main row */
+.ctato-edit-controls {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 15px 0;
+}
+/* Buttons */
+.ctato-button {
+  display: inline-flex; /* keep inline with text flow */
+  align-items: center; /* vertical centering */
+  justify-content: center; /* useful for icon-only buttons */
+  gap: 6px;
+
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  /* Dashicons inside buttons */
+  .dashicons {
+    font-size: 16px;
+    line-height: 1;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.button-success {
+    background: #10b981;
+    border-color: #059669;
+    color: #fff;
+
+    &:hover {
+      background: #059669;
+    }
+  }
+
+  &.button-danger {
+    background: #ef4444;
+    border-color: #dc2626;
+    color: #fff;
+
+    &:hover {
+      background: #dc2626;
+    }
+  }
+}
+
+/* Help section */
+.ctato-help {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #6b7280;
+
+  details {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f9fafb;
+
+    summary {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    p {
+      margin-top: 8px;
+    }
+  }
+}

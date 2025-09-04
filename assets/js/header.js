@@ -48,6 +48,27 @@ try {
       return;
     }
 
+    // === Scroll lock management ===
+    let scrollPosition = 0;
+
+    // Lock body scroll
+    function lockBody() {
+      scrollPosition = window.scrollY;
+      elements.body.style.top = `-${scrollPosition}px`;
+      elements.body.style.position = "fixed";
+      elements.body.style.overflow = "hidden";
+      elements.body.style.width = "100%";
+    }
+
+    // Unlock body scroll
+    function unlockBody() {
+      elements.body.style.position = "";
+      elements.body.style.overflow = "";
+      elements.body.style.width = "";
+      elements.body.style.top = "";
+      window.scrollTo(0, scrollPosition);
+    }
+
     // Menu functionality
     const menu = {
       open() {
@@ -57,12 +78,11 @@ try {
         elements.menu.overlay.classList.add("active");
         elements.body.classList.add("menu-open");
         elements.headerContent.classList.add("menu-open");
-        const navContent = elements.menu.nav.querySelector(
-          ".mobile-nav-content"
-        );
+        const navContent = elements.menu.nav.querySelector(".mobile-nav-content");
         if (navContent) {
           navContent.classList.add("active");
         }
+        lockBody();
       },
 
       close() {
@@ -72,12 +92,11 @@ try {
         elements.menu.overlay.classList.remove("active");
         elements.body.classList.remove("menu-open");
         elements.headerContent.classList.remove("menu-open");
-        const navContent = elements.menu.nav.querySelector(
-          ".mobile-nav-content"
-        );
+        const navContent = elements.menu.nav.querySelector(".mobile-nav-content");
         if (navContent) {
           navContent.classList.remove("active");
         }
+        unlockBody();
       },
 
       toggle() {
@@ -109,6 +128,7 @@ try {
             elements.search.input.focus();
           }
         }, 200);
+        lockBody();
       },
 
       close() {
@@ -118,6 +138,7 @@ try {
         elements.menu.overlay.classList.remove("active");
         elements.body.classList.remove("search-open");
         elements.headerContent.classList.remove("search-open");
+        unlockBody();
       },
 
       toggle() {
@@ -137,6 +158,7 @@ try {
         elements.menu.overlay.classList.add("active");
         elements.body.classList.add("shopping-open");
         elements.headerContent.classList.add("shopping-open");
+        lockBody();
       },
 
       close() {
@@ -146,6 +168,7 @@ try {
         elements.menu.overlay.classList.remove("active");
         elements.body.classList.remove("shopping-open");
         elements.headerContent.classList.remove("shopping-open");
+        unlockBody();
       },
 
       toggle() {
@@ -175,13 +198,10 @@ try {
     // Header scroll effect
     const headerScroll = {
       init() {
-        const headerContainer = document.querySelector(
-          ".mobile-header-container"
-        );
+        const headerContainer = document.querySelector(".mobile-header-container");
         let lastScrollTop = 0;
         window.addEventListener("scroll", () => {
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
           if (scrollTop > 50) {
             headerContainer.classList.add("scrolled");
           } else {
@@ -219,12 +239,27 @@ try {
 
       // Search events
       elements.search.icon.addEventListener("click", () => search.open());
-      
 
       // Shopping events
       elements.shopping.icon.addEventListener("click", () => shopping.open());
-      
     };
+
+    // Prevent iOS touchmove scroll when panel is open
+    document.addEventListener(
+      "touchmove",
+      (e) => {
+        if (
+          elements.body.classList.contains("menu-open") ||
+          elements.body.classList.contains("search-open") ||
+          elements.body.classList.contains("shopping-open")
+        ) {
+          if (!e.target.closest("#mobile-nav, #mobile-search-bar, #mobile-shopping-panel")) {
+            e.preventDefault();
+          }
+        }
+      },
+      { passive: false }
+    );
 
     // Initialize all functionality
     const init = () => {

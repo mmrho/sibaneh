@@ -2,7 +2,7 @@
 @import "../../../../assets/scss/mixin";
 
 /* ==========================================================================
-   ctaToClustr Styles - Apple-like Animation
+   tableOfContents Styles - Apple-like Animation
    ========================================================================== */
 
 $lnav-height: 44px;
@@ -31,8 +31,8 @@ body {
   }
 }
 
-.ctaToClustr {
-  .ctaToClustr-container {
+.tableOfContents {
+  .tableOfContents-container {
     max-width: 100%;
     margin: 0;
     padding: 0;
@@ -267,8 +267,8 @@ body.scroll-lock {
   50% { transform: translateY(-2px); }
 }
 
-.ctaToClustr {
-  .ctaToClustr-container {
+.tableOfContents {
+  .tableOfContents-container {
     .local-nav .inner .product button:active {
       animation: subtle-bounce 0.3s ease;
     }
@@ -277,7 +277,7 @@ body.scroll-lock {
 
 // ===== Breakpoints =====
 @include media-max(mobile-max) {
-  .ctaToClustr {
+  .tableOfContents {
     .inner {
       .product { flex: 0; }
     }
@@ -287,7 +287,7 @@ body.scroll-lock {
 }
 
 @include media-max(md) {
-  .ctaToClustr {
+  .tableOfContents {
     .nav-links { flex-wrap: wrap; }
   }
 }

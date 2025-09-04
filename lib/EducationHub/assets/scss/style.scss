@@ -40,7 +40,7 @@ body {
         /* Breadcrumb */
         .breadcrumb {
             align-self: stretch;
-            overflow-x: hidden; /* اسکرول مخفی پیش‌فرض */
+            overflow-x: hidden; 
             cursor: pointer;
             transition: background-color 0.3s ease;
 
@@ -53,10 +53,10 @@ body {
                 white-space: nowrap;
                 overflow-x: hidden;
                 box-sizing: border-box;
-                gap: 0.5rem; /* فاصله بین آیتم‌ها */
+                gap: 0.5rem;
 
                 &.scroll-active {
-                    overflow-x: auto; /* اسکرول با هاور/لمس */
+                    overflow-x: auto; 
 
                     &::-webkit-scrollbar {
                         height: 6px;
@@ -96,7 +96,7 @@ body {
                     display: flex;
                     gap: 0.5rem;
                     overflow: hidden;
-                    flex-shrink: 1; /* مسیرهای وسط می‌تونن کوچک بشن */
+                    flex-shrink: 1; 
                     white-space: nowrap;
                 }
 
@@ -108,10 +108,10 @@ body {
                     flex-shrink: 0;
                 }
 
-                /* Separatorها */
+                
                 & > span:not(:last-child)::after,
                 .middle-items > span:not(:last-child)::after {
-                    content: " > "; /* separator، با خروجی Yoast هماهنگ */
+                    content: " > "; 
                     margin: 0 5px;
                     color: #7f8c8d;
                     flex-shrink: 0;

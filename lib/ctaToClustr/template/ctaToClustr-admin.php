@@ -1,5 +1,0 @@
-<?php
-?>
-<div>
-    salam 
-</div>

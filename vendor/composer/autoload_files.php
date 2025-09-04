@@ -28,5 +28,5 @@ return array(
     '4a83b37129298a7e10da35add94b49a8' => $baseDir . '/lib/Login/wbsLogin.php',
     'ded4fcffe7fd07b9bf363d649b367048' => $baseDir . '/lib/Single/wbsSingle.php',
     '701a5f9ee113dcb5a7e2c6b8dfd37c80' => $baseDir . '/lib/EducationHub/wbsEducationHub.php',
-    '2605a04fcd6b6816ee5b3821ad1828bd' => $baseDir . '/lib/CtaToClustr/wbsCtaToClustr.php',
+    '72347806510dcd929b8fdeb57ca59266' => $baseDir . '/lib/tableOfContents/wbsTableOfContents.php',
 );

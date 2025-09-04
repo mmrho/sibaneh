@@ -5,15 +5,15 @@
             $split_content = split_post_content();
             ?>
             <!-- callToActionToClustr -->
-            <section class="ctaToClustr" id="ctaToClustr">
+            <section class="tableOfContents" id="tableOfContents">
 
-                <?php wbsLoadCtaToClustr('#site-header'); ?>
+                <?php wbsLoadTableOfContents('#site-header'); ?>
 
             </section>
             <!-- callToActionToClustr -->
-            <section class="ctaToClustr">
+            <section class="tableOfContents">
 
-                <?php wbsLoadCtaToClustr('#ctaToClustr'); ?>
+                <?php wbsLoadTableOfContents('#tableOfContents'); ?>
 
             </section>
 
