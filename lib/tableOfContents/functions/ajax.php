@@ -8,6 +8,7 @@ defined('ABSPATH') || exit;
 
 add_action( 'wp_ajax_tableOfContents_get_toc', 'tableOfContents_ajax_get_toc' );
 add_action( 'wp_ajax_tableOfContents_save_toc', 'tableOfContents_ajax_save_toc' );
+add_action( 'wp_ajax_tableOfContents_create_new_content', 'tableOfContents_ajax_create_new_content' ); // جدید
 
 /**
  * Return nested tree as JSON (admin use).
@@ -48,7 +49,7 @@ function tableOfContents_ajax_save_toc() {
         wp_send_json_error( array('message' => 'Invalid JSON payload') );
     }
 
-    // Validate structure and page IDs
+    // Validate structure and post IDs
     $valid = tableOfContents_validate_tree( $data );
     if ( $valid !== true ) {
         wp_send_json_error( array('message' => 'Validation failed', 'errors' => $valid ) );
@@ -69,6 +70,35 @@ function tableOfContents_ajax_save_toc() {
 }
 
 /**
+ * New: Create a new CPT post via AJAX.
+ */
+function tableOfContents_ajax_create_new_content() {
+    if ( ! current_user_can( 'edit_posts' ) ) {
+        wp_send_json_error( array('message' => 'Insufficient permissions') );
+    }
+
+    check_ajax_referer( 'tableOfContents_nonce', 'nonce' );
+
+    $title = sanitize_text_field( $_POST['title'] );
+    if ( empty( $title ) ) {
+        wp_send_json_error( array('message' => 'Missing title') );
+    }
+
+    $post_id = wp_insert_post( array(
+        'post_title'    => $title,
+        'post_type'     => 'sibaneh_content',
+        'post_status'   => 'draft', // یا publish اگر بخوای
+        'post_author'   => get_current_user_id(),
+    ) );
+
+    if ( is_wp_error( $post_id ) ) {
+        wp_send_json_error( array('message' => 'Failed to create content') );
+    }
+
+    wp_send_json_success( array( 'post_id' => $post_id, 'title' => $title ) );
+}
+
+/**
  * Validate incoming tree structure recursively.
  * Return true or array of error messages.
  */
@@ -81,15 +111,15 @@ function tableOfContents_validate_tree( $nodes, &$errors = array(), $path = '' )
     foreach ( $nodes as $index => $n ) {
         $curpath = $path === '' ? (string)$index : $path . '.' . $index;
 
-        if ( ! isset( $n['page_id'] ) || ! is_numeric( $n['page_id'] ) ) {
-            $errors[] = "$curpath: missing or invalid page_id";
+        if ( ! isset( $n['post_id'] ) || ! is_numeric( $n['post_id'] ) ) { // تغییر به post_id
+            $errors[] = "$curpath: missing or invalid post_id";
             continue;
         }
 
-        $page_id = intval( $n['page_id'] );
-        $post = get_post( $page_id );
-        if ( ! $post || $post->post_type !== 'page' ) {
-            $errors[] = "$curpath: page_id {$page_id} is not a valid page";
+        $post_id = intval( $n['post_id'] );
+        $post = get_post( $post_id );
+        if ( ! $post || $post->post_type !== 'sibaneh_content' ) { // تغییر به CPT
+            $errors[] = "$curpath: post_id {$post_id} is not a valid sibaneh_content";
         }
 
         if ( isset( $n['children'] ) && ! is_array( $n['children'] ) ) {
@@ -123,15 +153,15 @@ function tableOfContents_persist_tree( $nodes ) {
     $insert_node = function( $nodes, $parent_id = null ) use ( &$wpdb, $table, &$insert_node, &$ok ) {
         $position = 0;
         foreach ( $nodes as $n ) {
-            $page_id = intval( $n['page_id'] );
-            // Use provided title or fallback to page title
-            $title = isset( $n['title'] ) && $n['title'] !== '' ? sanitize_text_field( $n['title'] ) : get_the_title( $page_id );
+            $post_id = intval( $n['post_id'] ); // تغییر به post_id
+            // Use provided title or fallback to post title
+            $title = isset( $n['title'] ) && $n['title'] !== '' ? sanitize_text_field( $n['title'] ) : get_the_title( $post_id );
 
             $result = $wpdb->insert(
                 $table,
                 array(
                     'parent_id'  => $parent_id,
-                    'page_id'    => $page_id,
+                    'post_id'    => $post_id, // تغییر به post_id
                     'title'      => $title,
                     'sort_order' => $position,
                     'created_at' => current_time( 'mysql' ),
@@ -187,4 +217,3 @@ function tableOfContents_get_cached_tree() {
     wp_cache_set( 'tableOfContents_tree', $tree, '', DAY_IN_SECONDS );
     return $tree;
 }
-

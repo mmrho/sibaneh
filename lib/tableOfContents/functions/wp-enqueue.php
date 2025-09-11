@@ -28,8 +28,6 @@ function wbs_tableOfContents_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'wbs_tableOfContents_enqueue_assets');
 
-
-
 /*
  * Enqueue scripts & styles for admin and frontend specific to tableOfContents module.
  */
@@ -72,26 +70,9 @@ function tableOfContents_admin_enqueue( $hook ) {
         array(),
         THEME_VERSION
     );
-    // Localize: ajax URL, nonce, pages (small subset)
-    $pages = array();
-    $query = new WP_Query( array(
-        'post_type'      => 'page',
-        'posts_per_page' => 500, // change if your site has many pages
-        'orderby'        => 'title',
-        'order'          => 'ASC',
-        'post_status'    => array('publish','private'),
-    ) );
-    if ( $query->have_posts() ) {
-        foreach ( $query->posts as $p ) {
-            $pages[] = array( 'id' => $p->ID, 'title' => get_the_title( $p->ID ), 'permalink' => get_permalink( $p->ID ) );
-        }
-    }
-
+    // Localize: ajax URL, nonce (posts removed)
     wp_localize_script( 'tableOfContents-script-admin', 'toc_data', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'nonce'    => wp_create_nonce( 'tableOfContents_nonce' ),
-        'pages'    => $pages,
     ) );
 }
-
-

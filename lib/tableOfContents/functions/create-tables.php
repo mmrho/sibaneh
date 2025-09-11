@@ -22,7 +22,7 @@ function tableOfContents_maybe_create_table() {
     // We will store a schema version to avoid unnecessary calls.
     $option_name = 'tableOfContents_db_version';
     $db_version = get_option( $option_name, '' );
-    $current_version = '1.0';
+    $current_version = '1.1'; // افزایش برای تغییر فیلد
 
     if ( $db_version === $current_version ) {
         return;
@@ -33,14 +33,14 @@ function tableOfContents_maybe_create_table() {
     $sql = "CREATE TABLE {$table_name} (
         id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
         parent_id BIGINT UNSIGNED NULL,
-        page_id BIGINT UNSIGNED NOT NULL,
+        post_id BIGINT UNSIGNED NOT NULL, -- تغییر به post_id
         title VARCHAR(255) NOT NULL,
         sort_order INT NOT NULL DEFAULT 0,
         created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY  (id),
         KEY parent_id (parent_id),
-        KEY page_id (page_id),
+        KEY post_id (post_id), -- تغییر به post_id
         KEY sort_order (sort_order)
     ) {$charset_collate};";
 
@@ -61,7 +61,7 @@ function tableOfContents_get_table_name() {
  * Helper: fetch all rows and build nested tree (single query).
  * Returns array of nested nodes:
  * [
- *  ['id'=>row_id, 'page_id'=>..., 'title'=>..., 'children'=>[...]],
+ *  ['id'=>row_id, 'post_id'=>..., 'title'=>..., 'children'=>[...]],
  *  ...
  * ]
  */
@@ -79,7 +79,7 @@ function tableOfContents_fetch_tree_from_db() {
         $map[ $r['id'] ] = [
             'db_id'    => (int) $r['id'],
             'parent_id'=> $r['parent_id'] ? (int) $r['parent_id'] : null,
-            'page_id'  => (int) $r['page_id'],
+            'post_id'  => (int) $r['post_id'], // تغییر به post_id
             'title'    => $r['title'],
             'children' => [],
         ];
@@ -98,4 +98,3 @@ function tableOfContents_fetch_tree_from_db() {
 
     return $tree;
 }
-

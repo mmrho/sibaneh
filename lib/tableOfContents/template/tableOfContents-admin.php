@@ -14,16 +14,16 @@ defined('ABSPATH') || exit;
         <!-- Controls -->
         <div class="ctato-controls">
             <div class="ctato-field-group">
-                <select id="ctato-page-select" class="ctato-select">
-                    <option value="">— Select page —</option>
+                <select id="ctato-post-select" class="ctato-select"> <!-- تغییر به post-select -->
+                    <option value="">— Select content —</option>
                     <?php
-                    if (isset($pages) && is_array($pages)) {
-                        foreach ($pages as $p) {
+                    if (isset($posts) && is_array($posts)) { // تغییر به posts
+                        foreach ($posts as $p) {
                             echo '<option value="' . esc_attr($p['id']) . '">' . esc_html($p['title']) . '</option>';
                         }
                     } else {
                         $all = get_posts([
-                            'post_type'      => 'page',
+                            'post_type'      => 'sibaneh_content', // تغییر به CPT
                             'posts_per_page' => 500,
                             'post_status'    => ['publish', 'private'],
                             'orderby'        => 'title',
@@ -47,6 +47,9 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="ctato-actions">
+                <button id="ctato-add-new-content" class="button button-secondary"> <!-- دکمه جدید برای ایجاد CPT -->
+                    Add New Content
+                </button>
                 <button id="ctato-add-node" class="button button-primary">
                     Add
                 </button>

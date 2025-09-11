@@ -1,18 +1,18 @@
 <?php
 
-function wbsSibanehAcademyMenu()
+function wbsContentConfigurationMenu()
 {
     add_menu_page(
-        'آکادمی سیبانه',
-        'آکادمی سیبانه',
+        'پیکربندی محتوا',
+        'پیکربندی محتوا',
         'manage_options',
-        'sibanehAcademy',
-        'wbsSibanehAcademy',
+        'contentConfiguration',
+        'wbsContentConfiguration',
         get_template_directory_uri() . '/images/temp/sibaneh-logo.png',
         2
     );
     add_submenu_page(
-        'sibanehAcademy',
+        'contentConfiguration',
         'دنیای اپلیکیشن و بازی‌ها',
         'دنیای اپلیکیشن و بازی‌ها',
         'manage_options',
@@ -20,7 +20,7 @@ function wbsSibanehAcademyMenu()
         'wbsSibanehTableOfContents'
     );
     add_submenu_page(
-        'sibanehAcademy',
+        'contentConfiguration',
         'آموزش‌های جامع اپل',
         'آموزش‌های جامع اپل',
         'manage_options',
@@ -28,7 +28,7 @@ function wbsSibanehAcademyMenu()
         'wbsSibanehTableOfContents'
     );
     add_submenu_page(
-        'sibanehAcademy',
+        'contentConfiguration',
         'اخبار و تحلیل‌ها',
         'اخبار و تحلیل‌ها',
         'manage_options',
@@ -37,14 +37,14 @@ function wbsSibanehAcademyMenu()
     );
 }
 
-add_action('admin_menu', 'wbsSibanehAcademyMenu');
+add_action('admin_menu', 'wbsContentConfigurationMenu');
 
-function wbsRemoveDuplicateSibanehAcademySubmenu() {
-    remove_submenu_page( 'sibanehAcademy', 'sibanehAcademy' );
+function wbsRemoveDuplicateContentConfigurationSubmenu() {
+    remove_submenu_page( 'contentConfiguration', 'contentConfiguration' );
 }
-add_action('admin_menu', 'wbsRemoveDuplicateSibanehAcademySubmenu', 999);
+add_action('admin_menu', 'wbsRemoveDuplicateContentConfigurationSubmenu', 999);
 
-function wbsSibanehAcademy()
+function wbsContentConfiguration()
 {
     require_once THEME_TEMPLATE . "admin/sibaneh/admin.php";
 }
@@ -58,7 +58,7 @@ add_action('admin_head', function () {
     ?>
     <style>
         /* Force Sibaneh menu icon to be centered and grayscale */
-        #toplevel_page_sibanehAcademy .wp-menu-image img {
+        #toplevel_page_contentConfiguration .wp-menu-image img {
             width: 20px !important;
             height: 20px !important;
             display: block;          /* make it a block element */
