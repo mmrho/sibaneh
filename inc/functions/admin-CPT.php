@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sibaneh Academy
  * Description: Custom post type and menus for Sibaneh Academy.
- * Version: 1.12
+ * Version: 1.14
  */
 
 namespace Sibaneh\Academy;
@@ -31,13 +31,33 @@ class SibanehAcademy {
     // 'parent_slug' can be a section slug or another term's slug for deeper hierarchy
     private $terms_config = [
         [
+            'name' => 'ویترین اپلیکیشن‌ها',
+            'slug' => 'showcase-of-apps',
+            'parent_slug' => 'sibaneh_app_game',
+        ],
+        [
             'name' => 'بررسی و معرفی اپلیکیشن‌ها',
-            'slug' => 'review-and-introduction-of-applications',
+            'slug' => 'review-and-introduction-of-apps',
+            'parent_slug' => 'sibaneh_app_game',
+        ],
+        [
+            'name' => 'مقایسه اپلیکیشن‌ها',
+            'slug' => 'compare-of-apps',
+            'parent_slug' => 'sibaneh_app_game',
+        ],
+        [
+            'name' => 'آموزش اپلیکیشن‌ها',
+            'slug' => 'tutorial-of-apps',
             'parent_slug' => 'sibaneh_app_game',
         ],
         [
             'name' => 'ترفندها و راحل‌ها',
             'slug' => 'tricks-and-treats',
+            'parent_slug' => 'sibaneh_apple_tutorials',
+        ],
+        [
+            'name' => 'آموزش استفاده از محصولات اپل',
+            'slug' => 'how-to-use-apple-products',
             'parent_slug' => 'sibaneh_apple_tutorials',
         ],
         [
@@ -74,6 +94,12 @@ class SibanehAcademy {
         add_filter('post_type_link', [$this, 'custom_post_permalink'], 10, 2);
         add_action('init', [$this, 'add_rewrite_rules']);
         add_action('save_post', [$this, 'set_default_category_on_save'], 10, 3);
+
+        // Additions for template and hierarchy
+        add_action('add_meta_boxes', [$this, 'add_template_meta_box']);
+        add_action('save_post', [$this, 'save_template_meta']);
+        add_filter('single_template', [$this, 'load_cpt_template']);
+        add_filter('page_attributes_dropdown_pages_args', [$this, 'allow_page_parents'], 10, 2);
 
         // Temporary: Force reset transient for testing - remove after one run
         // delete_transient('sibaneh_terms_inserted');
@@ -117,7 +143,7 @@ class SibanehAcademy {
             'rewrite'            => ['slug' => $this->cpt_slug . '/%sibaneh_category%', 'with_front' => false], // Added cpt_slug before hierarchy
             'capability_type'    => 'post',
             'has_archive'        => true,
-            'hierarchical'       => false,
+            'hierarchical'       => true,
             'menu_position'      => 2,
             'menu_icon'          => 'dashicons-media-document',
             'supports'           => ['title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'custom-fields', 'page-attributes'],
@@ -401,9 +427,11 @@ class SibanehAcademy {
      */
     public function custom_post_permalink($post_link, $post) {
         if ($post->post_type === $this->cpt_slug) {
+            // Taxonomy hierarchy
             $terms = wp_get_object_terms($post->ID, $this->taxonomy_slug);
+            $taxonomy_slug = 'uncategorized';
             if (!is_wp_error($terms) && !empty($terms)) {
-                $term = array_shift($terms); // Get primary term
+                $term = array_shift($terms);
                 $term_slugs = [];
                 $current_term = $term;
                 while ($current_term) {
@@ -416,10 +444,32 @@ class SibanehAcademy {
                 }
                 $term_slugs = array_reverse($term_slugs);
                 $taxonomy_slug = implode('/', $term_slugs);
-                $post_link = str_replace('%sibaneh_category%', $taxonomy_slug, $post_link);
-            } else {
-                $post_link = str_replace('%sibaneh_category%', 'uncategorized', $post_link);
             }
+
+            // Post hierarchy (including Pages as parents)
+            $post_slugs = [];
+            $current_post = $post;
+            while ($current_post->post_parent) {
+                $parent = get_post($current_post->post_parent);
+                if (!$parent) { // Stop if parent doesn't exist
+                    break;
+                }
+                $post_slugs[] = $parent->post_name;
+                $current_post = $parent;
+            }
+            $post_hierarchy = '';
+            if (!empty($post_slugs)) {
+                $post_slugs = array_reverse($post_slugs);
+                $post_hierarchy = implode('/', $post_slugs);
+            }
+
+            // Combine taxonomy and post hierarchy
+            $full_path = $taxonomy_slug;
+            if ($post_hierarchy) {
+                $full_path .= ($full_path ? '/' : '') . $post_hierarchy;
+            }
+
+            $post_link = str_replace('%sibaneh_category%', $full_path, $post_link);
         }
         return $post_link;
     }
@@ -458,6 +508,82 @@ class SibanehAcademy {
         }
 
         return $classes;
+    }
+
+    /**
+     * Add meta box for template selection
+     */
+    public function add_template_meta_box() {
+        add_meta_box(
+            'sibaneh-post-template',
+            __('تمپلیت', 'sibaneh'),
+            [$this, 'template_meta_box_callback'],
+            $this->cpt_slug,
+            'side',
+            'core'
+        );
+    }
+
+    /**
+     * Template meta box callback
+     */
+    public function template_meta_box_callback($post) {
+        $stored_template = get_post_meta($post->ID, '_wp_page_template', true);
+        $templates = wp_get_theme()->get_page_templates($post, $this->cpt_slug);
+        ?>
+        <label class="screen-reader-text" for="page_template"><?php _e('تمپلیت محتوا'); ?></label>
+        <select name="page_template" id="page_template">
+            <option value="default"><?php _e('تمپلیت پیش‌فرض'); ?></option>
+            <?php foreach ($templates as $template_filename => $template_name) : ?>
+                <option value="<?php echo esc_attr($template_filename); ?>" <?php selected($stored_template, $template_filename); ?>>
+                    <?php echo esc_html($template_name); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <?php
+    }
+    public function allow_page_parents($dropdown_args, $post) {
+        if ($post->post_type === $this->cpt_slug) {
+            $dropdown_args['post_type'] = 'page';  // فقط برگه‌های 'page' رو نشون بده
+            // اگر می‌خوای هر دو (sibaneh_content و page) رو نشون بده، این خط رو کامنت کن و یک دراپ‌دان سفارشی بساز (اختیاری)
+        }
+        return $dropdown_args;
+    }
+
+    /**
+     * Save template meta
+     */
+    public function save_template_meta($post_id) {
+        if (get_post_type($post_id) !== $this->cpt_slug) {
+            return;
+        }
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+        if (isset($_POST['page_template']) && '' !== $_POST['page_template']) {
+            update_post_meta($post_id, '_wp_page_template', sanitize_text_field($_POST['page_template']));
+        }
+    }
+
+    /**
+     * Load custom template for CPT
+     */
+    public function load_cpt_template($single_template) {
+        global $post;
+        if ($post->post_type === $this->cpt_slug) {
+            $template = get_post_meta($post->ID, '_wp_page_template', true);
+            if ($template && 'default' !== $template) {
+                $file = get_stylesheet_directory() . '/' . $template;
+                if (file_exists($file)) {
+                    return $file;
+                }
+                $file = get_template_directory() . '/' . $template;
+                if (file_exists($file)) {
+                    return $file;
+                }
+            }
+        }
+        return $single_template;
     }
 }
 
