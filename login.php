@@ -1,6 +1,5 @@
 <?php
 /* Template Name: login */
-/*Template Post Type: sibaneh_content*/
 /*if (is_user_logged_in()) {
     wp_redirect(home_url('/my-account/'));
     exit();

@@ -1,79 +1,72 @@
 <?php
 /**
  * Plugin Name: Sibaneh Academy
- * Description: Custom post type and menus for Sibaneh Academy.
- * Version: 1.14
+ * Description: Multiple custom post types and taxonomies for Sibaneh Academy, preserving original admin structure and URLs.
+ * Version: 1.20
  */
 
 namespace Sibaneh\Academy;
 
 class SibanehAcademy {
-    private $cpt_slug = 'sibaneh_content';
-    private $taxonomy_slug = 'sibaneh_category';
-
-    // Config for fixed main sections (top-level parents)
+    // Config for main sections (now as separate CPTs with short slugs)
     private $sections_config = [
-        'sibaneh_app_game' => [
+        'sib_app_game' => [
             'title' => 'دنیای اپلیکیشن و بازی',
             'menu_title' => 'دنیای اپلیکیشن و بازی',
+            'url_slug' => 'sibaneh_app_game',
         ],
-        'sibaneh_apple_tutorials' => [
+        'sib_apple_tut' => [
             'title' => 'آموزش‌های جامع اپل',
             'menu_title' => 'آموزش‌های جامع اپل',
+            'url_slug' => 'sibaneh_apple_tutorials',
         ],
-        'sibaneh_news_analysis' => [
+        'sib_news_anal' => [
             'title' => 'اخبار و تحلیل‌ها',
             'menu_title' => 'اخبار و تحلیل‌ها',
+            'url_slug' => 'sibaneh_news_analysis',
         ],
     ];
 
-    // Config for terms (categories) - add new ones here
-    // 'parent_slug' can be a section slug or another term's slug for deeper hierarchy
+    // Config for terms (subcategories) - 'parent_slug' updated to short CPT slugs
     private $terms_config = [
         [
             'name' => 'ویترین اپلیکیشن‌ها',
             'slug' => 'showcase-of-apps',
-            'parent_slug' => 'sibaneh_app_game',
+            'parent_slug' => 'sib_app_game',
         ],
         [
             'name' => 'بررسی و معرفی اپلیکیشن‌ها',
             'slug' => 'review-and-introduction-of-apps',
-            'parent_slug' => 'sibaneh_app_game',
+            'parent_slug' => 'sib_app_game',
         ],
         [
             'name' => 'مقایسه اپلیکیشن‌ها',
             'slug' => 'compare-of-apps',
-            'parent_slug' => 'sibaneh_app_game',
+            'parent_slug' => 'sib_app_game',
         ],
         [
             'name' => 'آموزش اپلیکیشن‌ها',
             'slug' => 'tutorial-of-apps',
-            'parent_slug' => 'sibaneh_app_game',
+            'parent_slug' => 'sib_app_game',
         ],
         [
             'name' => 'ترفندها و راحل‌ها',
             'slug' => 'tricks-and-treats',
-            'parent_slug' => 'sibaneh_apple_tutorials',
+            'parent_slug' => 'sib_apple_tut',
         ],
         [
             'name' => 'آموزش استفاده از محصولات اپل',
             'slug' => 'how-to-use-apple-products',
-            'parent_slug' => 'sibaneh_apple_tutorials',
+            'parent_slug' => 'sib_apple_tut',
         ],
         [
-            'name' => 'اخبار و تحلیل‌ها', // Consider changing name to avoid confusion with parent
+            'name' => 'اخبار و تحلیل‌ها',
             'slug' => 'news-analysis',
-            'parent_slug' => 'sibaneh_news_analysis',
+            'parent_slug' => 'sib_news_anal',
         ],
-        // Example for level 3: uncomment to add
-        // [
-        //     'name' => 'زیرمجموعه جدید',
-        //     'slug' => 'new-sub',
-        //     'parent_slug' => 'review-and-introduction-of-applications',
-        // ],
     ];
 
-    // Main menu config - capability 'manage_options' for admins
+    // Main menu config
     private $main_menu_config = [
         'title' => 'آکادمی سیبانه',
         'menu_title' => 'آکادمی سیبانه',
@@ -83,154 +76,157 @@ class SibanehAcademy {
         'position' => 2,
     ];
 
+    // Base slugs
+    private $cpt_base_slug = 'sibaneh_content';
+    private $taxonomy_base_slug = 'sibaneh_category';
+
+    // Map url_slug to cpt_slug for lookups
+    private $url_to_cpt_map = [];
+
     public function __construct() {
-        add_action('init', [$this, 'register_cpt']);
-        add_action('init', [$this, 'register_taxonomy']);
+        // Build map
+        foreach ($this->sections_config as $cpt_slug => $section) {
+            $this->url_to_cpt_map[$section['url_slug']] = $cpt_slug;
+        }
+
+        add_action('init', [$this, 'register_cpts_and_taxonomies']);
         add_action('init', [$this, 'insert_terms']);
         add_action('admin_menu', [$this, 'add_menus']);
         add_action('admin_head', [$this, 'add_custom_styles']);
         add_filter('post_class', [$this, 'highlight_old_posts'], 10, 3);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_preselect_script']);
-        add_filter('post_type_link', [$this, 'custom_post_permalink'], 10, 2);
-        add_action('init', [$this, 'add_rewrite_rules']);
         add_action('save_post', [$this, 'set_default_category_on_save'], 10, 3);
-
-        // Additions for template and hierarchy
-        add_action('add_meta_boxes', [$this, 'add_template_meta_box']);
-        add_action('save_post', [$this, 'save_template_meta']);
-        add_filter('single_template', [$this, 'load_cpt_template']);
         add_filter('page_attributes_dropdown_pages_args', [$this, 'allow_page_parents'], 10, 2);
-
-        // Temporary: Force reset transient for testing - remove after one run
-        // delete_transient('sibaneh_terms_inserted');
+        add_filter('single_template', [$this, 'load_cpt_template']);
     }
 
-    public function register_cpt() {
-        $labels = [
-            'name'                  => _x('محتوا', 'Post type general name', 'sibaneh'),
-            'singular_name'         => _x('محتوا', 'Post type singular name', 'sibaneh'),
-            'menu_name'             => _x('آکادمی سیبانه', 'Admin Menu text', 'sibaneh'),
-            'name_admin_bar'        => _x('محتوا', 'Add New on Toolbar', 'sibaneh'),
-            'add_new'               => __('افزودن جدید', 'sibaneh'),
-            'add_new_item'          => __('افزودن محتوای جدید', 'sibaneh'),
-            'new_item'              => __('محتوای جدید', 'sibaneh'),
-            'edit_item'             => __('ویرایش محتوا', 'sibaneh'),
-            'view_item'             => __('مشاهده محتوا', 'sibaneh'),
-            'all_items'             => __('همه محتواها', 'sibaneh'),
-            'search_items'          => __('جستجوی محتوا', 'sibaneh'),
-            'parent_item_colon'     => __('محتوای والد:', 'sibaneh'),
-            'not_found'             => __('محتوایی یافت نشد.', 'sibaneh'),
-            'not_found_in_trash'    => __('محتوایی در زباله‌دان نیست.', 'sibaneh'),
-            'featured_image'        => _x('تصویر شاخص', 'sibaneh'),
-            'set_featured_image'    => _x('تنظیم تصویر شاخص', 'sibaneh'),
-            'remove_featured_image' => _x('حذف تصویر شاخص', 'sibaneh'),
-            'use_featured_image'    => _x('استفاده به عنوان تصویر شاخص', 'sibaneh'),
-            'archives'              => _x('بایگانی محتوا', 'sibaneh'),
-            'insert_into_item'      => _x('افزودن به محتوا', 'sibaneh'),
-            'uploaded_to_this_item' => _x('آپلود شده به این محتوا', 'sibaneh'),
-            'filter_items_list'     => _x('فیلتر لیست محتوا', 'sibaneh'),
-            'items_list_navigation' => _x('راهبری لیست محتوا', 'sibaneh'),
-            'items_list'            => _x('لیست محتوا', 'sibaneh'),
-        ];
+    public function register_cpts_and_taxonomies() {
+        foreach ($this->sections_config as $cpt_slug => $section) {
+            $labels = [
+                'name'                  => _x('محتوا', 'Post type general name', 'sibaneh'),
+                'singular_name'         => _x('محتوا', 'Post type singular name', 'sibaneh'),
+                'menu_name'             => _x('آکادمی سیبانه', 'Admin Menu text', 'sibaneh'),
+                'name_admin_bar'        => _x('محتوا', 'Add New on Toolbar', 'sibaneh'),
+                'add_new'               => __('افزودن جدید', 'sibaneh'),
+                'add_new_item'          => __('افزودن محتوای جدید', 'sibaneh'),
+                'new_item'              => __('محتوای جدید', 'sibaneh'),
+                'edit_item'             => __('ویرایش محتوا', 'sibaneh'),
+                'view_item'             => __('مشاهده محتوا', 'sibaneh'),
+                'all_items'             => __('همه محتواها', 'sibaneh'),
+                'search_items'          => __('جستجوی محتوا', 'sibaneh'),
+                'parent_item_colon'     => __('محتوای والد:', 'sibaneh'),
+                'not_found'             => __('محتوایی یافت نشد.', 'sibaneh'),
+                'not_found_in_trash'    => __('محتوایی در زباله‌دان نیست.', 'sibaneh'),
+                'featured_image'        => _x('تصویر شاخص', 'sibaneh'),
+                'set_featured_image'    => _x('تنظیم تصویر شاخص', 'sibaneh'),
+                'remove_featured_image' => _x('حذف تصویر شاخص', 'sibaneh'),
+                'use_featured_image'    => _x('استفاده به عنوان تصویر شاخص', 'sibaneh'),
+                'archives'              => _x('بایگانی محتوا', 'sibaneh'),
+                'insert_into_item'      => _x('افزودن به محتوا', 'sibaneh'),
+                'uploaded_to_this_item' => _x('آپلود شده به این محتوا', 'sibaneh'),
+                'filter_items_list'     => _x('فیلتر لیست محتوا', 'sibaneh'),
+                'items_list_navigation' => _x('راهبری لیست محتوا', 'sibaneh'),
+                'items_list'            => _x('لیست محتوا', 'sibaneh'),
+            ];
 
-        $args = [
-            'labels'             => $labels,
-            'public'             => true,
-            'publicly_queryable' => true,
-            'show_ui'            => true,
-            'show_in_menu'       => false,
-            'query_var'          => true,
-            'rewrite'            => ['slug' => $this->cpt_slug . '/%sibaneh_category%', 'with_front' => false], // Added cpt_slug before hierarchy
-            'capability_type'    => 'post',
-            'has_archive'        => true,
-            'hierarchical'       => true,
-            'menu_position'      => 2,
-            'menu_icon'          => 'dashicons-media-document',
-            'supports'           => ['title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'custom-fields', 'page-attributes'],
-            'show_in_rest'       => true,
-        ];
+            $args = [
+                'labels'             => $labels,
+                'public'             => true,
+                'publicly_queryable' => true,
+                'show_ui'            => true,
+                'show_in_menu'       => false,
+                'query_var'          => true,
+                'rewrite'            => ['slug' => $section['url_slug'], 'with_front' => false],
+                'capability_type'    => 'post',
+                'has_archive'        => true,
+                'hierarchical'       => true,
+                'menu_position'      => 2,
+                'supports'           => ['title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'custom-fields', 'page-attributes'],
+                'show_in_rest'       => true,
+            ];
 
-        register_post_type($this->cpt_slug, $args);
-    }
+            register_post_type($cpt_slug, $args);
 
-    public function register_taxonomy() {
-        $labels = [
-            'name'              => _x('دسته‌بندی محتوا', 'taxonomy general name', 'sibaneh'),
-            'singular_name'     => _x('دسته‌بندی', 'taxonomy singular name', 'sibaneh'),
-            'search_items'      => __('جستجوی دسته‌بندی', 'sibaneh'),
-            'all_items'         => __('همه دسته‌بندی‌ها', 'sibaneh'),
-            'parent_item'       => __('دسته‌بندی والد', 'sibaneh'),
-            'parent_item_colon' => __('دسته‌بندی والد:', 'sibaneh'),
-            'edit_item'         => __('ویرایش دسته‌بندی', 'sibaneh'),
-            'update_item'       => __('به‌روزرسانی دسته‌بندی', 'sibaneh'),
-            'add_new_item'      => __('افزودن دسته‌بندی جدید', 'sibaneh'),
-            'new_item_name'     => __('نام دسته‌بندی جدید', 'sibaneh'),
-            'menu_name'         => __('دسته‌بندی‌ها', 'sibaneh'),
-        ];
+            // Register separate taxonomy for each CPT
+            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug);
+            $labels_tax = [
+                'name'              => _x('دسته‌بندی محتوا', 'taxonomy general name', 'sibaneh'),
+                'singular_name'     => _x('دسته‌بندی', 'taxonomy singular name', 'sibaneh'),
+                'search_items'      => __('جستجوی دسته‌بندی', 'sibaneh'),
+                'all_items'         => __('همه دسته‌بندی‌ها', 'sibaneh'),
+                'parent_item'       => __('دسته‌بندی والد', 'sibaneh'),
+                'parent_item_colon' => __('دسته‌بندی والد:', 'sibaneh'),
+                'edit_item'         => __('ویرایش دسته‌بندی', 'sibaneh'),
+                'update_item'       => __('به‌روزرسانی دسته‌بندی', 'sibaneh'),
+                'add_new_item'      => __('افزودن دسته‌بندی جدید', 'sibaneh'),
+                'new_item_name'     => __('نام دسته‌بندی جدید', 'sibaneh'),
+                'menu_name'         => __('دسته‌بندی‌ها', 'sibaneh'),
+            ];
 
-        $args = [
-            'hierarchical'      => true,
-            'labels'            => $labels,
-            'show_ui'           => true,
-            'show_admin_column' => true,
-            'query_var'         => true,
-            'rewrite'           => ['slug' => 'sibaneh-category', 'hierarchical' => true],
-            'show_in_rest'      => true,
-        ];
+            $args_tax = [
+                'hierarchical'      => true,
+                'labels'            => $labels_tax,
+                'show_ui'           => true,
+                'show_admin_column' => true,
+                'query_var'         => true,
+                'rewrite'           => ['slug' => 'sibaneh-category', 'hierarchical' => true],
+                'show_in_rest'      => true,
+            ];
 
-        register_taxonomy($this->taxonomy_slug, [$this->cpt_slug], $args);
+            register_taxonomy($taxonomy_slug, $cpt_slug, $args_tax);
+        }
     }
 
     public function insert_terms() {
         // Always check and fix hierarchy
         // if (get_transient('sibaneh_terms_inserted')) return;
 
-        // Insert or update top-level parents
-        foreach ($this->sections_config as $slug => $section) {
-            $existing = term_exists($slug, $this->taxonomy_slug);
-            if (!$existing) {
-                wp_insert_term($section['title'], $this->taxonomy_slug, ['slug' => $slug]);
-            } else {
-                // Fetch full term to check parent
-                $term = get_term($existing['term_id'], $this->taxonomy_slug);
-                if ($term->parent != 0) {
-                    wp_update_term($existing['term_id'], $this->taxonomy_slug, ['parent' => 0]);
-                }
-            }
-        }
+        foreach ($this->sections_config as $cpt_slug => $section) {
+            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug);
+            $filtered_terms = array_filter($this->terms_config, function($t) use ($cpt_slug) {
+                return $t['parent_slug'] === $cpt_slug;
+            });
 
-        // Insert or update child terms with hierarchy fix
-        $max_iterations = 5;
-        $pending_terms = $this->terms_config;
+            $max_iterations = 5;
+            $pending_terms = $filtered_terms;
 
-        for ($i = 0; $i < $max_iterations; $i++) {
-            $new_pending = [];
-            foreach ($pending_terms as $term) {
-                $existing = term_exists($term['slug'], $this->taxonomy_slug);
-                $parent = isset($term['parent_slug']) ? term_exists($term['parent_slug'], $this->taxonomy_slug) : false;
+            for ($i = 0; $i < $max_iterations; $i++) {
+                $new_pending = [];
+                foreach ($pending_terms as $term) {
+                    $existing = term_exists($term['slug'], $taxonomy_slug);
+                    $parent = 0;  // All terms are top-level under CPT, or handle deeper if needed
 
-                if ($parent && $parent['term_id']) {
+                    if (isset($term['parent_slug']) && $term['parent_slug'] !== $cpt_slug) {
+                        $parent_term = term_exists($term['parent_slug'], $taxonomy_slug);
+                        if ($parent_term) {
+                            $parent = $parent_term['term_id'];
+                        } else {
+                            $new_pending[] = $term;
+                            continue;
+                        }
+                    }
+
                     $args = [
                         'slug' => $term['slug'],
-                        'parent' => $parent['term_id'],
+                        'parent' => $parent,
                     ];
                     if ($existing) {
-                        wp_update_term($existing['term_id'], $this->taxonomy_slug, $args);
+                        wp_update_term($existing['term_id'], $taxonomy_slug, $args);
                     } else {
-                        wp_insert_term($term['name'], $this->taxonomy_slug, $args);
+                        wp_insert_term($term['name'], $taxonomy_slug, $args);
                     }
-                } else {
-                    $new_pending[] = $term;
                 }
+                $pending_terms = $new_pending;
+                if (empty($pending_terms)) break;
             }
-            $pending_terms = $new_pending;
-            if (empty($pending_terms)) break;
+
+            if (!empty($pending_terms)) {
+                error_log('SibanehAcademy: Some terms could not be inserted/updated due to missing parents in ' . $taxonomy_slug . '.');
+            }
         }
 
         if (empty($pending_terms)) {
             set_transient('sibaneh_terms_inserted', true, YEAR_IN_SECONDS);
-        } else {
-            error_log('SibanehAcademy: Some terms could not be inserted/updated due to missing parents.');
         }
     }
 
@@ -247,13 +243,13 @@ class SibanehAcademy {
         );
 
         // Add fixed submenus for top-level sections
-        foreach ($this->sections_config as $section_slug => $section) {
+        foreach ($this->sections_config as $cpt_slug => $section) {
             add_submenu_page(
                 $main['slug'],
                 $section['title'],
                 $section['menu_title'],
                 $main['capability'],
-                $section_slug,
+                $section['url_slug'],
                 [$this, 'dynamic_callback']
             );
         }
@@ -264,56 +260,44 @@ class SibanehAcademy {
             'همه محتواها',
             'همه محتواها',
             $main['capability'],
-            "edit.php?post_type={$this->cpt_slug}",
-            ''
+            'sibaneh_all_contents',
+            [$this, 'all_contents_callback']
         );
 
-        // Add "Categories" submenu below "All Contents"
+        // Add "Categories" submenu
         add_submenu_page(
             $main['slug'],
             'دسته‌بندی‌ها',
             'دسته‌بندی‌ها',
             $main['capability'],
-            "edit-tags.php?taxonomy={$this->taxonomy_slug}&post_type={$this->cpt_slug}",
-            ''
+            'sibaneh_categories',
+            [$this, 'categories_callback']
         );
     }
 
-    /**
-     * Dynamic callback for all pages
-     */
     public function dynamic_callback() {
-        // Get current page slug
         $page_slug = isset($_GET['page']) ? sanitize_key($_GET['page']) : $this->main_menu_config['slug'];
 
-        // Determine if it's the overview or a section
         if ($page_slug === $this->main_menu_config['slug']) {
-            // Overview: list only top-level (parent=0) terms from config
             $title = $this->main_menu_config['title'];
-            $top_terms = get_terms([
-                'taxonomy' => $this->taxonomy_slug,
-                'parent' => 0,
-                'hide_empty' => false,
-                'slug' => array_keys($this->sections_config), // Only configured sections
-            ]);
             $sub_items = [];
-            foreach ($top_terms as $term) {
+            foreach ($this->sections_config as $cpt_slug => $section) {
                 $sub_items[] = [
-                    'title' => $term->name,
-                    'slug' => $term->slug,
+                    'title' => $section['title'],
+                    'slug' => $section['url_slug'],
                 ];
             }
         } else {
-            // Section page: list child terms under this parent
-            $parent_term = get_term_by('slug', $page_slug, $this->taxonomy_slug);
-            if (!$parent_term) {
+            $cpt_slug = $this->url_to_cpt_map[$page_slug] ?? null;
+            if (!$cpt_slug) {
                 echo '<div class="wrap"><h1>خطا: صفحه یافت نشد</h1></div>';
                 return;
             }
-            $title = $parent_term->name;
+            $title = $this->sections_config[$cpt_slug]['title'];
+            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug);
             $child_terms = get_terms([
-                'taxonomy' => $this->taxonomy_slug,
-                'parent' => $parent_term->term_id,
+                'taxonomy' => $taxonomy_slug,
+                'parent' => 0,
                 'hide_empty' => false,
             ]);
             $sub_items = [];
@@ -325,7 +309,6 @@ class SibanehAcademy {
             }
         }
 
-        // Build the HTML dynamically
         ?>
         <div class="wrap">
             <h1><?php echo esc_html($title); ?></h1>
@@ -335,17 +318,15 @@ class SibanehAcademy {
                     <li>
                         <a href="<?php
                             if (isset($sub_item['slug'])) {
-                                // For parents: link to section page
                                 echo esc_url(admin_url('admin.php?page=' . $sub_item['slug']));
                             } elseif (isset($sub_item['category'])) {
-                                // For children: link to posts list
-                                echo esc_url(admin_url("edit.php?post_type={$this->cpt_slug}&{$this->taxonomy_slug}={$sub_item['category']}"));
+                                echo esc_url(admin_url("edit.php?post_type={$cpt_slug}&{$taxonomy_slug}={$sub_item['category']}"));
                             }
                         ?>">
                             <?php echo esc_html($sub_item['title']); ?>
                         </a>
-                        <?php if (isset($sub_item['category'])): // Add 'Add New' link for child categories ?>
-                            <span> - <a href="<?php echo esc_url(admin_url("post-new.php?post_type={$this->cpt_slug}&preselect_category={$sub_item['category']}")); ?>">افزودن محتوای جدید در این دسته</a></span>
+                        <?php if (isset($sub_item['category'])): ?>
+                            <span> - <a href="<?php echo esc_url(admin_url("post-new.php?post_type={$cpt_slug}&preselect_category={$sub_item['category']}")); ?>">افزودن محتوای جدید در این دسته</a></span>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -354,41 +335,64 @@ class SibanehAcademy {
         <?php
     }
 
-    /**
-     * Enqueue script for preselecting taxonomy
-     */
+    public function all_contents_callback() {
+        ?>
+        <div class="wrap">
+            <h1>همه محتواها</h1>
+            <p>برای مشاهده محتواهای هر بخش، لطفاً به بخش مربوطه مراجعه کنید:</p>
+            <ul>
+                <?php foreach ($this->sections_config as $cpt_slug => $section): ?>
+                    <li><a href="<?php echo esc_url(admin_url("edit.php?post_type={$cpt_slug}")); ?>"><?php echo esc_html($section['title']); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php
+    }
+
+    public function categories_callback() {
+        ?>
+        <div class="wrap">
+            <h1>دسته‌بندی‌ها</h1>
+            <p>برای مدیریت دسته‌بندی‌های هر بخش، لطفاً بخش مورد نظر را انتخاب کنید:</p>
+            <ul>
+                <?php foreach ($this->sections_config as $cpt_slug => $section): ?>
+                    <?php $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug); ?>
+                    <li><a href="<?php echo esc_url(admin_url("edit-tags.php?taxonomy={$taxonomy_slug}&post_type={$cpt_slug}")); ?>"><?php echo esc_html($section['title']); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php
+    }
+
     public function enqueue_preselect_script($hook) {
         if ($hook !== 'post-new.php' && $hook !== 'post.php') {
             return;
         }
 
-        if (get_post_type() !== $this->cpt_slug || !isset($_GET['preselect_category'])) {
+        $post_type = get_post_type() ?? ($_GET['post_type'] ?? '');
+        if (!isset($this->sections_config[$post_type]) || !isset($_GET['preselect_category'])) {
             return;
         }
 
         wp_enqueue_script('jquery');
 
+        $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $post_type);
         $preselect_slug = sanitize_key($_GET['preselect_category']);
-        $term = get_term_by('slug', $preselect_slug, $this->taxonomy_slug);
+        $term = get_term_by('slug', $preselect_slug, $taxonomy_slug);
         if (!$term) return;
 
-        // Get all ancestors
-        $ancestors = get_ancestors($term->term_id, $this->taxonomy_slug, 'taxonomy');
+        $ancestors = get_ancestors($term->term_id, $taxonomy_slug, 'taxonomy');
         $to_check = array_merge([$term->term_id], $ancestors);
 
-        // Inline script
         $script = "
         jQuery(document).ready(function($) {
-            // For Classic Editor
-            " . implode("\n", array_map(function($id) { return "\$('#in-{$this->taxonomy_slug}-{$id}').prop('checked', true);"; }, $to_check)) . "
-
-            // For Gutenberg
+            " . implode("\n", array_map(function($id) use ($taxonomy_slug) { return "\$('#in-{$taxonomy_slug}-{$id}').prop('checked', true);"; }, $to_check)) . "
             function setGutenbergTerms(attempts = 0) {
                 if (typeof wp !== 'undefined' && wp.data && wp.data.select('core/editor')) {
                     const { dispatch, select } = wp.data;
-                    const currentTerms = select('core/editor').getEditedPostAttribute('{$this->taxonomy_slug}') || [];
+                    const currentTerms = select('core/editor').getEditedPostAttribute('{$taxonomy_slug}') || [];
                     const newTerms = [...new Set([...currentTerms, " . implode(', ', $to_check) . "])];
-                    dispatch('core/editor').editPost({ '{$this->taxonomy_slug}': newTerms });
+                    dispatch('core/editor').editPost({ '{$taxonomy_slug}': newTerms });
                 } else if (attempts < 50) {
                     setTimeout(() => setGutenbergTerms(attempts + 1), 200);
                 }
@@ -400,91 +404,26 @@ class SibanehAcademy {
         wp_add_inline_script('jquery', $script);
     }
 
-    /**
-     * Set default category on save if preselect is set and no category assigned
-     */
     public function set_default_category_on_save($post_id, $post, $update) {
-        if ($post->post_type !== $this->cpt_slug || wp_is_post_revision($post_id)) {
+        if (!isset($this->sections_config[$post->post_type]) || wp_is_post_revision($post_id)) {
             return;
         }
 
         if (isset($_GET['preselect_category']) || isset($_POST['preselect_category'])) {
+            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $post->post_type);
             $preselect_slug = sanitize_key($_GET['preselect_category'] ?? $_POST['preselect_category']);
-            $term = get_term_by('slug', $preselect_slug, $this->taxonomy_slug);
+            $term = get_term_by('slug', $preselect_slug, $taxonomy_slug);
             if ($term) {
-                $current_terms = wp_get_object_terms($post_id, $this->taxonomy_slug, ['fields' => 'ids']);
+                $current_terms = wp_get_object_terms($post_id, $taxonomy_slug, ['fields' => 'ids']);
                 if (empty($current_terms)) {
-                    $ancestors = get_ancestors($term->term_id, $this->taxonomy_slug, 'taxonomy');
+                    $ancestors = get_ancestors($term->term_id, $taxonomy_slug, 'taxonomy');
                     $terms_to_set = array_merge([$term->term_id], $ancestors);
-                    wp_set_object_terms($post_id, $terms_to_set, $this->taxonomy_slug);
+                    wp_set_object_terms($post_id, $terms_to_set, $taxonomy_slug);
                 }
             }
         }
     }
 
-    /**
-     * Custom permalink structure with taxonomy hierarchy
-     */
-    public function custom_post_permalink($post_link, $post) {
-        if ($post->post_type === $this->cpt_slug) {
-            // Taxonomy hierarchy
-            $terms = wp_get_object_terms($post->ID, $this->taxonomy_slug);
-            $taxonomy_slug = 'uncategorized';
-            if (!is_wp_error($terms) && !empty($terms)) {
-                $term = array_shift($terms);
-                $term_slugs = [];
-                $current_term = $term;
-                while ($current_term) {
-                    $term_slugs[] = $current_term->slug;
-                    if ($current_term->parent) {
-                        $current_term = get_term($current_term->parent, $this->taxonomy_slug);
-                    } else {
-                        break;
-                    }
-                }
-                $term_slugs = array_reverse($term_slugs);
-                $taxonomy_slug = implode('/', $term_slugs);
-            }
-
-            // Post hierarchy (including Pages as parents)
-            $post_slugs = [];
-            $current_post = $post;
-            while ($current_post->post_parent) {
-                $parent = get_post($current_post->post_parent);
-                if (!$parent) { // Stop if parent doesn't exist
-                    break;
-                }
-                $post_slugs[] = $parent->post_name;
-                $current_post = $parent;
-            }
-            $post_hierarchy = '';
-            if (!empty($post_slugs)) {
-                $post_slugs = array_reverse($post_slugs);
-                $post_hierarchy = implode('/', $post_slugs);
-            }
-
-            // Combine taxonomy and post hierarchy
-            $full_path = $taxonomy_slug;
-            if ($post_hierarchy) {
-                $full_path .= ($full_path ? '/' : '') . $post_hierarchy;
-            }
-
-            $post_link = str_replace('%sibaneh_category%', $full_path, $post_link);
-        }
-        return $post_link;
-    }
-
-    /**
-     * Add rewrite rules for hierarchical permalinks
-     */
-    public function add_rewrite_rules() {
-        add_rewrite_tag('%sibaneh_category%', '([^/]+(?:/[^/]+)*)');
-        // Flush rewrite rules if needed (do this once manually via Settings > Permalinks)
-    }
-
-    /**
-     * Add custom styles to admin for highlighting old posts
-     */
     public function add_custom_styles() {
         ?>
         <style>
@@ -495,11 +434,9 @@ class SibanehAcademy {
         <?php
     }
 
-    /**
-     * Highlight posts older than 3 months
-     */
     public function highlight_old_posts($classes, $class, $post_id) {
         $post = get_post($post_id);
+        if (!isset($this->sections_config[$post->post_type])) return $classes;
         $post_date = strtotime($post->post_date);
         $three_months_ago = strtotime('-3 months');
 
@@ -510,67 +447,16 @@ class SibanehAcademy {
         return $classes;
     }
 
-    /**
-     * Add meta box for template selection
-     */
-    public function add_template_meta_box() {
-        add_meta_box(
-            'sibaneh-post-template',
-            __('تمپلیت', 'sibaneh'),
-            [$this, 'template_meta_box_callback'],
-            $this->cpt_slug,
-            'side',
-            'core'
-        );
-    }
-
-    /**
-     * Template meta box callback
-     */
-    public function template_meta_box_callback($post) {
-        $stored_template = get_post_meta($post->ID, '_wp_page_template', true);
-        $templates = wp_get_theme()->get_page_templates($post, $this->cpt_slug);
-        ?>
-        <label class="screen-reader-text" for="page_template"><?php _e('تمپلیت محتوا'); ?></label>
-        <select name="page_template" id="page_template">
-            <option value="default"><?php _e('تمپلیت پیش‌فرض'); ?></option>
-            <?php foreach ($templates as $template_filename => $template_name) : ?>
-                <option value="<?php echo esc_attr($template_filename); ?>" <?php selected($stored_template, $template_filename); ?>>
-                    <?php echo esc_html($template_name); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-        <?php
-    }
     public function allow_page_parents($dropdown_args, $post) {
-        if ($post->post_type === $this->cpt_slug) {
-            $dropdown_args['post_type'] = 'page';  // فقط برگه‌های 'page' رو نشون بده
-            // اگر می‌خوای هر دو (sibaneh_content و page) رو نشون بده، این خط رو کامنت کن و یک دراپ‌دان سفارشی بساز (اختیاری)
+        if (isset($this->sections_config[$post->post_type])) {
+            $dropdown_args['post_type'] = 'page';
         }
         return $dropdown_args;
     }
 
-    /**
-     * Save template meta
-     */
-    public function save_template_meta($post_id) {
-        if (get_post_type($post_id) !== $this->cpt_slug) {
-            return;
-        }
-        if (!current_user_can('edit_post', $post_id)) {
-            return;
-        }
-        if (isset($_POST['page_template']) && '' !== $_POST['page_template']) {
-            update_post_meta($post_id, '_wp_page_template', sanitize_text_field($_POST['page_template']));
-        }
-    }
-
-    /**
-     * Load custom template for CPT
-     */
     public function load_cpt_template($single_template) {
         global $post;
-        if ($post->post_type === $this->cpt_slug) {
+        if (isset($this->sections_config[$post->post_type])) {
             $template = get_post_meta($post->ID, '_wp_page_template', true);
             if ($template && 'default' !== $template) {
                 $file = get_stylesheet_directory() . '/' . $template;

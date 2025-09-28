@@ -36,6 +36,7 @@
       "lib/Login/wbsLogin.php",
       "lib/Single/wbsSingle.php",
       "lib/EducationHub/wbsEducationHub.php",
+      "lib/AppShowcase/wbsAppShowcase.php",
       "lib/tableOfContents/wbsTableOfContents.php"
       
     ]
