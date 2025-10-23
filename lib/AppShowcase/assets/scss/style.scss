@@ -235,7 +235,7 @@ body {
                         @include media-max(sm) {
                             gap: 9px;
                         }
-                        .section-small-title {
+                        .app-label-tag {
                             color: #007bff;
                             font-size: 14px;
                             font-weight: 600;
@@ -254,34 +254,36 @@ body {
                         }
 
                         .headline {
-                            font-size: 20px;
-                            font-weight: bold;
-                            color: #000;
+                            font-size: 24px;
+                            font-weight: normal;
+                            color: #2d2d2d;
+                            margin-bottom: 0px;
                             @include media-max(mobile-max) {
-                                font-size: 18px;
+                                font-size: 22px;
                             }
                             @include media-max(md) {
-                                font-size: 16px;
+                                font-size: 18px;
                             }
                             @include media-max(sm) {
-                                font-size: 14px;
+                                font-size: 16px;
                             }
                         }
 
                         .brand-row {
                             display: flex;
                             align-items: center;
-                            color: #6b7280;
-                            font-size: 16px;
+                            color: #000;
+                            font-size: 30px;
+                            font-weight: bolder;
                             gap: 5px;
                             @include media-max(mobile-max) {
-                                font-size: 14px;
+                                font-size: 25px;
                             }
                             @include media-max(md) {
-                                font-size: 12px;
+                                font-size: 20px;
                             }
                             @include media-max(sm) {
-                                font-size: 10px;
+                                font-size: 18px;
                             }
                         }
 
@@ -316,7 +318,7 @@ body {
                             .stars {
                                 display: flex;
                                 flex-direction: row;
-                                color: #ffd700;
+                                color: #2f2f2d;
                                 font-size: 16px;
                                 @include media-max(mobile-max) {
                                     font-size: 14px;
@@ -326,6 +328,9 @@ body {
                                 }
                                 @include media-max(sm) {
                                     font-size: 10px;
+                                }
+                                .full {
+                                    color: #f4f405;
                                 }
 
                                 span {
@@ -513,6 +518,96 @@ body {
                 }
             }
         }
+        // Video Modal Styles
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease-in-out;
+            display: flex;
+
+            &.active {
+                opacity: 1;
+                pointer-events: auto;
+
+                .video-backdrop {
+                    opacity: 1;
+                }
+
+                .video-content {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            .video-backdrop {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.65);
+                cursor: pointer;
+                opacity: 0;
+                transition: opacity 0.4s ease-in-out;
+            }
+
+            .video-content {
+                position: relative;
+                z-index: 2;
+                background: #000;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+                width: 90%;
+                max-width: 800px;
+                aspect-ratio: 16 / 9;
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+                transition:
+                    opacity 0.4s ease-in-out,
+                    transform 0.4s ease-in-out;
+
+                iframe,
+                video {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                }
+
+                .close-button {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    color: #fff;
+                    background: rgba(0, 0, 0, 0.6);
+                    border: none;
+                    border-radius: 50%;
+                    font-size: 18px;
+                    width: 35px;
+                    height: 35px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: background 0.2s ease;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.3);
+                    }
+                }
+            }
+        }
         /* download button Section */
         .download-button-section {
             display: flex;
@@ -696,13 +791,13 @@ body {
 
                     // Device-specific sizes
                     .screenshots-carousel[data-device="iphone"] .screenshot {
-                        width: 240px;
-                        height: 520px;
+                        width: 230px;
+                        height: 500px;
                     }
 
                     .screenshots-carousel[data-device="ipad"] .screenshot {
-                        width: 300px;
-                        height: 400px;
+                        width: 314px;
+                        height: 417px;
                     }
 
                     // Responsive
@@ -712,12 +807,12 @@ body {
                             padding: 0 15px 15px;
                         }
                         [data-device="iphone"] .screenshot {
-                            width: 200px;
-                            height: 435px;
+                            width: 185px;
+                            height: 400px;
                         }
                         [data-device="ipad"] .screenshot {
-                            width: 250px;
-                            height: 333px;
+                            width: 385px;
+                            height: 514px;
                         }
                     }
                 }
@@ -1413,8 +1508,10 @@ body {
                     margin: 0;
                     display: flex;
                     flex-direction: column;
-                    gap: 8px;
+                    gap: 15px;
                     li {
+                        display: flex;
+                        flex-direction: column;
                         font-size: 16px;
                         color: #333;
                         line-height: 1.5;
@@ -1433,24 +1530,7 @@ body {
                         }
                     }
                 }
-                .show-less {
-                    font-size: 14px;
-                    color: #007bff;
-                    text-decoration: none;
-                    margin-top: 10px;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                    @include media-max(mobile-max) {
-                        font-size: 13px;
-                    }
-                    @include media-max(md) {
-                        font-size: 12px;
-                    }
-                    @include media-max(sm) {
-                        font-size: 11px;
-                    }
-                }
+              
             }
         }
         /* Appstore Link Section */

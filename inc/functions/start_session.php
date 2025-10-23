@@ -1,8 +1,6 @@
 <?php
-add_action('init', 'initEverything');
-function initEverything()
-{
+add_action('init', function() {
     if (!session_id()) {
         session_start();
     }
-}
+});
