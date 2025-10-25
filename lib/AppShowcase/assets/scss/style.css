@@ -11,23 +11,7 @@
 }
 
 #site-header .mobile-header .mobile-header-container {
-  background-color: #323232 !important;
-}
-#site-header .mobile-header .mobile-header-container a,
-#site-header .mobile-header .mobile-header-container span,
-#site-header .mobile-header .mobile-header-container i {
-  color: #FFFFFF !important;
-}
-#site-header .mobile-header .mobile-header-container {
   position: sticky !important;
-}
-#site-header .desktop-header .desktop-header-container {
-  background-color: #323232 !important;
-}
-#site-header .desktop-header .desktop-header-container a,
-#site-header .desktop-header .desktop-header-container span,
-#site-header .desktop-header .desktop-header-container i {
-  color: #FFFFFF !important;
 }
 
 .main-content {
@@ -126,7 +110,7 @@
 .main-content .container .notice-section .notice-container .notice {
   background-color: #e7f3ff;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 10px 16px;
   margin: 0px 50px;
   font-size: 14px;
   color: #141516;
@@ -138,7 +122,6 @@
   .main-content .container .notice-section .notice-container .notice {
     max-width: 575px;
     font-size: 12px;
-    padding: 6px 14px;
     margin: 0px 40px;
   }
 }
@@ -146,7 +129,6 @@
   .main-content .container .notice-section .notice-container .notice {
     max-width: 485px;
     font-size: 10px;
-    padding: 4px 12px;
     margin: 0px 30px;
   }
 }
@@ -154,7 +136,6 @@
   .main-content .container .notice-section .notice-container .notice {
     max-width: 385px;
     font-size: 10px;
-    padding: 4px 12px;
     margin: 0px 20px;
   }
 }
@@ -376,7 +357,7 @@
 .main-content .container .card-section .card-container .card .info .rating .stars {
   display: flex;
   flex-direction: row;
-  color: #2f2f2d;
+  color: #A8A8A8;
   font-size: 16px;
 }
 @media (max-width: 849.98px) {
@@ -395,7 +376,7 @@
   }
 }
 .main-content .container .card-section .card-container .card .info .rating .stars .full {
-  color: #f4f405;
+  color: #C79737;
 }
 .main-content .container .card-section .card-container .card .info .rating .stars span {
   margin-right: 2px;
@@ -547,7 +528,7 @@
 }
 @media (max-width: 480px) {
   .main-content .container .post-actions-section .post-actions-container .post-actions .metadata .metadata-item .metadata-item-container {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 .main-content .container .post-actions-section .post-actions-container .post-actions .metadata .metadata-item .metadata-item-container i {

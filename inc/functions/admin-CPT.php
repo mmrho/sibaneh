@@ -20,11 +20,16 @@ class SibanehAcademy {
             'menu_title' => 'آموزش‌های جامع اپل',
             'url_slug' => 'sibaneh_apple_tutorials',
         ],
-        'sib_news_anal' => [
-            'title' => 'اخبار و تحلیل‌ها',
-            'menu_title' => 'اخبار و تحلیل‌ها',
-            'url_slug' => 'sibaneh_news_analysis',
-        ],
+    ];
+
+    // News section config (using standard 'post')
+    private $news_section = [
+        'title' => 'اخبار و تحلیل‌ها',
+        'menu_title' => 'اخبار و تحلیل‌ها',
+        'url_slug' => 'sibaneh_news_analysis',
+        'admin_slug' => 'edit.php',
+        'post_type' => 'post',
+        'taxonomy_suffix' => 'news_anal',
     ];
 
     // Config for terms (subcategories) - 'parent_slug' updated to short CPT slugs
@@ -90,14 +95,25 @@ class SibanehAcademy {
         }
 
         add_action('init', [$this, 'register_cpts_and_taxonomies']);
+        add_filter('register_post_type_args', [$this, 'modify_post_type_args'], 20, 2);
         add_action('init', [$this, 'insert_terms']);
         add_action('admin_menu', [$this, 'add_menus']);
+        add_filter('parent_file', [$this, 'set_parent_file']);
         add_action('admin_head', [$this, 'add_custom_styles']);
         add_filter('post_class', [$this, 'highlight_old_posts'], 10, 3);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_preselect_script']);
         add_action('save_post', [$this, 'set_default_category_on_save'], 10, 3);
         add_filter('page_attributes_dropdown_pages_args', [$this, 'allow_page_parents'], 10, 2);
         add_filter('single_template', [$this, 'load_cpt_template']);
+    }
+
+    public function modify_post_type_args($args, $post_type) {
+        if ('post' === $post_type) {
+            $args['rewrite'] = ['slug' => $this->news_section['url_slug'], 'with_front' => false];
+            $args['hierarchical'] = true;
+            $args['supports'] = array_merge($args['supports'], ['page-attributes']);
+        }
+        return $args;
     }
 
     public function register_cpts_and_taxonomies() {
@@ -175,6 +191,34 @@ class SibanehAcademy {
 
             register_taxonomy($taxonomy_slug, $cpt_slug, $args_tax);
         }
+
+        // Register taxonomy for news (attached to 'post')
+        $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
+        $labels_tax = [
+            'name'              => _x('دسته‌بندی محتوا', 'taxonomy general name', 'sibaneh'),
+            'singular_name'     => _x('دسته‌بندی', 'taxonomy singular name', 'sibaneh'),
+            'search_items'      => __('جستجوی دسته‌بندی', 'sibaneh'),
+            'all_items'         => __('همه دسته‌بندی‌ها', 'sibaneh'),
+            'parent_item'       => __('دسته‌بندی والد', 'sibaneh'),
+            'parent_item_colon' => __('دسته‌بندی والد:', 'sibaneh'),
+            'edit_item'         => __('ویرایش دسته‌بندی', 'sibaneh'),
+            'update_item'       => __('به‌روزرسانی دسته‌بندی', 'sibaneh'),
+            'add_new_item'      => __('افزودن دسته‌بندی جدید', 'sibaneh'),
+            'new_item_name'     => __('نام دسته‌بندی جدید', 'sibaneh'),
+            'menu_name'         => __('دسته‌بندی‌ها', 'sibaneh'),
+        ];
+
+        $args_tax = [
+            'hierarchical'      => true,
+            'labels'            => $labels_tax,
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+            'rewrite'           => ['slug' => 'sibaneh-category', 'hierarchical' => true],
+            'show_in_rest'      => true,
+        ];
+
+        register_taxonomy($taxonomy_slug, $this->news_section['post_type'], $args_tax);
     }
 
     public function insert_terms() {
@@ -225,6 +269,50 @@ class SibanehAcademy {
             }
         }
 
+        // Insert terms for news
+        $news_parent_slug = 'sib_news_anal';
+        $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
+        $filtered_terms = array_filter($this->terms_config, function($t) use ($news_parent_slug) {
+            return $t['parent_slug'] === $news_parent_slug;
+        });
+
+        $max_iterations = 5;
+        $pending_terms = $filtered_terms;
+
+        for ($i = 0; $i < $max_iterations; $i++) {
+            $new_pending = [];
+            foreach ($pending_terms as $term) {
+                $existing = term_exists($term['slug'], $taxonomy_slug);
+                $parent = 0;  // All terms are top-level under CPT, or handle deeper if needed
+
+                if (isset($term['parent_slug']) && $term['parent_slug'] !== $news_parent_slug) {
+                    $parent_term = term_exists($term['parent_slug'], $taxonomy_slug);
+                    if ($parent_term) {
+                        $parent = $parent_term['term_id'];
+                    } else {
+                        $new_pending[] = $term;
+                        continue;
+                    }
+                }
+
+                $args = [
+                    'slug' => $term['slug'],
+                    'parent' => $parent,
+                ];
+                if ($existing) {
+                    wp_update_term($existing['term_id'], $taxonomy_slug, $args);
+                } else {
+                    wp_insert_term($term['name'], $taxonomy_slug, $args);
+                }
+            }
+            $pending_terms = $new_pending;
+            if (empty($pending_terms)) break;
+        }
+
+        if (!empty($pending_terms)) {
+            error_log('SibanehAcademy: Some terms could not be inserted/updated due to missing parents in ' . $taxonomy_slug . '.');
+        }
+
         if (empty($pending_terms)) {
             set_transient('sibaneh_terms_inserted', true, YEAR_IN_SECONDS);
         }
@@ -254,6 +342,16 @@ class SibanehAcademy {
             );
         }
 
+        // Add submenu for news directly to edit.php
+        add_submenu_page(
+            $main['slug'],
+            $this->news_section['title'],
+            $this->news_section['menu_title'],
+            'edit_posts',
+            $this->news_section['admin_slug'],
+            ''
+        );
+
         // Add "All Contents" submenu
         add_submenu_page(
             $main['slug'],
@@ -273,6 +371,39 @@ class SibanehAcademy {
             'sibaneh_categories',
             [$this, 'categories_callback']
         );
+
+        // Remove default Posts menu
+        remove_menu_page('edit.php');
+    }
+
+    public function set_parent_file($parent_file) {
+        global $submenu_file, $current_screen;
+
+        if (isset($current_screen)) {
+            $post_type = $current_screen->post_type;
+            if (isset($this->sections_config[$post_type]) || $post_type === 'post') {
+                $parent_file = $this->main_menu_config['slug'];
+
+                if ($post_type === 'post') {
+                    $submenu_slug = $this->news_section['admin_slug'];
+                    $tax_suffix = $this->news_section['taxonomy_suffix'];
+                } else {
+                    $section = $this->sections_config[$post_type];
+                    $submenu_slug = $section['url_slug'];
+                    $tax_suffix = str_replace('sib_', '', $post_type);
+                }
+
+                $taxonomy_slug = $this->taxonomy_base_slug . '_' . $tax_suffix;
+
+                if (in_array($current_screen->base, ['post', 'edit'])) {
+                    $submenu_file = $submenu_slug;
+                } elseif ($current_screen->taxonomy === $taxonomy_slug && in_array($current_screen->base, ['edit-tags', 'term'])) {
+                    $submenu_file = 'sibaneh_categories';
+                }
+            }
+        }
+
+        return $parent_file;
     }
 
     public function dynamic_callback() {
@@ -287,14 +418,26 @@ class SibanehAcademy {
                     'slug' => $section['url_slug'],
                 ];
             }
+            // Add news to main overview
+            $sub_items[] = [
+                'title' => $this->news_section['title'],
+                'slug' => $this->news_section['admin_slug'],
+            ];
         } else {
             $cpt_slug = $this->url_to_cpt_map[$page_slug] ?? null;
             if (!$cpt_slug) {
                 echo '<div class="wrap"><h1>خطا: صفحه یافت نشد</h1></div>';
                 return;
             }
-            $title = $this->sections_config[$cpt_slug]['title'];
-            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug);
+            if ($cpt_slug === 'post') {
+                $title = $this->news_section['title'];
+                $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
+                $post_type_query = '';
+            } else {
+                $title = $this->sections_config[$cpt_slug]['title'];
+                $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug);
+                $post_type_query = "post_type={$cpt_slug}&";
+            }
             $child_terms = get_terms([
                 'taxonomy' => $taxonomy_slug,
                 'parent' => 0,
@@ -318,15 +461,19 @@ class SibanehAcademy {
                     <li>
                         <a href="<?php
                             if (isset($sub_item['slug'])) {
-                                echo esc_url(admin_url('admin.php?page=' . $sub_item['slug']));
+                                if ($sub_item['slug'] === 'edit.php') {
+                                    echo esc_url(admin_url('edit.php'));
+                                } else {
+                                    echo esc_url(admin_url('admin.php?page=' . $sub_item['slug']));
+                                }
                             } elseif (isset($sub_item['category'])) {
-                                echo esc_url(admin_url("edit.php?post_type={$cpt_slug}&{$taxonomy_slug}={$sub_item['category']}"));
+                                echo esc_url(admin_url("edit.php?{$post_type_query}{$taxonomy_slug}={$sub_item['category']}"));
                             }
                         ?>">
                             <?php echo esc_html($sub_item['title']); ?>
                         </a>
                         <?php if (isset($sub_item['category'])): ?>
-                            <span> - <a href="<?php echo esc_url(admin_url("post-new.php?post_type={$cpt_slug}&preselect_category={$sub_item['category']}")); ?>">افزودن محتوای جدید در این دسته</a></span>
+                            <span> - <a href="<?php echo esc_url(admin_url("post-new.php?{$post_type_query}preselect_category={$sub_item['category']}")); ?>">افزودن محتوای جدید در این دسته</a></span>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
@@ -344,6 +491,7 @@ class SibanehAcademy {
                 <?php foreach ($this->sections_config as $cpt_slug => $section): ?>
                     <li><a href="<?php echo esc_url(admin_url("edit.php?post_type={$cpt_slug}")); ?>"><?php echo esc_html($section['title']); ?></a></li>
                 <?php endforeach; ?>
+                <li><a href="<?php echo esc_url(admin_url('edit.php')); ?>"><?php echo esc_html($this->news_section['title']); ?></a></li>
             </ul>
         </div>
         <?php
@@ -359,6 +507,8 @@ class SibanehAcademy {
                     <?php $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug); ?>
                     <li><a href="<?php echo esc_url(admin_url("edit-tags.php?taxonomy={$taxonomy_slug}&post_type={$cpt_slug}")); ?>"><?php echo esc_html($section['title']); ?></a></li>
                 <?php endforeach; ?>
+                <?php $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix']; ?>
+                <li><a href="<?php echo esc_url(admin_url("edit-tags.php?taxonomy={$taxonomy_slug}&post_type=post")); ?>"><?php echo esc_html($this->news_section['title']); ?></a></li>
             </ul>
         </div>
         <?php
@@ -370,13 +520,22 @@ class SibanehAcademy {
         }
 
         $post_type = get_post_type() ?? ($_GET['post_type'] ?? '');
-        if (!isset($this->sections_config[$post_type]) || !isset($_GET['preselect_category'])) {
+        if (!isset($this->sections_config[$post_type]) && $post_type !== 'post') {
+            return;
+        }
+
+        if (!isset($_GET['preselect_category'])) {
             return;
         }
 
         wp_enqueue_script('jquery');
 
-        $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $post_type);
+        if ($post_type === 'post') {
+            $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
+        } else {
+            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $post_type);
+        }
+
         $preselect_slug = sanitize_key($_GET['preselect_category']);
         $term = get_term_by('slug', $preselect_slug, $taxonomy_slug);
         if (!$term) return;
@@ -405,12 +564,20 @@ class SibanehAcademy {
     }
 
     public function set_default_category_on_save($post_id, $post, $update) {
-        if (!isset($this->sections_config[$post->post_type]) || wp_is_post_revision($post_id)) {
+        if (wp_is_post_revision($post_id)) {
+            return;
+        }
+
+        if (!isset($this->sections_config[$post->post_type]) && $post->post_type !== 'post') {
             return;
         }
 
         if (isset($_GET['preselect_category']) || isset($_POST['preselect_category'])) {
-            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $post->post_type);
+            if ($post->post_type === 'post') {
+                $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
+            } else {
+                $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $post->post_type);
+            }
             $preselect_slug = sanitize_key($_GET['preselect_category'] ?? $_POST['preselect_category']);
             $term = get_term_by('slug', $preselect_slug, $taxonomy_slug);
             if ($term) {
@@ -436,7 +603,7 @@ class SibanehAcademy {
 
     public function highlight_old_posts($classes, $class, $post_id) {
         $post = get_post($post_id);
-        if (!isset($this->sections_config[$post->post_type])) return $classes;
+        if (!isset($this->sections_config[$post->post_type]) && $post->post_type !== 'post') return $classes;
         $post_date = strtotime($post->post_date);
         $three_months_ago = strtotime('-3 months');
 
@@ -448,7 +615,7 @@ class SibanehAcademy {
     }
 
     public function allow_page_parents($dropdown_args, $post) {
-        if (isset($this->sections_config[$post->post_type])) {
+        if (isset($this->sections_config[$post->post_type]) || $post->post_type === 'post') {
             $dropdown_args['post_type'] = 'page';
         }
         return $dropdown_args;
@@ -456,7 +623,7 @@ class SibanehAcademy {
 
     public function load_cpt_template($single_template) {
         global $post;
-        if (isset($this->sections_config[$post->post_type])) {
+        if (isset($this->sections_config[$post->post_type]) || $post->post_type === 'post') {
             $template = get_post_meta($post->ID, '_wp_page_template', true);
             if ($template && 'default' !== $template) {
                 $file = get_stylesheet_directory() . '/' . $template;

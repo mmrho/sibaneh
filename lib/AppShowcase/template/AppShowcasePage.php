@@ -70,17 +70,17 @@
                                     $star_count = 0;
                                     // Full stars (golden)
                                     for ($i = 1; $i <= $full_stars; $i++) {
-                                        echo '<i class="icon-video-player full"></i>'; // Full golden star
+                                        echo '<i class="icon-star-fill full"></i>'; // Full golden star
                                         $star_count++;
                                     }
                                     // Half star if applicable
                                     if ($has_half) {
-                                        echo '<i class="icon-video-player half"></i>'; // Half golden star
+                                        echo '<i class="icon-star-fill half"></i>'; // Half golden star
                                         $star_count++;
                                     }
                                     // Empty stars (gray)
                                     while ($star_count < 5) {
-                                        echo '<i class="icon-video-player empty"></i>'; // Empty gray star
+                                        echo '<i class="icon-star-fill empty"></i>'; // Empty gray star
                                         $star_count++;
                                     }
                                     ?>
@@ -140,7 +140,7 @@
                                     <button type="button"
                                         class="download-button metadata-item-container"
                                         onclick="showVideoModal('<?php echo esc_js(addslashes($intro_video)); ?>')">
-                                        <div class="metadata-value"><i class="icon-video-player"></i></div>
+                                        <div class="metadata-value"><i class="icon-play-in-circle"></i></div>
                                         <div class="metadata-label">ویدیو معرفی</div>
                                     </button>
                                 <?php endif; ?>
@@ -153,7 +153,7 @@
                                     <button type="button"
                                         class="download-button metadata-item-container"
                                         onclick="showVideoModal('<?php echo esc_js(addslashes($install_video)); ?>')">
-                                        <div class="metadata-value"><i class="icon-video-player"></i></div>
+                                        <div class="metadata-value"><i class="icon-play-in-circle"></i></div>
                                         <div class="metadata-label">آموزش نصب</div>
                                     </button>
                                 <?php endif; ?>
@@ -406,26 +406,20 @@
             <section class="comments-section">
                 <div class="container">
                     <h2>نظرات کاربران</h2>
-
                     <?php
                     global $post;
-
-                    // اگر برگه است و کامنت‌ها بسته است، آنها را باز می‌کنیم
                     if ($post->post_type === 'page' && !comments_open($post->ID)) {
                         wp_update_post(array(
                             'ID' => $post->ID,
                             'comment_status' => 'open'
                         ));
                     }
-
-                    // اگر کامنت وجود دارد یا کامنت‌ها باز است، فقط کامنت‌های همین برگه را نمایش بده
                     if (comments_open($post->ID) || get_comments_number($post->ID)) {
-                        comments_template(); // این تابع خودش کامنت‌های مربوط به همین پست/برگه را بارگذاری می‌کند
+                        comments_template();
                     }
                     ?>
                 </div>
             </section>
-
             <div class="break">
                 <div class="break-container">
                     <hr />

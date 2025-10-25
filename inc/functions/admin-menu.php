@@ -1,7 +1,6 @@
 <?php
 
-function wbsContentConfigurationMenu()
-{
+function wbsContentConfigurationMenu(){
     add_menu_page(
         'پیکربندی محتوا',
         'پیکربندی محتوا',
