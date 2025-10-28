@@ -1,6 +1,7 @@
 <?php
 
-function wbsContentConfigurationMenu(){
+function wbsContentConfigurationMenu()
+{
     add_menu_page(
         'پیکربندی محتوا',
         'پیکربندی محتوا',
@@ -15,24 +16,33 @@ function wbsContentConfigurationMenu(){
         'دنیای اپلیکیشن و بازی‌ها',
         'دنیای اپلیکیشن و بازی‌ها',
         'manage_options',
-        'hubOfTheWorldOfApplicationsAndGames',
-        'wbsSibanehTableOfContents'
+        'huboftheworldofapplicationsandgames',  // lowercase slug
+        function() { // تغییر: category رو پاس می‌دیم
+            $_GET['category'] = 'apps_games'; // یا هر slug مناسب
+            wbsSibanehTableOfContents();
+        }
     );
     add_submenu_page(
         'contentConfiguration',
         'آموزش‌های جامع اپل',
         'آموزش‌های جامع اپل',
         'manage_options',
-        'comprehensiveAppleTutorials',
-        'wbsSibanehTableOfContents'
+        'comprehensiveappletutorials',  // lowercase slug
+        function() { // تغییر: category رو پاس می‌دیم
+            $_GET['category'] = 'apple_tutorials';
+            wbsSibanehTableOfContents();
+        }
     );
     add_submenu_page(
         'contentConfiguration',
         'اخبار و تحلیل‌ها',
         'اخبار و تحلیل‌ها',
         'manage_options',
-        'newsAndAnalysis',
-        'wbsSibanehTableOfContents'
+        'newsandanalysis',  // lowercase slug
+        function() { // تغییر: category رو پاس می‌دیم
+            $_GET['category'] = 'news_analysis';
+            wbsSibanehTableOfContents();
+        }
     );
 }
 
@@ -43,10 +53,6 @@ function wbsRemoveDuplicateContentConfigurationSubmenu() {
 }
 add_action('admin_menu', 'wbsRemoveDuplicateContentConfigurationSubmenu', 999);
 
-function wbsContentConfiguration()
-{
-    require_once THEME_TEMPLATE . "admin/sibaneh/admin.php";
-}
 
 function wbsSibanehTableOfContents()
 {

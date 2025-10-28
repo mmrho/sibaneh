@@ -16,7 +16,6 @@
                 <?php wbsLoadTableOfContents('#tableOfContents'); ?>
 
             </section>
-
             <!-- Breadcrumb -->
             <nav class="breadcrumb">
                 <?php if (function_exists('yoast_breadcrumb')) {

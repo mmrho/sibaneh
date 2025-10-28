@@ -39,10 +39,22 @@ function tableOfContents_admin_enqueue( $hook ) {
     $screen = get_current_screen();
     if ( ! $screen ) return;
 
+    // تغییر جدید: strtolower برای مطابقت بهتر
+    $screen_id = strtolower($screen->id);
+
+    // تغییر جدید: لاگ screen_id برای دیباگ (در error_log ببین)
+    error_log('Screen ID in enqueue: ' . $screen_id);
+
     // The submenu slug we added is 'tableOfContents-manager'
-    if ( strpos( $screen->id, 'hubOfTheWorldOfApplicationsAndGames' ) === false ) {
+    if (
+        strpos($screen_id, 'huboftheworldofapplicationsandgames') === false && // تغییر جدید: فقط بخش slug lowercase
+        strpos($screen_id, 'comprehensiveappletutorials') === false &&
+        strpos($screen_id, 'newsandanalysis') === false
+    ) {
+        error_log('Screen ID not matched any slug!'); // تغییر جدید: لاگ اگر شرط true باشه
         return;
     }
+    
 
     // jsTree (already present in module)
    
@@ -71,8 +83,24 @@ function tableOfContents_admin_enqueue( $hook ) {
         THEME_VERSION
     );
     // Localize: ajax URL, nonce (posts removed)
+    $category = ''; // تغییر: category رو بر اساس screen ID localize کنیم
+    if (strpos($screen_id, 'huboftheworldofapplicationsandgames') !== false) {
+        $category = 'apps_games';
+    } elseif (strpos($screen_id, 'comprehensiveappletutorials') !== false) {
+        $category = 'apple_tutorials';
+    } elseif (strpos($screen_id, 'newsandanalysis') !== false) {
+        $category = 'news_analysis';
+    }
+
+    // تغییر جدید: اگر خالی بود، پیش‌فرض
+    if (empty($category)) {
+        $category = 'default';
+        error_log('Category was empty in enqueue - screen ID: ' . $screen->id);
+    }
+
     wp_localize_script( 'tableOfContents-script-admin', 'toc_data', array(
         'ajax_url' => admin_url( 'admin-ajax.php' ),
         'nonce'    => wp_create_nonce( 'tableOfContents_nonce' ),
+        'category' => $category, // تغییر: اضافه کردن category به localize
     ) );
 }

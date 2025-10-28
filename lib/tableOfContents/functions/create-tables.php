@@ -22,7 +22,7 @@ function tableOfContents_maybe_create_table() {
     // We will store a schema version to avoid unnecessary calls.
     $option_name = 'tableOfContents_db_version';
     $db_version = get_option( $option_name, '' );
-    $current_version = '1.1'; // افزایش برای تغییر فیلد
+    $current_version = '1.8'; 
 
     if ( $db_version === $current_version ) {
         return;
@@ -30,21 +30,28 @@ function tableOfContents_maybe_create_table() {
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-    $sql = "CREATE TABLE {$table_name} (
-        id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-        parent_id BIGINT UNSIGNED NULL,
-        post_id BIGINT UNSIGNED NOT NULL, -- تغییر به post_id
-        title VARCHAR(255) NOT NULL,
-        sort_order INT NOT NULL DEFAULT 0,
-        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    $sql = "CREATE TABLE $table_name (
+        id bigint(20) unsigned NOT NULL auto_increment,
+        parent_id bigint(20) unsigned DEFAULT NULL,
+        post_id bigint(20) unsigned NOT NULL,
+        title varchar(255) NOT NULL,
+        category varchar(50) NOT NULL DEFAULT '',
+        sort_order int(11) NOT NULL DEFAULT 0,
+        created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY  (id),
         KEY parent_id (parent_id),
-        KEY post_id (post_id), -- تغییر به post_id
+        KEY post_id (post_id),
+        KEY category (category),
         KEY sort_order (sort_order)
-    ) {$charset_collate};";
+    ) $charset_collate;";
 
     dbDelta( $sql );
+
+
+    if ( ! empty( $wpdb->last_error ) ) {
+        error_log( 'dbDelta error: ' . $wpdb->last_error );
+    }
 
     update_option( $option_name, $current_version );
 }
@@ -65,11 +72,13 @@ function tableOfContents_get_table_name() {
  *  ...
  * ]
  */
-function tableOfContents_fetch_tree_from_db() {
+function tableOfContents_fetch_tree_from_db($category = '') { 
     global $wpdb;
     $table = tableOfContents_get_table_name();
 
-    $rows = $wpdb->get_results( "SELECT * FROM {$table} ORDER BY parent_id ASC, sort_order ASC, id ASC", ARRAY_A );
+    $where = $category ? $wpdb->prepare("WHERE category = %s", $category) : ''; 
+
+    $rows = $wpdb->get_results( "SELECT * FROM {$table} {$where} ORDER BY parent_id ASC, sort_order ASC, id ASC", ARRAY_A );
 
     if ( empty($rows) ) return [];
 
@@ -79,7 +88,7 @@ function tableOfContents_fetch_tree_from_db() {
         $map[ $r['id'] ] = [
             'db_id'    => (int) $r['id'],
             'parent_id'=> $r['parent_id'] ? (int) $r['parent_id'] : null,
-            'post_id'  => (int) $r['post_id'], // تغییر به post_id
+            'post_id'  => (int) $r['post_id'], 
             'title'    => $r['title'],
             'children' => [],
         ];

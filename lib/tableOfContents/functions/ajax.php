@@ -18,12 +18,21 @@ function tableOfContents_ajax_get_toc() {
         wp_send_json_error( array('message' => 'Insufficient permissions') );
     }
 
+    // تغییر: category رو از POST بگیریم
+    $category = isset($_POST['category']) ? sanitize_key($_POST['category']) : '';
+
+    // تغییر جدید: اگر خالی بود، پیش‌فرض ست کن و لاگ کن (بدون ارور)
+    if (empty($category)) {
+        $category = 'default';
+        error_log('Category was empty in get_toc AJAX - POST data: ' . print_r($_POST, true));
+    }
+
     // Ensure table exists
     if ( function_exists( 'tableOfContents_maybe_create_table' ) ) {
         tableOfContents_maybe_create_table();
     }
 
-    $tree = tableOfContents_fetch_tree_from_db();
+    $tree = tableOfContents_fetch_tree_from_db($category); // تغییر: category پاس می‌دیم
 
     wp_send_json_success( array( 'tree' => $tree ) );
 }
@@ -42,6 +51,15 @@ function tableOfContents_ajax_save_toc() {
         wp_send_json_error( array('message' => 'Missing tree data') );
     }
 
+    // تغییر: category رو از POST بگیریم
+    $category = isset($_POST['category']) ? sanitize_key($_POST['category']) : '';
+
+    // تغییر جدید: اگر خالی بود، پیش‌فرض ست کن و لاگ کن (بدون ارور)
+    if (empty($category)) {
+        $category = 'default';
+        error_log('Category was empty in save_toc AJAX - POST data: ' . print_r($_POST, true));
+    }
+
     $raw = wp_unslash( $_POST['tree'] );
     $data = json_decode( $raw, true );
 
@@ -56,7 +74,7 @@ function tableOfContents_ajax_save_toc() {
     }
 
     // Persist: we will TRUNCATE + insert DFS-style
-    $res = tableOfContents_persist_tree( $data );
+    $res = tableOfContents_persist_tree( $data, $category ); // تغییر: category پاس می‌دیم
 
     if ( $res === true ) {
         // Clear cache if implemented
@@ -135,7 +153,7 @@ function tableOfContents_validate_tree( $nodes, &$errors = array(), $path = '' )
 /**
  * Persist tree: TRUNCATE and insert DFS-style
  */
-function tableOfContents_persist_tree( $nodes ) {
+function tableOfContents_persist_tree( $nodes, $category = '' ) { // تغییر: پارامتر category اضافه شد
     global $wpdb;
     $table = tableOfContents_get_table_name();
 
@@ -143,14 +161,14 @@ function tableOfContents_persist_tree( $nodes ) {
     $wpdb->query( 'START TRANSACTION' );
     $ok = true;
 
-    // Clear current table
-    $wpdb->query( "TRUNCATE TABLE {$table}" );
+    // Clear current table for this category
+    $wpdb->delete( $table, array( 'category' => $category ) ); // تغییر: فقط ردیف‌های این category رو پاک می‌کنیم نه کل جدول
 
     // Recursive inserter
     $insert_stack = array();
     $pos = 0;
 
-    $insert_node = function( $nodes, $parent_id = null ) use ( &$wpdb, $table, &$insert_node, &$ok ) {
+    $insert_node = function( $nodes, $parent_id = null ) use ( &$wpdb, $table, &$insert_node, &$ok, $category ) {
         $position = 0;
         foreach ( $nodes as $n ) {
             $post_id = intval( $n['post_id'] ); // تغییر به post_id
@@ -163,11 +181,12 @@ function tableOfContents_persist_tree( $nodes ) {
                     'parent_id'  => $parent_id,
                     'post_id'    => $post_id, // تغییر به post_id
                     'title'      => $title,
+                    'category'   => $category, // تغییر: اضافه کردن category به هر ردیف
                     'sort_order' => $position,
                     'created_at' => current_time( 'mysql' ),
                     'updated_at' => current_time( 'mysql' ),
                 ),
-                array( '%d', '%d', '%s', '%d', '%s', '%s' )
+                array( '%d', '%d', '%s', '%s', '%d', '%s', '%s' ) // تغییر: فرمت برای category اضافه شد
             );
 
             if ( $result === false ) {

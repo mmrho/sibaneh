@@ -60,10 +60,6 @@
                                 <div class="brand-en"><?php echo $english_name; ?></div>
                             </div>
 
-                            <div class="badge">
-                                <img src="<?php echo get_template_directory_uri(); ?>/images/temp/Guaranteed-stability.jpg" alt="Guaranteed-stability" class="Guaranteed-stability">
-                            </div>
-
                             <div class="rating">
                                 <div class="stars">
                                     <?php
@@ -99,33 +95,10 @@
                             <div class="metadata-item">
                                 <div class="metadata-item-container">
                                     <div class="metadata-value-time">
-                                        <?php
-                                        // Get the modified timestamp (Unix timestamp)
-                                        $modified_timestamp = get_post_modified_time('U');
-
-                                        if (class_exists('IntlDateFormatter')) {
-                                            // Create DateTime object from timestamp
-                                            $dateTime = new DateTime();
-                                            $dateTime->setTimestamp($modified_timestamp);
-                                            $dateTime->setTimezone(new DateTimeZone('Asia/Tehran'));
-
-                                            // Use IntlDateFormatter for Persian date
-                                            $intlDateFormatter = new IntlDateFormatter(
-                                                'fa_IR@calendar=persian',
-                                                IntlDateFormatter::FULL,
-                                                IntlDateFormatter::NONE,
-                                                'Asia/Tehran',
-                                                IntlDateFormatter::TRADITIONAL,
-                                                'd MMMM y'
-                                            );
-                                            echo $intlDateFormatter->format($dateTime);
-                                        } else {
-                                            // Fallback: Use English date if Intl is not available
-                                            echo get_the_modified_date('j F Y');
-                                        }
-                                        ?>
+                                        <div class="badge">
+                                            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/Guaranteed-stability.jpg" alt="Guaranteed-stability" class="Guaranteed-stability">
+                                        </div>
                                     </div>
-                                    <div class="metadata-label-title">تاریخ بروزرسانی</div>
                                 </div>
                             </div>
                             <div class="metadata-separator"></div>

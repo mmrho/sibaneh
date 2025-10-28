@@ -4,31 +4,66 @@ defined('ABSPATH') || exit;
 /**
  * TOC - Admin page template (Modern UI)
  */
+
+// تغییر نهایی: category رو اول از $_GET بگیر (که در submenu callback ست کردی)
+$category = isset($_GET['category']) ? sanitize_key($_GET['category']) : '';
+
+// اگر خالی بود، از screen ID ست کن
+$screen = get_current_screen();
+if (empty($category) && $screen) {
+    $screen_id = strtolower($screen->id);
+    if (strpos($screen_id, 'huboftheworldofapplicationsandgames') !== false) {
+        $category = 'apps_games';
+    } elseif (strpos($screen_id, 'comprehensiveappletutorials') !== false) {
+        $category = 'apple_tutorials';
+    } elseif (strpos($screen_id, 'newsandanalysis') !== false) {
+        $category = 'news_analysis';
+    } else {
+        $category = 'default';
+    }
+}
+
+// اگر همچنان خالی، پیش‌فرض
+if (empty($category)) {
+    $category = 'default';
+    error_log('Category was empty in admin.php - set to default');
+}
+
 ?>
 
 <div class="wrap ctato-wrap">
-    <h1 class="ctato-title">TOC Manager</h1>
+    <h1 class="ctato-title">TOC Manager - <?php echo esc_html($category ? ucwords(str_replace('_', ' ', $category)) : 'Default'); ?></h1>
 
     <div id="ctato-toc-manager" class="ctato-manager">
 
         <!-- Controls -->
         <div class="ctato-controls">
             <div class="ctato-field-group">
-                <select id="ctato-post-select" class="ctato-select"> <!-- تغییر به post-select -->
+                <select id="ctato-post-select" class="ctato-select">
                     <option value="">— Select content —</option>
                     <?php
-                    if (isset($posts) && is_array($posts)) { // تغییر به posts
+                    if (isset($posts) && is_array($posts)) {
                         foreach ($posts as $p) {
                             echo '<option value="' . esc_attr($p['id']) . '">' . esc_html($p['title']) . '</option>';
                         }
                     } else {
-                        $all = get_posts([
-                            'post_type'      => 'sibaneh_content', // تغییر به CPT
+                        $args = [
+                            'post_type'      => 'sibaneh_content',
                             'posts_per_page' => 500,
                             'post_status'    => ['publish', 'private'],
                             'orderby'        => 'title',
                             'order'          => 'ASC',
-                        ]);
+                        ];
+                        if ($category && $category !== 'default') {  // تغییر نهایی: فیلتر متا اگر category خاص باشه
+                            $args['meta_query'] = [
+                                [
+                                    'key'     => 'content_category',
+                                    'value'   => $category,
+                                    'compare' => '=',
+                                ]
+                            ];
+                        }
+                        $all = get_posts($args);
                         foreach ($all as $p) {
                             echo '<option value="' . esc_attr($p->ID) . '">' . esc_html(get_the_title($p->ID)) . '</option>';
                         }
@@ -47,7 +82,7 @@ defined('ABSPATH') || exit;
             </div>
 
             <div class="ctato-actions">
-                <button id="ctato-add-new-content" class="button button-secondary"> <!-- دکمه جدید برای ایجاد CPT -->
+                <button id="ctato-add-new-content" class="button button-secondary">
                     Add New Content
                 </button>
                 <button id="ctato-add-node" class="button button-primary">
@@ -79,7 +114,7 @@ defined('ABSPATH') || exit;
         </div>
 
         <!-- Help -->
-        <div class="ctato-help"  style=" direction: ltr;">
+        <div class="ctato-help" style=" direction: ltr;">
             <details>
                 <summary><strong>How it works</strong></summary>
                 <p>
