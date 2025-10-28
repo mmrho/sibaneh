@@ -29,6 +29,35 @@ if (empty($category)) {
     error_log('Category was empty in admin.php - set to default');
 }
 
+// نقشه‌برداری category به post_type و taxonomy
+$category_map = [
+    'apps_games' => [
+        'post_type' => 'sib_app_game',
+        'taxonomy' => 'sibaneh_category_app_game',
+    ],
+    'apple_tutorials' => [
+        'post_type' => 'sib_apple_tut',
+        'taxonomy' => 'sibaneh_category_apple_tut',
+    ],
+    'news_analysis' => [
+        'post_type' => 'post',
+        'taxonomy' => 'sibaneh_category_news_anal',
+    ],
+    'default' => [  // اضافه برای جلوگیری از ارور
+        'post_type' => 'post',
+        'taxonomy' => 'category',
+    ],
+];
+
+// اگر category معتبر نبود، ارور
+if (!isset($category_map[$category])) {
+    echo '<div class="notice notice-error"><p>دسته‌بندی معتبر نیست!</p></div>';
+    return;
+}
+
+$post_type = $category_map[$category]['post_type'];
+$taxonomy = $category_map[$category]['taxonomy'];
+
 ?>
 
 <div class="wrap ctato-wrap">
@@ -42,31 +71,23 @@ if (empty($category)) {
                 <select id="ctato-post-select" class="ctato-select">
                     <option value="">— Select content —</option>
                     <?php
-                    if (isset($posts) && is_array($posts)) {
-                        foreach ($posts as $p) {
-                            echo '<option value="' . esc_attr($p['id']) . '">' . esc_html($p['title']) . '</option>';
-                        }
-                    } else {
-                        $args = [
-                            'post_type'      => 'sibaneh_content',
-                            'posts_per_page' => 500,
-                            'post_status'    => ['publish', 'private'],
-                            'orderby'        => 'title',
-                            'order'          => 'ASC',
-                        ];
-                        if ($category && $category !== 'default') {  // تغییر نهایی: فیلتر متا اگر category خاص باشه
-                            $args['meta_query'] = [
-                                [
-                                    'key'     => 'content_category',
-                                    'value'   => $category,
-                                    'compare' => '=',
-                                ]
-                            ];
-                        }
-                        $all = get_posts($args);
-                        foreach ($all as $p) {
-                            echo '<option value="' . esc_attr($p->ID) . '">' . esc_html(get_the_title($p->ID)) . '</option>';
-                        }
+                    $args = [
+                        'post_type'      => $post_type,  // داینامیک بر اساس category
+                        'posts_per_page' => 500,
+                        'post_status'    => ['publish', 'draft', 'private'],  // اضافه کردن draft برای پست‌های جدید
+                        'orderby'        => 'title',
+                        'order'          => 'ASC',
+                    ];
+
+                    // بدون tax_query - همه پست‌های post_type رو بیار
+
+                    $all = get_posts($args);
+                    // برای دیباگ: اگر خالی بود، لاگ کن
+                    if (empty($all)) {
+                        error_log('No posts found for post_type: ' . $post_type . ', category: ' . $category . ', args: ' . print_r($args, true));
+                    }
+                    foreach ($all as $p) {
+                        echo '<option value="' . esc_attr($p->ID) . '">' . esc_html(get_the_title($p->ID)) . '</option>';
                     }
                     ?>
                 </select>

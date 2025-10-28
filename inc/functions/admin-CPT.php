@@ -222,99 +222,58 @@ class SibanehAcademy {
     }
 
     public function insert_terms() {
-        // Always check and fix hierarchy
-        // if (get_transient('sibaneh_terms_inserted')) return;
+        // اول parent termها رو اضافه کن (اصلی برای هر بخش)
+        $parent_terms = [
+            'sib_app_game' => [
+                'name' => 'دنیای اپلیکیشن و بازی',
+                'slug' => 'sib_app_game',
+                'taxonomy' => $this->taxonomy_base_slug . '_app_game',
+            ],
+            'sib_apple_tut' => [
+                'name' => 'آموزش‌های جامع اپل',
+                'slug' => 'sib_apple_tut',
+                'taxonomy' => $this->taxonomy_base_slug . '_apple_tut',
+            ],
+            'sib_news_anal' => [
+                'name' => 'اخبار و تحلیل‌ها',
+                'slug' => 'sib_news_anal',
+                'taxonomy' => $this->taxonomy_base_slug . '_news_anal',
+            ],
+        ];
 
-        foreach ($this->sections_config as $cpt_slug => $section) {
-            $taxonomy_slug = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $cpt_slug);
-            $filtered_terms = array_filter($this->terms_config, function($t) use ($cpt_slug) {
-                return $t['parent_slug'] === $cpt_slug;
-            });
+        foreach ($parent_terms as $parent_slug => $parent) {
+            if (!term_exists($parent['slug'], $parent['taxonomy'])) {
+                wp_insert_term(
+                    $parent['name'],
+                    $parent['taxonomy'],
+                    [
+                        'slug' => $parent['slug'],
+                        'parent' => 0,  // parent اصلی
+                    ]
+                );
+            }
+        }
 
-            $max_iterations = 5;
-            $pending_terms = $filtered_terms;
+        // حالا subtermها رو اضافه کن با parent_id درست
+        foreach ($this->terms_config as $term) {
+            $taxonomy = $this->taxonomy_base_slug . '_' . str_replace('sib_', '', $term['parent_slug']);
+            if ($term['parent_slug'] === 'sib_news_anal') {
+                $taxonomy = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
+            }
 
-            for ($i = 0; $i < $max_iterations; $i++) {
-                $new_pending = [];
-                foreach ($pending_terms as $term) {
-                    $existing = term_exists($term['slug'], $taxonomy_slug);
-                    $parent = 0;  // All terms are top-level under CPT, or handle deeper if needed
+            $parent_term = get_term_by('slug', $term['parent_slug'], $taxonomy);
+            $parent_id = $parent_term ? $parent_term->term_id : 0;
 
-                    if (isset($term['parent_slug']) && $term['parent_slug'] !== $cpt_slug) {
-                        $parent_term = term_exists($term['parent_slug'], $taxonomy_slug);
-                        if ($parent_term) {
-                            $parent = $parent_term['term_id'];
-                        } else {
-                            $new_pending[] = $term;
-                            continue;
-                        }
-                    }
-
-                    $args = [
+            if (!term_exists($term['slug'], $taxonomy)) {
+                wp_insert_term(
+                    $term['name'],
+                    $taxonomy,
+                    [
                         'slug' => $term['slug'],
-                        'parent' => $parent,
-                    ];
-                    if ($existing) {
-                        wp_update_term($existing['term_id'], $taxonomy_slug, $args);
-                    } else {
-                        wp_insert_term($term['name'], $taxonomy_slug, $args);
-                    }
-                }
-                $pending_terms = $new_pending;
-                if (empty($pending_terms)) break;
+                        'parent' => $parent_id,  // حالا parent_id درست ست می‌شه
+                    ]
+                );
             }
-
-            if (!empty($pending_terms)) {
-                error_log('SibanehAcademy: Some terms could not be inserted/updated due to missing parents in ' . $taxonomy_slug . '.');
-            }
-        }
-
-        // Insert terms for news
-        $news_parent_slug = 'sib_news_anal';
-        $taxonomy_slug = $this->taxonomy_base_slug . '_' . $this->news_section['taxonomy_suffix'];
-        $filtered_terms = array_filter($this->terms_config, function($t) use ($news_parent_slug) {
-            return $t['parent_slug'] === $news_parent_slug;
-        });
-
-        $max_iterations = 5;
-        $pending_terms = $filtered_terms;
-
-        for ($i = 0; $i < $max_iterations; $i++) {
-            $new_pending = [];
-            foreach ($pending_terms as $term) {
-                $existing = term_exists($term['slug'], $taxonomy_slug);
-                $parent = 0;  // All terms are top-level under CPT, or handle deeper if needed
-
-                if (isset($term['parent_slug']) && $term['parent_slug'] !== $news_parent_slug) {
-                    $parent_term = term_exists($term['parent_slug'], $taxonomy_slug);
-                    if ($parent_term) {
-                        $parent = $parent_term['term_id'];
-                    } else {
-                        $new_pending[] = $term;
-                        continue;
-                    }
-                }
-
-                $args = [
-                    'slug' => $term['slug'],
-                    'parent' => $parent,
-                ];
-                if ($existing) {
-                    wp_update_term($existing['term_id'], $taxonomy_slug, $args);
-                } else {
-                    wp_insert_term($term['name'], $taxonomy_slug, $args);
-                }
-            }
-            $pending_terms = $new_pending;
-            if (empty($pending_terms)) break;
-        }
-
-        if (!empty($pending_terms)) {
-            error_log('SibanehAcademy: Some terms could not be inserted/updated due to missing parents in ' . $taxonomy_slug . '.');
-        }
-
-        if (empty($pending_terms)) {
-            set_transient('sibaneh_terms_inserted', true, YEAR_IN_SECONDS);
         }
     }
 

@@ -68,7 +68,7 @@ function tableOfContents_ajax_save_toc() {
     }
 
     // Validate structure and post IDs
-    $valid = tableOfContents_validate_tree( $data );
+    $valid = tableOfContents_validate_tree( $data, $category ); // تغییر: category پاس بدید
     if ( $valid !== true ) {
         wp_send_json_error( array('message' => 'Validation failed', 'errors' => $valid ) );
     }
@@ -102,10 +102,20 @@ function tableOfContents_ajax_create_new_content() {
         wp_send_json_error( array('message' => 'Missing title') );
     }
 
+    // تغییر جدید: category رو از POST بگیریم و post_type رو داینامیک کنیم
+    $category = isset($_POST['category']) ? sanitize_key($_POST['category']) : 'default';
+    $category_map = [
+        'apps_games' => 'sib_app_game',
+        'apple_tutorials' => 'sib_apple_tut',
+        'news_analysis' => 'post',
+        'default' => 'post',
+    ];
+    $post_type = isset($category_map[$category]) ? $category_map[$category] : 'post';
+
     $post_id = wp_insert_post( array(
         'post_title'    => $title,
-        'post_type'     => 'sibaneh_content',
-        'post_status'   => 'draft', // یا publish اگر بخوای
+        'post_type'     => $post_type,  // داینامیک بر اساس category
+        'post_status'   => 'draft',
         'post_author'   => get_current_user_id(),
     ) );
 
@@ -120,9 +130,23 @@ function tableOfContents_ajax_create_new_content() {
  * Validate incoming tree structure recursively.
  * Return true or array of error messages.
  */
-function tableOfContents_validate_tree( $nodes, &$errors = array(), $path = '' ) {
+function tableOfContents_validate_tree( $nodes, $category = '', &$errors = array(), $path = '' ) {  // تغییر: category پارامتر اول
     if ( ! is_array( $nodes ) ) {
         $errors[] = "$path : Node must be an array";
+        return $errors;
+    }
+
+    // نقشه‌برداری category به post_type
+    $category_map = [
+        'apps_games' => 'sib_app_game',
+        'apple_tutorials' => 'sib_apple_tut',
+        'news_analysis' => 'post',
+        'default' => 'post',  // اضافه برای جلوگیری از ارور
+    ];
+    $expected_post_type = isset($category_map[$category]) ? $category_map[$category] : '';
+
+    if (empty($expected_post_type)) {
+        $errors[] = "Invalid category: $category";
         return $errors;
     }
 
@@ -136,14 +160,14 @@ function tableOfContents_validate_tree( $nodes, &$errors = array(), $path = '' )
 
         $post_id = intval( $n['post_id'] );
         $post = get_post( $post_id );
-        if ( ! $post || $post->post_type !== 'sibaneh_content' ) { // تغییر به CPT
-            $errors[] = "$curpath: post_id {$post_id} is not a valid sibaneh_content";
+        if ( ! $post || $post->post_type !== $expected_post_type ) {
+            $errors[] = "$curpath: post_id {$post_id} is not a valid {$expected_post_type}";
         }
 
         if ( isset( $n['children'] ) && ! is_array( $n['children'] ) ) {
             $errors[] = "$curpath: children must be array";
         } elseif ( isset( $n['children'] ) && is_array( $n['children'] ) ) {
-            tableOfContents_validate_tree( $n['children'], $errors, $curpath );
+            tableOfContents_validate_tree( $n['children'], $category, $errors, $curpath );  // category پاس بدید
         }
     }
 

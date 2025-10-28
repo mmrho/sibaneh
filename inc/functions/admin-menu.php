@@ -16,9 +16,9 @@ function wbsContentConfigurationMenu()
         'دنیای اپلیکیشن و بازی‌ها',
         'دنیای اپلیکیشن و بازی‌ها',
         'manage_options',
-        'huboftheworldofapplicationsandgames',  // lowercase slug
-        function() { // تغییر: category رو پاس می‌دیم
-            $_GET['category'] = 'apps_games'; // یا هر slug مناسب
+        'huboftheworldofapplicationsandgames',
+        function() {
+            $_GET['category'] = 'apps_games'; 
             wbsSibanehTableOfContents();
         }
     );
@@ -27,8 +27,8 @@ function wbsContentConfigurationMenu()
         'آموزش‌های جامع اپل',
         'آموزش‌های جامع اپل',
         'manage_options',
-        'comprehensiveappletutorials',  // lowercase slug
-        function() { // تغییر: category رو پاس می‌دیم
+        'comprehensiveappletutorials', 
+        function() {
             $_GET['category'] = 'apple_tutorials';
             wbsSibanehTableOfContents();
         }
@@ -38,8 +38,8 @@ function wbsContentConfigurationMenu()
         'اخبار و تحلیل‌ها',
         'اخبار و تحلیل‌ها',
         'manage_options',
-        'newsandanalysis',  // lowercase slug
-        function() { // تغییر: category رو پاس می‌دیم
+        'newsandanalysis', 
+        function() {
             $_GET['category'] = 'news_analysis';
             wbsSibanehTableOfContents();
         }
