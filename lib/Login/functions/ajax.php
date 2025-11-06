@@ -1,6 +1,6 @@
 <?php
 function sibaneh_api_request($endpoint, $data) {
-    $url = "https://api.sibaneh.punasdev.ir/api/" . $endpoint;
+    $url = "https://api.sibaneh.com/webservice/" . $endpoint;
     
     $args = array(
         'body'        => json_encode($data),

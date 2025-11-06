@@ -1,7 +1,4 @@
 <?php get_header(); ?>
-<?php
-require_once THEME_TEMPLATE . 'subheader/subheader.php';
-?>
 <!-- Main -->
 <main id="site-main">
     <div class="container-fluid">

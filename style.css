@@ -48,15 +48,6 @@ body {
   position: relative;
 }
 
-@media (max-width: 849.98px) {
-  body {
-    padding-top: 80px;
-  }
-  body.scrolled {
-    padding-top: 80px;
-  }
-}
-
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -66,9 +57,23 @@ body {
 #site-main {
   flex: 1;
 }
+@media (max-width: 849.98px) {
+  #site-main {
+    padding-top: 72px;
+  }
+  #site-main.scrolled {
+    padding-top: 72px;
+  }
+}
 
 .container-fluid {
   padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 80px;
 }
 
 .row {

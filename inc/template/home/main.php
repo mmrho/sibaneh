@@ -1,3 +1,6 @@
+<?php
+require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
+?>
 <section class="hero-section">
     <div class="hero-section-container">
         <a href="#" class="hero-section-logo-container">
@@ -231,6 +234,36 @@
                         <img class="card-section-img" src="<?php echo get_template_directory_uri(); ?>/images/temp/dev-icon-2.png"
                             alt="macstore-icon-2">
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="about-section">
+    <div class="about-container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="text-center logo-container">
+                    <div class="grid-lines"></div>
+                    <h2 class="logo">Sibaneh</h2>
+                    <div class="subtitle">اپ استور ایرانی نرم افزارهای اورجینال iOS</div>
+                </div>
+                <div class="content">
+                    <p>در سال ۱۳۹۱ سیبانه متولد شد و ما از آن روز رویاهای بزرگی را در سر می پرورانیم. به
+                        عنوان یکی از اولین اپ استورهای ایرانی همواره سعی کرده ایم خلاقانه ترین خدمات را در
+                        اختیار کاربران ایرانی قرار دهیم.</p>
+
+                    <p>فعالیت ما در ابتدا با عرضه اپلیکیشن‌های آیفون و آیپد آغاز شد و هم اکنون طیف وسیعی از
+                        سرویس‌های مرتبط با محصولات اپل را شامل می شود. سیبانه به عنوان اپ استور امکان دسترسی
+                        بدون محدودیت به نرم افزارهای آیفون را برای کاربران ایرانی فراهم میکند.</p>
+
+                    <p>در اپ استور سیبانه شما می‌توانید به نسخه اورجینال و اصلی برنامه های دلخواهی دسترسی
+                        داشته باشید، همچنین برنامه های پرطرفدار ایرانی آیفون مانند اسنپ، اسنپ رانندگان دیجی
+                        کالا و نرم‌افزارهای همراه بانک برای آیفون که مورد تایید بانک ها است از طریق اپ استور
+                        سیبانه قابل دانلود است.</p>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="link-custom">آشنایی با سیبانه</a>
                 </div>
             </div>
         </div>
