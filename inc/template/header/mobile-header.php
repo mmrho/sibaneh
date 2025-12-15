@@ -50,26 +50,6 @@
                     </li>
                 <?php endforeach; ?>
             </ul>
-
-            <!-- Mobile Action Buttons -->
-            <div class="mobile-nav-buttons">
-                <button class="<?php echo $action_buttons['service']['class']; ?> mobile-service-btn">
-                    <span class="service-button-text"><?php echo $action_buttons['service']['text']; ?></span>
-                </button>
-                <button class="<?php echo $action_buttons['login']['class']; ?> mobile-login-btn">
-                    <span class="login-button-text"><?php echo $action_buttons['login']['text']; ?></span>
-                </button>
-            </div>
-
-            <!-- Support Info -->
-            <div class="mobile-nav-support">
-                <span class="site-header-top-sale-number">
-                    <?php echo $support_info['phone_label']; ?> : <?php echo $support_info['phone_number']; ?>
-                </span>
-                <a href="#" class="site-header-top-support-online-a">
-                    <i class="<?php echo $support_info['support_icon']; ?>"></i><?php echo $support_info['support_text']; ?>
-                </a>
-            </div>
         </div>
     </div>
 

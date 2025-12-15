@@ -22,8 +22,7 @@
 
         <!-- desktop-header -->
         <div class="desktop-header">
-            <?php require_once THEME_TEMPLATE . 'header/desktop-header-top.php'; ?>
-            <?php require_once THEME_TEMPLATE . 'header/desktop-header-bottom.php'; ?>
+            <?php require_once THEME_TEMPLATE . 'header/desktop-header.php'; ?>
         </div>
 
     </header>

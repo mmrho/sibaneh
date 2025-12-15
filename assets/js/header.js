@@ -69,7 +69,9 @@ try {
       window.scrollTo(0, scrollPosition);
     }
 
-    // Menu functionality
+    // =========================================================================
+    // Mobile Menu Functionality
+    // =========================================================================
     const menu = {
       open() {
         console.log("Opening menu!");
@@ -113,7 +115,9 @@ try {
       },
     };
 
-    // Search functionality
+    // =========================================================================
+    // Mobile Search Functionality
+    // =========================================================================
     const search = {
       open() {
         console.log("Opening search!");
@@ -149,7 +153,9 @@ try {
       },
     };
 
-    // Shopping functionality
+    // =========================================================================
+    // Mobile Shopping Functionality
+    // =========================================================================
     const shopping = {
       open() {
         console.log("Opening shopping!");
@@ -179,7 +185,9 @@ try {
       },
     };
 
-    // Submenu functionality
+    // =========================================================================
+    // Mobile Submenu Functionality
+    // =========================================================================
     const submenu = {
       init() {
         const submenuLinks = document.querySelectorAll(
@@ -195,7 +203,9 @@ try {
       },
     };
 
-    // Header scroll effect
+    // =========================================================================
+    // Mobile Header Scroll Effect
+    // =========================================================================
     const headerScroll = {
       init() {
         const headerContainer = document.querySelector(".mobile-header-container");
@@ -212,11 +222,14 @@ try {
       },
     };
 
-    // Keyboard shortcuts
+    // =========================================================================
+    // Global Keyboard Shortcuts (Esc)
+    // =========================================================================
     const keyboard = {
       init() {
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
+            // Close mobile elements
             if (elements.search.bar.classList.contains("active")) {
               search.close();
             }
@@ -226,12 +239,120 @@ try {
             if (elements.shopping.panel.classList.contains("active")) {
               shopping.close();
             }
+            
+            // Close desktop menu elements (if active)
+            const desktopOverlay = document.querySelector('.desktop-nav-overlay');
+            if (desktopOverlay && desktopOverlay.classList.contains('active')) {
+                 // Trigger click on overlay to close everything via desktopMenu logic
+                 desktopOverlay.click();
+            }
           }
         });
       },
     };
 
-    // Event listeners
+    // =========================================================================
+    // Desktop Mega Menu (True Apple Implementation - Shared Background)
+    // =========================================================================
+    const desktopMenu = {
+      init() {
+        // Only run on desktop devices (breakpoint > 992px)
+        if (window.innerWidth <= 992) return;
+
+        console.log("Initializing Apple-style Desktop Menu...");
+
+        const navItems = document.querySelectorAll('.site-nav-item.has-submenu');
+        const overlay = document.querySelector('.desktop-nav-overlay');
+        const sharedBackground = document.querySelector('.mega-menu-background');
+        
+        let activeMenu = null;
+        let closeTimeout;
+
+        // Function to close all open desktop menus
+        const closeAll = () => {
+          // Hide all menu contents
+          document.querySelectorAll('.mega-menu.is-active').forEach(m => m.classList.remove('is-active'));
+          
+          // Collapse the shared background
+          if (sharedBackground) {
+            sharedBackground.style.height = '0px';
+            sharedBackground.classList.remove('open');
+          }
+          
+          // Hide overlay
+          if (overlay) overlay.classList.remove('active');
+          activeMenu = null;
+        };
+
+        navItems.forEach(item => {
+          const megaMenu = item.querySelector('.mega-menu');
+          const contentContainer = megaMenu ? megaMenu.querySelector('.mega-menu-container') : null;
+
+          if (!megaMenu || !contentContainer) return;
+
+          // Mouse Enter Event (Open or Switch Menu)
+          item.addEventListener('mouseenter', () => {
+            clearTimeout(closeTimeout); // Cancel any pending close action
+
+            // If we are switching from another menu, hide the previous content
+            if (activeMenu && activeMenu !== megaMenu) {
+              activeMenu.classList.remove('is-active');
+            }
+
+            // 1. Show the new content (Fade In)
+            megaMenu.classList.add('is-active');
+            
+            // 2. Calculate the exact height needed for this content
+            const height = contentContainer.offsetHeight;
+
+            // 3. Apply the height to the shared background (Morphing Animation)
+            if (sharedBackground) {
+                sharedBackground.classList.add('open');
+                sharedBackground.style.height = height + 'px';
+            }
+
+            // 4. Show Overlay
+            if (overlay) overlay.classList.add('active');
+            
+            activeMenu = megaMenu;
+          });
+
+          // Mouse Leave Event (Close Menu with Delay)
+          item.addEventListener('mouseleave', () => {
+            // Set a timeout to allow user to move mouse into the menu area
+            closeTimeout = setTimeout(() => {
+                closeAll();
+            }, 150); 
+          });
+
+          // Prevent closing when hovering over the menu content itself
+          megaMenu.addEventListener('mouseenter', () => clearTimeout(closeTimeout));
+          megaMenu.addEventListener('mouseleave', () => {
+            closeTimeout = setTimeout(closeAll, 150);
+          });
+          
+          // Prevent closing when hovering over the shared background (Safety check)
+          if(sharedBackground) {
+             sharedBackground.addEventListener('mouseenter', () => clearTimeout(closeTimeout));
+             sharedBackground.addEventListener('mouseleave', (e) => {
+                 // Close only if mouse leaves downwards or sideways, not upwards back to nav
+                 if (e.clientY > sharedBackground.getBoundingClientRect().top) {
+                      closeTimeout = setTimeout(closeAll, 150);
+                 }
+             });
+          }
+        });
+
+        // Close everything when clicking on the overlay
+        if (overlay) {
+          overlay.addEventListener('click', closeAll);
+        }
+      }
+    };
+
+    // =========================================================================
+    // Event Listeners Binding
+    // =========================================================================
     const bindEvents = () => {
       // Menu events
       elements.menu.btn.addEventListener("click", () => menu.toggle());
@@ -261,13 +382,18 @@ try {
       { passive: false }
     );
 
-    // Initialize all functionality
+    // =========================================================================
+    // Application Initialization
+    // =========================================================================
     const init = () => {
       console.log("Initializing header functionality...");
       bindEvents();
       submenu.init();
       headerScroll.init();
       keyboard.init();
+      
+      // Initialize Desktop Menu Logic
+      desktopMenu.init();
     };
 
     // Start the application

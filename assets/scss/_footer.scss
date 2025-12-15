@@ -1,53 +1,277 @@
-#site-footer {
-    background-color: rgb(247, 247, 249);
-    padding: 2rem 0.5rem;
-    font-size: 0.9rem;
-    .site-footer-container {
-        .footer-column {
-            h5 {
-                font-weight: bold;
-                margin-bottom: 1rem;
+/* --- SCSS Variables --- */
+$footer-bg: #f5f5f7;
+$footer-text: #2c2c2c;
+$footer-heading: #1d1d1f;
+$footer-border: #d2d2d7;
+$footer-link-blue: #0071e3;
+$transition-speed: 0.3s;
+
+/* --- Main Footer Styles --- */
+.site-footer {
+    color: $footer-text;
+    padding: 24px 48px;
+    width: 100%;
+    line-height: 1.6;
+    font-size: 14px;
+    box-sizing: border-box;
+    
+    @include media-max(mobile-max) {
+        padding: 24px 16px;
+    }
+
+    // Global Reset inside footer
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // Global Link Styles
+    a {
+        text-decoration: none;
+        color: $footer-text;
+        transition: color 0.2s;
+
+        &:hover {
+            color: $footer-heading;
+            text-decoration: underline;
+        }
+    }
+
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 24px;
+        width: 100%;
+        margin: 0 auto;
+        
+        @include media-max(mobile-max) {
+            gap: 33px;
+        }
+
+        /* --- Description Section --- */
+        .footer-description {
+            width: 100%;
+            color: $footer-text;
+            text-align: justify;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 32px;
+        }
+
+        /* --- Links Section --- */
+        .footer-links-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+
+            @include media-max(mobile-max) {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
             }
-            ul {
-                list-style: none;
-                padding: 0;
-                li {
-                    margin-bottom: 0.5rem;
+
+            .footer-col {
+                display: flex;
+                flex-direction: column;
+
+                @include media-max(mobile-max) {
+                    border-bottom: 1px solid $footer-border;
+
+                    // Active state for Accordion
+                    &.active {
+                        // We rely on JS to set height, but we rotate the chevron here
+                        .col-header {
+                            .chevron {
+                                // Rotate 180 degrees from 45deg (45 + 180 = 225)
+                                transform: rotate(225deg);
+                            }
+                        }
+                    }
+                }
+
+                .col-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    color: $footer-heading;
+                    margin-bottom: 16px;
+                    cursor: default;
+
+                    @include media-max(mobile-max) {
+                        cursor: pointer;
+                        padding: 10px 0;
+                        margin-bottom: 0;
+                    }
+                    
+                    .col-header-text {
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        color: $footer-heading;
+                    }
+
+                    .chevron {
+                        display: none;
+                        width: 8px; 
+                        height: 8px;
+                        border-right: 2px solid $footer-heading;
+                        border-bottom: 2px solid $footer-heading;
+                        
+                        // Initial state: Pointing Down
+                        transform: rotate(45deg); 
+                        
+                        // Professional easing for smooth rotation
+                        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+                        @include media-max(mobile-max) {
+                            display: block;
+                        }
+                    }
+                }
+
+                .link-list {
+                    li {
+                        margin-bottom: 16px;
+
+                        a {
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: normal;
+                        }
+                    }
+
+                    @include media-max(mobile-max) {
+                        max-height: 0;
+                        overflow: hidden;
+                        
+                        // Smooth transition for the height animation
+                        transition: max-height 0.4s ease-out;
+                        padding-left: 10px;
+                    }
                 }
             }
-            a {
-                color: #333;
-                text-decoration: none;
-            }
         }
-        .footer-info {
+
+        /* --- Bottom Section --- */
+        .footer-bottom-a {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-start;
             align-content: center;
-            margin-top: 5rem;
-            p {
-                margin-bottom: 0;
-            }
-        }
-        .footer-bottom {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
             align-items: center;
-            align-content: center;
-            border-top: 1px solid #b6b0b0;
-            padding-top: 0;
-            margin-top: 0;
-            font-size: 0.9rem;
-            .social-icons {
-                display: flex;
-                flex-direction: row;
+            width: 100%;
+            font-size: 12px;
+            
+            @include media-max(mobile-max) {
                 justify-content: center;
+            }
+            
+            .promo-text {
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 32px;
+                a {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 32px;
+                    color: $footer-link-blue;
+                }
+            }
+        }
+        
+        .footer-bottom-b {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            width: 100%;
+            
+            .copyright-area {
+                display: flex;
+                justify-content: space-between;
                 align-items: center;
                 align-content: center;
-                gap: 1rem;
+                width: 100%;
+
+                @include media-max(mobile-max) {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    gap: 10px;
+                }
+                
+                .copyright-text {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 32px;
+
+                    @include media-max(mobile-max) {
+                        padding-bottom: 8px;
+                        border-bottom: 1px solid $footer-border;
+                    }
+                }
+                
+                .bottom-links {
+                    ul {
+                        display: flex;
+                        gap: 15px;
+
+                        @include media-max(mobile-max) {
+                            flex-wrap: wrap;
+                            gap: 10px;
+                        }
+                    }
+
+                    li {
+                        position: relative;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 32px;
+                        &:not(:last-child)::after {
+                            content: "|";
+                            margin-right: 21px;
+                            color: #ccc;
+
+                            @include media-max(mobile-max) {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #cdcdcd;
+            width: 100%;
+            margin: 0px auto;
+            
+            // Hide the LAST hr element only on mobile
+            @include media-max(mobile-max) {
+                &:last-of-type {
+                    display: none;
+                }
             }
         }
     }

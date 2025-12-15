@@ -11,7 +11,7 @@ $site_data = [
 // Main menus
 $main_menu = [
     [
-        'title' => 'خانه',
+        'title' => 'فروشگاه',
         'url' => '#',
         'has_submenu' => false
     ],
@@ -36,7 +36,7 @@ $main_menu = [
         ]
     ],
     [
-        'title' => 'توسعه‌دهندگان',
+        'title' => 'سیبانه کد',
         'url' => '#',
         'has_submenu' => true,
         'submenu' => [
@@ -46,7 +46,20 @@ $main_menu = [
         ]
     ],
     [
-        'title' => 'آموزش و مقالات',
+        'title' => 'سیبانه فیکس',
+        'url' => '#',
+        'has_submenu' => true,
+        'submenu' => [
+            ['title' => 'آیتم زیرمنو 1', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 3', 'url' => '#']
+        ]
+    ],
+    [
+        'title' => 'سیبانه بیزینس',
         'url' => '#',
         'has_submenu' => true,
         'submenu' => [
@@ -56,7 +69,19 @@ $main_menu = [
         ]
     ],
     [
-        'title' => 'بلاگ',
+        'title' => 'سیبانه پرایم',
+        'url' => '#',
+        'has_submenu' => true,
+        'submenu' => [
+            ['title' => 'آیتم زیرمنو 1', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
+            ['title' => 'آیتم زیرمنو 3', 'url' => '#']
+        ]
+    ],
+    [
+        'title' => 'آکادمی سیبانه',
         'url' => '#',
         'has_submenu' => true,
         'submenu' => [
@@ -64,6 +89,11 @@ $main_menu = [
             ['title' => 'آیتم زیرمنو 2', 'url' => '#'],
             ['title' => 'آیتم زیرمنو 3', 'url' => '#']
         ]
+    ],
+    [
+        'title' => 'پشتیبانی',
+        'url' => '#',
+        'has_submenu' => false
     ],
     [
         'title' => 'چرا سیبانه؟',
@@ -72,23 +102,10 @@ $main_menu = [
     ]
 ];
 
-// Function buttons
-$action_buttons = [
-    'service' => [
-        'text' => 'سرویس‌های سیبانه',
-        'class' => 'service-button'
-    ],
-    'login' => [
-        'text' => 'ورود',
-        'class' => 'login-button'
-    ]
-];
-
 // Support information
 $support_info = [
-    'phone_label' => 'واحد فروش',
-    'phone_number' => $site_data['phone'],
-    'support_text' => 'پشتیبانی',
-    'support_icon' => 'icon-Online-Support'
+    
+    'search_icon' => 'icon-search-aka',
+    'shoping_bag_icon' => 'icon-shopping-bag'
 ];
 ?>

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icons';
-  src:  url('fonts/icons.eot?fhvj6u');
-  src:  url('fonts/icons.eot?fhvj6u#iefix') format('embedded-opentype'),
-    url('fonts/icons.ttf?fhvj6u') format('truetype'),
-    url('fonts/icons.woff?fhvj6u') format('woff'),
-    url('fonts/icons.svg?fhvj6u#icons') format('svg');
+  src:  url('fonts/icons.eot?6asf1r');
+  src:  url('fonts/icons.eot?6asf1r#iefix') format('embedded-opentype'),
+    url('fonts/icons.ttf?6asf1r') format('truetype'),
+    url('fonts/icons.woff?6asf1r') format('woff'),
+    url('fonts/icons.svg?6asf1r#icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,81 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shopping-cart-aka:before {
+  content: "\e92a";
+}
+.icon-sort-aka:before {
+  content: "\e928";
+}
+.icon-filter-aka:before {
+  content: "\e929";
+}
+.icon-star-aka:before {
+  content: "\e924";
+}
+.icon-star-fill-aka:before {
+  content: "\e926";
+}
+.icon-ruler-aka:before {
+  content: "\e927";
+}
+.icon-search-aka:before {
+  content: "\e923";
+}
+.icon-Multiplication:before {
+  content: "\e920";
+}
+.icon-comment:before {
+  content: "\e921";
+}
+.icon-hamburger-menu-aka:before {
+  content: "\e922";
+}
+.icon-instagram-aka:before {
+  content: "\e911";
+}
+.icon-telegram-aka:before {
+  content: "\e912";
+}
+.icon-whatsapp:before {
+  content: "\e913";
+}
+.icon-envelope:before {
+  content: "\e914";
+}
+.icon-gps-logo:before {
+  content: "\e915";
+}
+.icon-up-left-arrow:before {
+  content: "\e916";
+}
+.icon-support:before {
+  content: "\e917";
+}
+.icon-quality-assurance:before {
+  content: "\e918";
+}
+.icon-curved-arrow:before {
+  content: "\e919";
+}
+.icon-box:before {
+  content: "\e91a";
+}
+.icon-left-arrow:before {
+  content: "\e91b";
+}
+.icon-right-arrow:before {
+  content: "\e91c";
+}
+.icon-shoping_bag:before {
+  content: "\e91d";
+}
+.icon-account:before {
+  content: "\e91e";
+}
+.icon-support_icon:before {
+  content: "\e91f";
+}
 .icon-star-fill:before {
   content: "\e910";
 }
