@@ -2,7 +2,7 @@
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
             <!-- Breadcrumb -->
-            <nav class="breadcrumb">
+            <nav class="breadcrumb-1">
                 <?php if (function_exists('yoast_breadcrumb')) {
                     yoast_breadcrumb('<div class="breadcrumb-wrapper">', '</div>');
                 } ?>
@@ -12,20 +12,13 @@
             <section class="notice-section">
                 <div class="notice-container">
                     <div class="notice">
-                        <?php
-                        $approx_price = get_field('Approximate_price');
-                        if ($approx_price) {
-
-                            $formatted_price = number_format($approx_price, 0, '', '.');
-                            echo 'قیمت تقریبی این اپ <strong>' . esc_html($formatted_price) . ' تومان</strong> و دانلود آن برای کاربران اپ‌استور سیبانه رایگان می‌باشد.';
-                        } else {
-                            echo 'قیمت تقریبی این اپ مشخص نشده و دانلود آن برای کاربران اپ‌استور سیبانه رایگان می‌باشد.';
-                        }
-                        ?>
-                        <a href="#">آشنایی با امکانات و ویژگی‌های اپ‌استور سیبانه</a>
+                        <span>دانلود رایگان برای کاربران دارای اشتراک.</span>
+                        <i class="icon-info-sbh"></i>
+                        <a href="#"></a>
                     </div>
                 </div>
             </section>
+
             <!-- card-section -->
             <section class="card-section">
                 <div class="card-container">
@@ -42,64 +35,67 @@
                             <?php
                             $app_name_details = get_field('App_name_details');
                             $app_label = isset($app_name_details['App_label']) ? esc_html($app_name_details['App_label']) : 'پیشنهادات سیبانه';
-                            $persian_name = isset($app_name_details['Persian_name_of_the_app']) ? esc_html($app_name_details['Persian_name_of_the_app']) : 'دیجی‌کالا';
-                            $english_name = isset($app_name_details['English_name_of_the_app']) ? esc_html($app_name_details['English_name_of_the_app']) : 'Digikala';
-                            $app_stars = isset($app_name_details['Number_of_app_stars']) ? floatval($app_name_details['Number_of_app_stars']) : 5.0;
-                            $app_votes = isset($app_name_details['App_votes']) ? number_format(intval($app_name_details['App_votes']), 0, '', ',') : '۱,۰۰۰,۰۰۰';
-
-                            // Calculate full, half, and empty stars
-                            $full_stars = floor($app_stars);
-                            $fraction = $app_stars - $full_stars;
-                            $has_half = ($fraction > 0) ? true : false;
+                            $persian_name = isset($app_name_details['Persian_name_of_the_app']) ? esc_html($app_name_details['Persian_name_of_the_app']) : 'سیبانه';
+                            $english_name = isset($app_name_details['English_name_of_the_app']) ? esc_html($app_name_details['English_name_of_the_app']) : 'Sibaneh';
                             ?>
-                            <div class="app-label-tag"><?php echo $app_label; ?></div>
                             <h1 class="headline"><?php the_title(); ?></h1>
                             <div class="brand-row">
                                 <div class="brand-fa"><?php echo $persian_name; ?></div>
                                 <div class="brand-en">|</div>
                                 <div class="brand-en"><?php echo $english_name; ?></div>
                             </div>
-
-                            <div class="rating">
-                                <div class="stars">
-                                    <?php
-                                    $star_count = 0;
-                                    // Full stars (golden)
-                                    for ($i = 1; $i <= $full_stars; $i++) {
-                                        echo '<i class="icon-star-fill full"></i>'; // Full golden star
-                                        $star_count++;
-                                    }
-                                    // Half star if applicable
-                                    if ($has_half) {
-                                        echo '<i class="icon-star-fill half"></i>'; // Half golden star
-                                        $star_count++;
-                                    }
-                                    // Empty stars (gray)
-                                    while ($star_count < 5) {
-                                        echo '<i class="icon-star-fill empty"></i>'; // Empty gray star
-                                        $star_count++;
-                                    }
-                                    ?>
+                            <div class="stability-share">
+                                <div class="stability-logo">
+                                    <i class="icon-wheat-spike-sbh-right"></i>
+                                    <div class="stability-text">
+                                        <span>تضمین پایداری</span>
+                                        <span>دارد</span>
+                                    </div>
+                                    <i class="icon-wheat-spike-sbh-left"></i>
                                 </div>
-                                <div class="votes">از <?php echo $app_votes; ?> رای </div>
+                                <button class="share-button">
+                                    <span>اشتراک گذاری</span>
+                                    <i class="icon-share-sbh"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <div class="break">
+                <div class="break-container">
+                    <hr />
+                </div>
+            </div>
+
             <!-- post-actions-section -->
             <section class="post-actions-section">
                 <div class="post-actions-container">
                     <div class="post-actions">
                         <div class="metadata">
                             <div class="metadata-item">
-                                <div class="metadata-item-container">
-                                    <div class="metadata-value-time">
-                                        <div class="badge">
-                                            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/Guaranteed-stability.jpg" alt="Guaranteed-stability" class="Guaranteed-stability">
-                                        </div>
-                                    </div>
-                                </div>
+                                <i class="icon-dollar-sbh"></i>
+                                <div class="metadata-value">۹.۹۹</div>
+                                <div class="metadata-label">قیمت دلاری</div>
+                            </div>
+                            <div class="metadata-separator"></div>
+                            <div class="metadata-item">
+                                <i class="icon-pwa-sbh"></i>
+                                <div class="metadata-value">PWA</div>
+                                <div class="metadata-label">نوع اپ</div>
+                            </div>
+                            <div class="metadata-separator"></div>
+                            <div class="metadata-item">
+                                <i class="icon-download-sbh"></i>
+                                <div class="metadata-value">12k</div>
+                                <div class="metadata-label">تعداد دانلود</div>
+                            </div>
+                            <div class="metadata-separator"></div>
+                            <div class="metadata-item">
+                                <i class="icon-checkbox-sbh"></i>
+                                <div class="metadata-value">اشتراک سیبانه</div>
+                                <div class="metadata-label">سازگار با</div>
                             </div>
                             <div class="metadata-separator"></div>
                             <div class="metadata-item">
@@ -109,19 +105,6 @@
                                 $install_video = $app_videos['Installation_instructions'] ?? '';
                                 ?>
 
-                                <?php if ($intro_video) : ?>
-                                    <button type="button"
-                                        class="download-button metadata-item-container"
-                                        onclick="showVideoModal('<?php echo esc_js(addslashes($intro_video)); ?>')">
-                                        <div class="metadata-value"><i class="icon-play-in-circle"></i></div>
-                                        <div class="metadata-label">ویدیو معرفی</div>
-                                    </button>
-                                <?php endif; ?>
-                            </div>
-
-                            <div class="metadata-separator"></div>
-
-                            <div class="metadata-item">
                                 <?php if ($install_video) : ?>
                                     <button type="button"
                                         class="download-button metadata-item-container"
@@ -135,24 +118,34 @@
                     </div>
                 </div>
             </section>
-            <!-- Modal placed OUTSIDE of the section -->
-            <div id="videoModal" class="video-modal">
-                <div class="video-backdrop" onclick="closeVideoModal()"></div>
-                <div class="video-content"></div>
-            </div>
-            <!-- download-button-section -->
-            <section class="download-button-section">
-                <div class="download-button-container">
-                    <button class="button">
-                        شروع فرآیند دانلود
-                    </button>
-                </div>
-            </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
+            <!-- Modal placed OUTSIDE of the section -->
+            <div id="videoModal" class="video-modal">
+                <div class="video-backdrop" onclick="closeVideoModal()"></div>
+                <div class="video-content"></div>
+            </div>
+
+            <!-- download-button-section -->
+            <section class="download-button-section">
+                <div class="download-button-container">
+                    <button class="button">
+                        <span>دانلود</span>
+                    </button>
+                </div>
+            </section>
+
+            <div class="break">
+                <div class="break-container">
+                    <hr />
+                </div>
+            </div>
+
             <!-- Screenshots Carousel -->
             <section class="screenshots-section">
                 <div class="screenshots-container">
@@ -219,11 +212,13 @@
                     </div>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- Contents section-->
             <section class="contents-section">
                 <div class="contents-nav">
@@ -306,11 +301,13 @@
                     </div>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- Version Section -->
             <section class="version-section">
                 <div class="version-container">
@@ -370,17 +367,20 @@
                     </dialog>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- Comments Section -->
             <section class="comments-section">
                 <div class="container">
                     <h2>نظرات کاربران</h2>
                     <?php
                     global $post;
+                    /*
                     if ($post->post_type === 'page' && !comments_open($post->ID)) {
                         wp_update_post(array(
                             'ID' => $post->ID,
@@ -390,14 +390,16 @@
                     if (comments_open($post->ID) || get_comments_number($post->ID)) {
                         comments_template();
                     }
-                    ?>
+                    */ ?>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- privacy Section -->
             <section class="privacy">
                 <div class="container">
@@ -439,11 +441,13 @@
                     </div>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- stability Section -->
             <section class="stability">
                 <div class="stability-container">
@@ -452,8 +456,10 @@
                         <a href="#">آشنایی بیشتر</a>
                     </div>
                     <div class="stability-card">
-                        <div class="stability-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/Guaranteed-stability-2.jpg" alt="Guaranteed-stability" class="Guaranteed-stability">
+                        <div class="stability-logo">
+                            <i class="icon-wheat-spike-sbh-right"></i>
+                            <span>تضمین پایداری دارد</span>
+                            <i class="icon-wheat-spike-sbh-left"></i>
                         </div>
                         <p>
                             عرضه و انتشار این اپلیکیشن در اپ‌استور سیبانه دارای تضمین پایداری است.
@@ -462,11 +468,13 @@
                     </div>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- App Info Section -->
             <section class="app-info">
                 <div class="container">
@@ -526,11 +534,13 @@
                     </ul>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- App Store Link Section -->
             <section class="appstore-link">
                 <div class="container">
@@ -541,15 +551,17 @@
                     $appstore_target = !empty($appstore_link['target']) ? esc_attr($appstore_link['target']) : '_blank';
                     ?>
                     <a href="<?php echo $appstore_url; ?>" class="appstore-item" target="<?php echo $appstore_target; ?>">
-                        <?php echo $appstore_title; ?> ↗
+                        <span><?php echo $appstore_title; ?></span><i class="icon-up-left-arrow-sbh"></i>
                     </a>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- Developer Site Section -->
             <section class="developer-site">
                 <div class="container">
@@ -560,15 +572,17 @@
                     $developer_target = !empty($developer_link['target']) ? esc_attr($developer_link['target']) : '_blank';
                     ?>
                     <a href="<?php echo $developer_url; ?>" class Mestge to 'Developer Site Section' was edited for clarity.class="developer-link" target="<?php echo $developer_target; ?>">
-                        <?php echo $developer_title; ?> ↗
+                        <span><?php echo $developer_title; ?></span><i class="icon-up-left-arrow-sbh"></i>
                     </a>
                 </div>
             </section>
+
             <div class="break">
                 <div class="break-container">
                     <hr />
                 </div>
             </div>
+
             <!-- Related Apps Section -->
             <section class="related-apps">
                 <div class="container">

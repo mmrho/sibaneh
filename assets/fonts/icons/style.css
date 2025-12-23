@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icons';
-  src:  url('fonts/icons.eot?6asf1r');
-  src:  url('fonts/icons.eot?6asf1r#iefix') format('embedded-opentype'),
-    url('fonts/icons.ttf?6asf1r') format('truetype'),
-    url('fonts/icons.woff?6asf1r') format('woff'),
-    url('fonts/icons.svg?6asf1r#icons') format('svg');
+  src:  url('fonts/icons.eot?r9ef3s');
+  src:  url('fonts/icons.eot?r9ef3s#iefix') format('embedded-opentype'),
+    url('fonts/icons.ttf?r9ef3s') format('truetype'),
+    url('fonts/icons.woff?r9ef3s') format('woff'),
+    url('fonts/icons.svg?r9ef3s#icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,117 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-diagnostics-sbh:before {
+  content: "\e93f";
+}
+.icon-sensitive-info-sbh:before {
+  content: "\e940";
+}
+.icon-usage-data-sbh:before {
+  content: "\e941";
+}
+.icon-identifiers-sbh:before {
+  content: "\e942";
+}
+.icon-user-content-sbh:before {
+  content: "\e943";
+}
+.icon-contacts-sbh:before {
+  content: "\e944";
+}
+.icon-contact-info-sbh:before {
+  content: "\e945";
+}
+.icon-location-sbh:before {
+  content: "\e946";
+}
+.icon-purchases-sbh:before {
+  content: "\e947";
+}
+.icon-checkbox-sbh:before {
+  content: "\e948";
+  color: #666;
+}
+.icon-pwa-sbh:before {
+  content: "\e949";
+  color: #5b5b5b;
+}
+.icon-info-sbh:before {
+  content: "\e94a";
+  color: #707070;
+}
+.icon-up-left-arrow-sbh:before {
+  content: "\e93a";
+}
+.icon-Location-sbh:before {
+  content: "\e93b";
+}
+.icon-program-information-sbh:before {
+  content: "\e93c";
+  color: #0073e3;
+}
+.icon-like-sbh:before {
+  content: "\e93d";
+  color: #bebebe;
+}
+.icon-dislike-sbh:before {
+  content: "\e93e";
+  color: #bebebe;
+}
+.icon-golden-star-sbh:before {
+  content: "\e92d";
+  color: #e4a302;
+}
+.icon-silver-star-sbh:before {
+  content: "\e92e";
+  color: #8f8f8f;
+}
+.icon-Multiplication-sbh:before {
+  content: "\e92f";
+  color: #0073e3;
+}
+.icon-addition-sbh:before {
+  content: "\e930";
+  color: #0073e3;
+}
+.icon-play-sbh:before {
+  content: "\e931";
+}
+.icon-circle-sbh:before {
+  content: "\e932";
+}
+.icon-Installation-instructions-sbh:before {
+  content: "\e933";
+}
+.icon-download-sbh:before {
+  content: "\e934";
+  color: #5b5b5b;
+}
+.icon-dollar-sbh:before {
+  content: "\e935";
+  color: #666;
+}
+.icon-share-sbh:before {
+  content: "\e936";
+  color: #858585;
+}
+.icon-sibaneh-logo:before {
+  content: "\e937";
+}
+.icon-wheat-spike-sbh-left:before {
+  content: "\e938";
+  color: #707070;
+}
+.icon-wheat-spike-sbh-right:before {
+  content: "\e939";
+  color: #707070;
+}
+.icon-shopping-bag-sbh:before {
+  content: "\e92b";
+}
+.icon-search-sbh:before {
+  content: "\e92c";
+}
 .icon-shopping-cart-aka:before {
   content: "\e92a";
 }

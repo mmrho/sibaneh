@@ -6,7 +6,7 @@ require_once "functions/wp-enqueue.php";
 require_once "functions/ajax.php";
 
 
-function wbsLoadAppShowcase()
+function wbsLoadAppStoreProductDetail()
 {
-    require_once "template/AppShowcasePage.php";
+    require_once "template/AppStoreProductDetailPage.php";
 }

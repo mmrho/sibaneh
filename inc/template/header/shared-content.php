@@ -105,7 +105,7 @@ $main_menu = [
 // Support information
 $support_info = [
     
-    'search_icon' => 'icon-search-aka',
-    'shoping_bag_icon' => 'icon-shopping-bag'
+    'search_icon' => 'icon-search-sbh',
+    'shoping_bag_icon' => 'icon-shopping-bag-sbh'
 ];
 ?>

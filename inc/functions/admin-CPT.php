@@ -34,11 +34,11 @@ class SibanehAcademy {
 
     // Config for terms (subcategories) - 'parent_slug' updated to short CPT slugs
     private $terms_config = [
-        [
-            'name' => 'ویترین اپلیکیشن‌ها',
-            'slug' => 'showcase-of-apps',
-            'parent_slug' => 'sib_app_game',
-        ],
+        // [
+        //     'name' => 'ویترین اپلیکیشن‌ها',
+        //     'slug' => 'showcase-of-apps',
+        //     'parent_slug' => 'sib_app_game',
+        // ],
         [
             'name' => 'بررسی و معرفی اپلیکیشن‌ها',
             'slug' => 'review-and-introduction-of-apps',
@@ -219,6 +219,51 @@ class SibanehAcademy {
         ];
 
         register_taxonomy($taxonomy_slug, $this->news_section['post_type'], $args_tax);
+   
+   
+        // ---------------------------------------------------------
+        // احیای دستی پورتفولیو زفایر (چون قالب زفایر غیرفعال است)
+        // ---------------------------------------------------------
+
+        // 1. ثبت پست تایپ us_portfolio
+        register_post_type('us_portfolio', [
+            'labels' => [
+                'name'          => 'ویترین اپلیکیشن‌ها (Portfolio)',
+                'singular_name' => 'اپلیکیشن',
+                'add_new'       => 'افزودن اپلیکیشن',
+                'add_new_item'  => 'افزودن اپلیکیشن جدید',
+                'edit_item'     => 'ویرایش اپلیکیشن',
+                'all_items'     => 'همه اپلیکیشن‌ها',
+            ],
+            'public'             => true,
+            'publicly_queryable' => true,
+            'show_ui'            => true,
+            'show_in_menu'       => false, // ما خودمان در منوی شما مدیریتش می‌کنیم
+            'query_var'          => true,
+            'rewrite' => ['slug' => 'applications', 'with_front' => false], // یا هر اسلاگی که قبلا در زفایر داشتید
+            'capability_type'    => 'post',
+            'has_archive'        => true,
+            'hierarchical'       => false,
+            'menu_position'      => 5,
+            // مهم: ساپورت‌ها باید شامل custom-fields باشد تا دیتای قبلی لود شود
+            'supports'           => ['title', 'editor', 'thumbnail', 'excerpt', 'comments', 'revisions', 'custom-fields', 'page-attributes'],
+        ]);
+
+        // 2. ثبت دسته‌بندی‌های پورتفولیو (us_portfolio_category)
+        // اگر این را نگذارید، دسته‌بندی‌های قبلی پورتفولیوها غیب می‌شوند
+        register_taxonomy('us_portfolio_category', 'us_portfolio', [
+            'hierarchical'      => true,
+            'labels'            => [
+                'name'              => 'دسته‌بندی‌های ویترین',
+                'singular_name'     => 'دسته‌بندی',
+                'menu_name'         => 'دسته‌بندی‌ها',
+            ],
+            'show_ui'           => true,
+            'show_admin_column' => true,
+            'query_var'         => true,
+            'rewrite'           => ['slug' => 'portfolio_category'],
+        ]);
+   
     }
 
     public function insert_terms() {
@@ -360,6 +405,14 @@ class SibanehAcademy {
                     $submenu_file = 'sibaneh_categories';
                 }
             }
+            // اگر در حال ویرایش پورتفولیو زفایر هستیم
+            if ($post_type === 'us_portfolio') {
+                // منوی مادر را روی آکادمی ست کن
+                $parent_file = $this->main_menu_config['slug'];
+                // زیرمنو را روی "دنیای اپلیکیشن" ست کن
+                $submenu_file = 'sibaneh_app_game';
+                return $parent_file;
+            }
         }
 
         return $parent_file;
@@ -403,6 +456,14 @@ class SibanehAcademy {
                 'hide_empty' => false,
             ]);
             $sub_items = [];
+            // تغییر جدید: اضافه کردن دستی لینک ویترین اپلیکیشن‌ها (پورتفولیو)
+            if ($cpt_slug === 'sib_app_game') {
+                $sub_items[] = [
+                    'title' => 'ویترین اپلیکیشن‌ها',
+                    'slug' => 'edit.php?post_type=us_portfolio', // لینک به لیست پورتفولیوها
+                    'is_portfolio' => true // یک نشانه برای تشخیص در حلقه نمایش
+                ];
+            }
             foreach ($child_terms as $child) {
                 $sub_items[] = [
                     'title' => $child->name,
@@ -420,20 +481,23 @@ class SibanehAcademy {
                     <li>
                         <a href="<?php
                             if (isset($sub_item['slug'])) {
-                                if ($sub_item['slug'] === 'edit.php') {
-                                    echo esc_url(admin_url('edit.php'));
-                                } else {
-                                    echo esc_url(admin_url('admin.php?page=' . $sub_item['slug']));
-                                }
+                                if (strpos($sub_item['slug'], 'edit.php') !== false) {
+    echo esc_url(admin_url($sub_item['slug']));
+} else {
+    // در غیر این صورت فرمت صفحه پلاگین را بساز
+    echo esc_url(admin_url('admin.php?page=' . $sub_item['slug']));
+}
                             } elseif (isset($sub_item['category'])) {
                                 echo esc_url(admin_url("edit.php?{$post_type_query}{$taxonomy_slug}={$sub_item['category']}"));
                             }
                         ?>">
                             <?php echo esc_html($sub_item['title']); ?>
                         </a>
-                        <?php if (isset($sub_item['category'])): ?>
-                            <span> - <a href="<?php echo esc_url(admin_url("post-new.php?{$post_type_query}preselect_category={$sub_item['category']}")); ?>">افزودن محتوای جدید در این دسته</a></span>
-                        <?php endif; ?>
+                        <?php if (isset($sub_item['is_portfolio'])): ?>
+    <span> - <a href="<?php echo esc_url(admin_url("post-new.php?post_type=us_portfolio")); ?>">افزودن اپلیکیشن جدید</a></span>
+<?php elseif (isset($sub_item['category'])): ?>
+    <span> - <a href="<?php echo esc_url(admin_url("post-new.php?{$post_type_query}preselect_category={$sub_item['category']}")); ?>">افزودن محتوای جدید در این دسته</a></span>
+<?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -582,6 +646,23 @@ class SibanehAcademy {
 
     public function load_cpt_template($single_template) {
         global $post;
+
+        // -----------------------------------------------------------
+        // 1. تنظیم قالب اختصاصی برای ویترین اپلیکیشن‌ها (us_portfolio)
+        // -----------------------------------------------------------
+        if ($post->post_type === 'us_portfolio') {
+            // آدرس فایل در پوشه قالب فعال شما
+            $file = get_stylesheet_directory() . '/AppShowcase.php';
+            
+            // اگر فایل وجود داشت، آن را لود کن
+            if (file_exists($file)) {
+                return $file;
+            }
+        }
+
+        // -----------------------------------------------------------
+        // 2. تنظیمات قبلی برای سایر بخش‌های آکادمی
+        // -----------------------------------------------------------
         if (isset($this->sections_config[$post->post_type]) || $post->post_type === 'post') {
             $template = get_post_meta($post->ID, '_wp_page_template', true);
             if ($template && 'default' !== $template) {
@@ -595,6 +676,7 @@ class SibanehAcademy {
                 }
             }
         }
+
         return $single_template;
     }
 }

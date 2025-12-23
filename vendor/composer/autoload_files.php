@@ -21,6 +21,6 @@ return array(
     '4a83b37129298a7e10da35add94b49a8' => $baseDir . '/lib/Login/wbsLogin.php',
     'ded4fcffe7fd07b9bf363d649b367048' => $baseDir . '/lib/Single/wbsSingle.php',
     '701a5f9ee113dcb5a7e2c6b8dfd37c80' => $baseDir . '/lib/EducationHub/wbsEducationHub.php',
-    '21e0a40a1d51171748829a9364743f1e' => $baseDir . '/lib/AppShowcase/wbsAppShowcase.php',
+    '0b43350f9941bb1e495eaac2096273ae' => $baseDir . '/lib/AppStoreProductDetail/wbsAppStoreProductDetail.php',
     '72347806510dcd929b8fdeb57ca59266' => $baseDir . '/lib/tableOfContents/wbsTableOfContents.php',
 );

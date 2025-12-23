@@ -15,11 +15,11 @@
         <!-- Search and Menu Icons -->
         <div class="mobile-header-actions">
             <button class="search-icon mobile-btn header-element" type="button" id="searchIcon">
-                <i class="icon-search-1"></i>
+                <i class="<?php echo $support_info['search_icon']; ?>"></i>
             </button>
-            <button class="shopping-bag-icon mobile-btn header-element" type="button" id="shoppingBagIcon">
-                <i class="icon-shopping-bag"></i>
-            </button>
+            <a href="<?php echo home_url('/cart'); ?>" class="shopping-bag-icon desktop-btn header-element" id="shoppingBagIcon">
+                <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
+            </a>
             <button class="mobile-menu-toggle" type="button" id="menuBtnIcon">
                 <span></span>
                 <span></span>

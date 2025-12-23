@@ -22,7 +22,7 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
         'ded4fcffe7fd07b9bf363d649b367048' => __DIR__ . '/../..' . '/lib/Single/wbsSingle.php',
         '701a5f9ee113dcb5a7e2c6b8dfd37c80' => __DIR__ . '/../..' . '/lib/EducationHub/wbsEducationHub.php',
-        '21e0a40a1d51171748829a9364743f1e' => __DIR__ . '/../..' . '/lib/AppShowcase/wbsAppShowcase.php',
+        '0b43350f9941bb1e495eaac2096273ae' => __DIR__ . '/../..' . '/lib/AppStoreProductDetail/wbsAppStoreProductDetail.php',
         '72347806510dcd929b8fdeb57ca59266' => __DIR__ . '/../..' . '/lib/tableOfContents/wbsTableOfContents.php',
     );
 
