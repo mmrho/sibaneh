@@ -373,6 +373,26 @@
                     <hr />
                 </div>
             </div>
+            <!-- Availability Section -->
+            <section class="availability">
+                <div class="availability-container">
+                    <div class="availability-header">
+                        <h2>قابلیت در دسترس بودن</h2>
+                        <span>آخرین آپدیت در ۸:۳۰ - ۴ مهر ۱۴۰۴</span>
+                    </div>
+                    <div class="availability-text">
+                        <i class="icon-circle-sbh"></i>
+                        <span>این اپلیکیشن به صورت نرمال قابل دسترس میباشد.</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="break">
+                <div class="break-container">
+                    <hr />
+                </div>
+            </div>
+
 
             <!-- Comments Section -->
             <section class="comments-section">
@@ -380,7 +400,7 @@
                     <h2>نظرات کاربران</h2>
                     <?php
                     global $post;
-                    /*
+
                     if ($post->post_type === 'page' && !comments_open($post->ID)) {
                         wp_update_post(array(
                             'ID' => $post->ID,
@@ -390,7 +410,7 @@
                     if (comments_open($post->ID) || get_comments_number($post->ID)) {
                         comments_template();
                     }
-                    */ ?>
+                    ?>
                 </div>
             </section>
 
@@ -409,7 +429,7 @@
                     </p>
                     <div class="privacy-info">
                         <div class="info-icon">
-                            <i class="icon-user-2"></i>
+                            <i class="icon-contacts-sbh"></i>
                         </div>
                         <h3>اطلاعات</h3>
                         <p>طبق اعلام شرکت سازنده اطلاعات زیر ممکن است هنگام استفاده از اپلیکیشن مورد نیاز باشد.</p>
@@ -418,23 +438,21 @@
                             $privacy_items = get_field('Security_and_privacy');
                             if (!empty($privacy_items) && is_array($privacy_items)) {
                                 foreach ($privacy_items as $item) {
-                                    // استفاده از $item['value'] به جای $item
-                                    $value = $item['value']; // یا $item['label'] اگر لیبل متفاوت باشد
-                                    // تبدیل به حروف کوچک و جایگزینی فاصله‌ها با خط تیره
+                                    $value = $item['value'];
                                     $icon_class = 'icon-' . str_replace(' ', '-', strtolower($value));
                                     echo '<li><i class="' . esc_attr($icon_class) . '"></i> ' . esc_html($value) . '</li>';
                                 }
                             } else {
                                 echo '
-                    <li><i class="icon-purchases"></i> Purchases</li>
-                    <li><i class="icon-location"></i> Location</li>
-                    <li><i class="icon-contact-info"></i> Contact Info</li>
-                    <li><i class="icon-contacts"></i> Contacts</li>
-                    <li><i class="icon-user-content"></i> User Content</li>
-                    <li><i class="icon-identifiers"></i> Identifiers</li>
-                    <li><i class="icon-usage-data"></i> Usage Data</li>
-                    <li><i class="icon-sensitive-info"></i> Sensitive Info</li>
-                    <li><i class="icon-diagnostics"></i> Diagnostics</li>';
+                                      <li><i class="icon-purchases-sbh"></i> Purchases</li>
+                                      <li><i class="icon-location-sbh"></i> Location</li>
+                                      <li><i class="icon-contact-info-sbh"></i> Contact Info</li>
+                                      <li><i class="icon-contacts-sbh"></i> Contacts</li>
+                                      <li><i class="icon-user-content-sbh"></i> User Content</li>
+                                      <li><i class="icon-identifiers-sbh"></i> Identifiers</li>
+                                      <li><i class="icon-usage-data-sbh"></i> Usage Data</li>
+                                      <li><i class="icon-sensitive-info-sbh"></i> Sensitive Info</li>
+                                      <li><i class="icon-diagnostics-sbh"></i> Diagnostics</li>';
                             }
                             ?>
                         </ul>
