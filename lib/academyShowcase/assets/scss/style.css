@@ -1,0 +1,461 @@
+/* ==========================================================================
+   academyShowcase Post Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 26px 0;
+  background-color: #FFFFFF;
+}
+.main-content .academy-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 24px;
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  /* Academy Section Variables */
+  /* Breadcrumb */
+  /* 1. Hero Section */
+  /* 2. Box section */
+}
+.main-content .academy-container .breadcrumb-1 {
+  align-self: stretch;
+}
+.main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
+  text-align: right;
+  max-width: 100%;
+  padding: 0 45px;
+}
+.main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper .breadcrumb-logo {
+  display: inline-block;
+  height: 15px;
+  width: auto;
+  vertical-align: middle;
+  margin: 5px;
+}
+.main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper .breadcrumb_last {
+  font-size: 14px;
+  margin: 5px;
+  color: #7f8c8d;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
+    padding: 0 30px;
+  }
+}
+@media (max-width: 768px) {
+  .main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 480px) {
+  .main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
+    padding: 0 20px;
+  }
+}
+.main-content .academy-container .academy-hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 25px;
+  margin-bottom: 36px;
+}
+.main-content .academy-container .academy-hero-section .academy-hero-img {
+  width: 100%;
+  max-width: 563px;
+  max-height: 563px;
+  aspect-ratio: 1/1;
+}
+.main-content .academy-container .academy-hero-section .academy-badge {
+  color: #1d1d1f;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0px;
+}
+.main-content .academy-container .academy-hero-section .academy-main-title {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  color: #1d1d1f;
+  margin-bottom: 10px;
+}
+.main-content .academy-container .academy-hero-section .academy-hero-desc {
+  color: #1d1d1f;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 48px;
+  max-width: 680px;
+  margin-bottom: 18px;
+}
+.main-content .academy-container .academy-hero-section .academy-slogan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  /* Gradient logic applied to the entire container */
+  background: var(--neww, linear-gradient(109deg, var(--PRIMARY-COLORS-mac-store, #34267b) 0%, var(--PRIMARY-COLORS-business, #684bf6) 15.95%, var(--PRIMARY-COLORS-fix, #3873e9) 36.11%, var(--PRIMARY-COLORS-app-store, #52b3f9) 57.22%, var(--PRIMARY-COLORS-code, #e95d34) 86.76%));
+  /* Clipping the background to all text/icon content inside */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-content .academy-container .academy-hero-section .academy-slogan i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-content .academy-container .academy-hero-section .academy-slogan span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-content .academy-container .academy-box-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 40px;
+  margin: 0px;
+  padding: 90px;
+  width: 100%;
+  background: #fafafa;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section {
+    padding-right: 16px;
+    padding-left: 16px;
+    gap: 24px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 482px;
+  border-radius: 32px;
+  background: #d3d3d3;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    height: 556.95px;
+    width: 100%;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding-right: 53px;
+  padding-top: 57px;
+  gap: 16px;
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content {
+    padding-right: 20px;
+    padding-top: 0px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-label {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #707070;
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-label {
+    font-size: 14px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-title {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  width: 100%;
+  margin-bottom: 10px;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-title {
+    font-size: 24px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-btn {
+  background: #0073e3;
+  border: none;
+  padding: 16px;
+  margin-right: 50px;
+  border-radius: 100px;
+  font-weight: bold;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: 0.3s ease;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-btn {
+    margin-right: 0px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-btn span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
+}
+.main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-TheWorldOfAppsAndGames-plus-btn {
+  position: absolute;
+  bottom: 245px !important;
+  right: 55px !important;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-TheWorldOfAppsAndGames-plus-btn {
+    bottom: 25px !important;
+    right: 25px !important;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+  /* 3.1 Academy Tutorials */
+  /* 3.2 News & Analysis */
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  width: 100%;
+  border-radius: 24px;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-box {
+    height: 556.95px;
+    width: 100%;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials {
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  background: #fff;
+  padding: 65px 30px;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials {
+    padding: 30px 20px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-label {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #707070;
+  width: 100%;
+  text-align: right;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-label {
+    font-size: 14px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-title {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: right;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-title {
+    font-size: 36px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-desc {
+  color: #707070;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 0px;
+  text-wrap: wrap;
+  text-align: right;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-btn {
+  background: transparent;
+  border-radius: 100px;
+  border: 1px solid #000;
+  padding: 16px 50px;
+  border-radius: 100px;
+  font-weight: bold;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: 0.3s ease;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-btn span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #1d1d1f;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis {
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+  background: #fff;
+  padding: 65px;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis {
+    padding: 80px 50px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 16px;
+  width: 100%;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-label {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #707070;
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-label {
+    font-size: 14px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-title {
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+@media (max-width: 849.98px) {
+  .main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-title {
+    font-size: 24px;
+  }
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-desc {
+  color: #707070;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 0px;
+  text-wrap: wrap;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-btn {
+  background: transparent;
+  border-radius: 100px;
+  border: 1px solid #000;
+  padding: 16px 50px;
+  border-radius: 100px;
+  font-weight: bold;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: 0.3s ease;
+}
+.main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-btn span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #1d1d1f;
+}
+.main-content .academy-container .academy-box-section .academy-plus-btn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+.main-content .academy-container .academy-box-section .academy-plus-btn i {
+  font-size: 37px;
+}/*# sourceMappingURL=style.css.map */

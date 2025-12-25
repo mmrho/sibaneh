@@ -28,7 +28,8 @@
       "lib/Login/wbsLogin.php",
       "lib/Single/wbsSingle.php",
       "lib/EducationHub/wbsEducationHub.php",
-      "lib/AppStoreProductDetail/wbsAppStoreProductDetail.php",
+      "lib/appStoreProductDetail/wbsAppStoreProductDetail.php",
+      "lib/academyShowcase/wbsAcademyShowcase.php",
       "lib/tableOfContents/wbsTableOfContents.php"
       
     ]

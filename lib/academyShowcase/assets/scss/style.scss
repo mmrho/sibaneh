@@ -1,0 +1,482 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixin";
+/* ==========================================================================
+   academyShowcase Post Styles
+   ========================================================================== */
+body {
+    @include media-max(mobile-max) {
+        padding-top: 0px !important;
+
+        &.scrolled {
+            padding-top: 0px !important;
+        }
+    }
+}
+#site-header {
+    .mobile-header {
+        .mobile-header-container {
+            position: sticky !important;
+        }
+    }
+}
+
+.main-content {
+    padding: 26px 0;
+    background-color: $primary_color;
+    .academy-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 24px;
+        max-width: 100%;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+
+        /* Academy Section Variables */
+        $primary-blue: #007aff;
+        $accent-yellow: #fbc02d;
+        $text-dark: #1d1d1f;
+        $text-gray: #86868b;
+        $bg-light-gray: #d3d3d3;
+        $border-radius: 32px;
+        $transition: 0.3s ease;
+        /* Breadcrumb */
+        .breadcrumb-1 {
+            align-self: stretch;
+
+            .breadcrumb-wrapper {
+                text-align: right;
+                max-width: 100%;
+                padding: 0 45px;
+                .breadcrumb-logo {
+                    display: inline-block;
+                    height: 15px;
+                    width: auto;
+                    vertical-align: middle;
+                    margin: 5px;
+                }
+                .breadcrumb_last {
+                    font-size: 14px;
+                    margin: 5px;
+                    color: #7f8c8d;
+                }
+
+                @include media-max(mobile-max) {
+                    padding: 0 30px;
+                }
+                @include media-max(md) {
+                    padding: 0 20px;
+                }
+                @include media-max(sm) {
+                    padding: 0 20px;
+                }
+            }
+        }
+
+        /* 1. Hero Section */
+        .academy-hero-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 25px;
+            margin-bottom: 36px;
+
+            .academy-hero-img {
+                width: 100%;
+                max-width: 563px;
+                max-height: 563px;
+                aspect-ratio: 1/1;
+            }
+
+            .academy-badge {
+                // position: absolute;
+                //top: 490px;
+                //left: 50%;
+                // transform: translateX(-50%);
+                color: #1d1d1f;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-bottom: 0px;
+            }
+
+            .academy-main-title {
+                // position: absolute;
+                //top: 490px;
+                //left: 50%;
+                // transform: translateX(-50%);
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: normal;
+                color: #1d1d1f;
+                margin-bottom: 10px;
+            }
+
+            .academy-hero-desc {
+                color: #1d1d1f;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 48px;
+                max-width: 680px;
+                margin-bottom: 18px;
+            }
+            .academy-slogan {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                gap: 8px;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                white-space: nowrap;
+                /* Gradient logic applied to the entire container */
+                background: var(
+                    --neww,
+                    linear-gradient(
+                        109deg,
+                        var(--PRIMARY-COLORS-mac-store, #34267b) 0%,
+                        var(--PRIMARY-COLORS-business, #684bf6) 15.95%,
+                        var(--PRIMARY-COLORS-fix, #3873e9) 36.11%,
+                        var(--PRIMARY-COLORS-app-store, #52b3f9) 57.22%,
+                        var(--PRIMARY-COLORS-code, #e95d34) 86.76%
+                    )
+                );
+
+                /* Clipping the background to all text/icon content inside */
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                i {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+        }
+        /* 2. Box section */
+        .academy-box-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            gap: 40px;
+            margin: 0px;
+            padding: 90px;
+            width: 100%;
+            background: #fafafa;
+            @include media-max(mobile-max) {
+                padding-right: 16px;
+                padding-left: 16px;
+                gap: 24px;
+            }
+
+            .academy-TheWorldOfAppsAndGames-section {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                align-content: center;
+                width: 100%;
+                height: 482px;
+                border-radius: 32px;
+                background: #d3d3d3;
+
+                @include media-max(mobile-max) {
+                    grid-template-columns: 1fr;
+                    justify-content: center;
+                    height: 556.95px;
+                    width: 100%;
+                }
+
+                .academy-box-content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                    padding-right: 53px;
+                    padding-top: 57px;
+                    gap: 16px;
+                    width: 100%;
+                    @include media-max(mobile-max) {
+                        padding-right: 20px;
+                        padding-top: 0px;
+                    }
+
+                    .academy-box-label {
+                        font-size: 18px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                        color: #707070;
+                        width: 100%;
+                        @include media-max(mobile-max) {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .academy-box-title {
+                        font-size: 40px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                        color: #1d1d1f;
+                        width: 100%;
+                        margin-bottom: 10px;
+                        @include media-max(mobile-max) {
+                            font-size: 24px;
+                        }
+                    }
+
+                    .academy-box-btn {
+                        background: #0073e3;
+                        border: none;
+                        padding: 16px;
+                        margin-right: 50px;
+                        border-radius: 100px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        width: fit-content;
+                        transition: $transition;
+                        @include media-max(mobile-max) {
+                            margin-right: 0px;
+                        }
+                        span {
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: normal;
+                            color: #fff;
+                        }
+                    }
+                }
+                .academy-TheWorldOfAppsAndGames-plus-btn {
+                    position: absolute;
+                    bottom: 245px !important;
+                    right: 55px !important;
+                    @include media-max(mobile-max) {
+                        bottom: 25px !important;
+                        right: 25px !important;
+                    }
+                }
+            }
+
+            .academy-twin-section {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+                width: 100%;
+                @include media-max(mobile-max) {
+                    grid-template-columns: 1fr;
+                    width: 100%;
+                }
+
+                .academy-box {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    height: 650px;
+                    width: 100%;
+                    border-radius: 24px;
+                    @include media-max(mobile-max) {
+                        height: 556.95px;
+                        width: 100%;
+                    }
+                }
+
+                /* 3.1 Academy Tutorials */
+                .academy-comprehensiveAppleTutorials {
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    align-content: flex-start;
+                    background: #fff;
+                    padding: 65px 30px;
+                    @include media-max(mobile-max) {
+                        padding: 30px 20px;
+                    }
+
+                    .academy-box-content {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        align-content: flex-start;
+                        gap: 16px;
+                        width: 100%;
+
+                        .academy-box-label {
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            color: #707070;
+                            width: 100%;
+                            text-align: right;
+                            @include media-max(mobile-max) {
+                                font-size: 14px;
+                            }
+                        }
+
+                        .academy-box-title {
+                            font-size: 48px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: normal;
+                            color: #1d1d1f;
+                            width: 100%;
+                            margin-bottom: 10px;
+                            text-align: right;
+                            @include media-max(mobile-max) {
+                                font-size: 36px;
+                            }
+                        }
+                        .academy-box-desc {
+                            color: #707070;
+                            text-align: center;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 40px;
+                            margin-bottom: 0px;
+                            text-wrap: wrap;
+                            text-align: right;
+                        }
+
+                        .academy-box-btn {
+                            background: transparent;
+                            border-radius: 100px;
+                            border: 1px solid #000;
+                            padding: 16px 50px;
+                            border-radius: 100px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            width: fit-content;
+                            transition: $transition;
+
+                            span {
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                                color: #1d1d1f;
+                            }
+                        }
+                    }
+                }
+
+                /* 3.2 News & Analysis */
+                .academy-newsAndAnalysis {
+                    justify-content: flex-end;
+                    align-items: center;
+                    align-content: center;
+                    background: #fff;
+                    padding: 65px;
+                    @include media-max(mobile-max) {
+                        padding: 80px 50px;
+                    }
+
+                    .academy-box-content {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        align-content: center;
+                        gap: 16px;
+                        width: 100%;
+
+                        .academy-box-label {
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            color: #707070;
+                            width: 100%;
+                            @include media-max(mobile-max) {
+                                font-size: 14px;
+                            }
+                        }
+
+                        .academy-box-title {
+                            font-size: 40px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: normal;
+                            color: #1d1d1f;
+                            width: 100%;
+                            margin-bottom: 10px;
+                            text-align: center;
+                            @include media-max(mobile-max) {
+                                font-size: 24px;
+                            }
+                        }
+                        .academy-box-desc {
+                            color: #707070;
+                            text-align: center;
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 40px;
+                            margin-bottom: 0px;
+                            text-wrap: wrap;
+                        }
+
+                        .academy-box-btn {
+                            background: transparent;
+                            border-radius: 100px;
+                            border: 1px solid #000;
+                            padding: 16px 50px;
+                            border-radius: 100px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            width: fit-content;
+                            transition: $transition;
+
+                            span {
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                                color: #1d1d1f;
+                            }
+                        }
+                    }
+                }
+            }
+            .academy-plus-btn {
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                border: none;
+                background: transparent;
+                margin: 0px;
+                padding: 0px;
+                position: absolute;
+                bottom: 25px;
+                right: 25px;
+                i {
+                    font-size: 37px;
+                }
+            }
+        }
+    }
+}
