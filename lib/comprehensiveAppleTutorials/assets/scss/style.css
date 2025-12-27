@@ -1,0 +1,359 @@
+/* ==========================================================================
+   comprehensiveAppleTutorials Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 26px 0;
+  background-color: #FFFFFF;
+}
+.main-content .cat-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 24px;
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  /* 1. Hero Section */
+  /* 2. Box section */
+}
+.main-content .cat-container .cat-hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 25px;
+  margin-bottom: 36px;
+}
+.main-content .cat-container .cat-hero-section .cat-hero-img {
+  display: flex;
+  width: 100%;
+  margin: 50px 0px;
+}
+.main-content .cat-container .cat-hero-section .cat-hero-img .cat-hero-img-d {
+  display: block;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  max-width: none;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-hero-section .cat-hero-img .cat-hero-img-d {
+    display: none;
+  }
+}
+.main-content .cat-container .cat-hero-section .cat-hero-img .cat-hero-img-m {
+  display: none;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-hero-section .cat-hero-img .cat-hero-img-m {
+    display: block;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: none;
+  }
+}
+.main-content .cat-container .cat-hero-section .cat-badge {
+  color: #1d1d1f;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 0px;
+}
+.main-content .cat-container .cat-hero-section .cat-main-title {
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  margin-bottom: 10px;
+}
+.main-content .cat-container .cat-hero-section .cat-hero-desc {
+  color: #1d1d1f;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 48px;
+  max-width: 680px;
+  margin-bottom: 18px;
+}
+.main-content .cat-container .cat-hero-section .cat-slogan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  /* Gradient logic applied to the entire container */
+  background: var(--neww, linear-gradient(109deg, var(--PRIMARY-COLORS-mac-store, #34267b) 0%, var(--PRIMARY-COLORS-business, #684bf6) 15.95%, var(--PRIMARY-COLORS-fix, #3873e9) 36.11%, var(--PRIMARY-COLORS-app-store, #52b3f9) 57.22%, var(--PRIMARY-COLORS-code, #e95d34) 86.76%));
+  /* Clipping the background to all text/icon content inside */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-content .cat-container .cat-hero-section .cat-slogan i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-content .cat-container .cat-hero-section .cat-slogan span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-content .cat-container .cat-box-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 40px;
+  margin: 0px;
+  padding: 90px;
+  width: 100%;
+  background: #fafafa;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section {
+    padding-right: 16px;
+    padding-left: 16px;
+    gap: 24px;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  width: 100%;
+  border-radius: 24px;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section .cat-box {
+    height: 556.95px;
+    width: 100%;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #fff;
+  padding: 65px;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts {
+    padding: 80px 50px;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts .cat-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 16px;
+  width: 100%;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts .cat-box-content .cat-box-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts .cat-box-content .cat-box-title {
+    font-size: 24px;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts .cat-box-content .cat-box-desc {
+  color: #1d1d1f;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 0px;
+  text-wrap: wrap;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts .cat-box-content .cat-box-btn {
+  border: none;
+  padding: 16px 50px;
+  border-radius: 100px;
+  background: #0073e3;
+  font-weight: bold;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-learningToUseAppleProducts .cat-box-content .cat-box-btn span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #d9d9d9;
+  padding: 65px;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions {
+    padding: 80px 50px;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 16px;
+  width: 100%;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-label {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #707070;
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-label {
+    font-size: 14px;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-title {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+@media (max-width: 849.98px) {
+  .main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-title {
+    font-size: 24px;
+  }
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-desc {
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 0px;
+  text-wrap: wrap;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-btn {
+  border: none;
+  padding: 16px 50px;
+  border-radius: 100px;
+  background: #0073e3;
+  font-weight: bold;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-box-btn span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-slogan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  white-space: nowrap;
+  /* Gradient logic applied to the entire container */
+  background: var(--neww, linear-gradient(109deg, var(--PRIMARY-COLORS-mac-store, #34267b) 0%, var(--PRIMARY-COLORS-business, #684bf6) 15.95%, var(--PRIMARY-COLORS-fix, #3873e9) 36.11%, var(--PRIMARY-COLORS-app-store, #52b3f9) 57.22%, var(--PRIMARY-COLORS-code, #e95d34) 86.76%));
+  /* Clipping the background to all text/icon content inside */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-slogan i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-content .cat-container .cat-box-section .cat-twin-section .cat-tricksAndSolutions .cat-box-content .cat-slogan span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.main-content .cat-container .cat-box-section .cat-plus-btn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+}
+.main-content .cat-container .cat-box-section .cat-plus-btn i {
+  font-size: 37px;
+}/*# sourceMappingURL=style.css.map */

@@ -31,6 +31,7 @@
       "lib/appStoreProductDetail/wbsAppStoreProductDetail.php",
       "lib/academyShowcase/wbsAcademyShowcase.php",
       "lib/twoaagShowcase/wbsTwoaagShowcase.php",
+      "lib/comprehensiveAppleTutorials/wbsComprehensiveAppleTutorials.php",
       "lib/tableOfContents/wbsTableOfContents.php"
       
     ]
