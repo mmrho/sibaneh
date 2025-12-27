@@ -4,7 +4,7 @@
         <span class="academy-badge">مرکز جامع اپل در ایران</span>
         <h1 class="academy-main-title">آکادمی سیبانه</h1>
         <p class="academy-hero-desc">از دانلود و بررسی اپلیکیشن های آیفون آیپد و مک تا آموزش های تخصصی و آخرین اخبار و تحلیل ها. همه چیز برای تسلط شما بر دنیای اپل و تکنولوژی های آن در اینجا گردآوری شده است.</p>
-        <div class="academy-slogan"><i class="icon-contact-info-sbh"></i><span>بومی سازی شده بر اساس نیاز کاربر ایرانی</span></din>
+        <div class="academy-slogan"><i class="icon-localized-based-on-iranian-user-needs-sbh"></i><span>بومی سازی شده بر اساس نیاز کاربر ایرانی</span></div>
     </section>
     <section class="academy-box-section">
         <div class="academy-TheWorldOfAppsAndGames-section">

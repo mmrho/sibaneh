@@ -36,47 +36,6 @@ body {
         padding: 0px;
         width: 100%;
 
-        /* Academy Section Variables */
-        $primary-blue: #007aff;
-        $accent-yellow: #fbc02d;
-        $text-dark: #1d1d1f;
-        $text-gray: #86868b;
-        $bg-light-gray: #d3d3d3;
-        $border-radius: 32px;
-        $transition: 0.3s ease;
-        /* Breadcrumb */
-        .breadcrumb-1 {
-            align-self: stretch;
-
-            .breadcrumb-wrapper {
-                text-align: right;
-                max-width: 100%;
-                padding: 0 45px;
-                .breadcrumb-logo {
-                    display: inline-block;
-                    height: 15px;
-                    width: auto;
-                    vertical-align: middle;
-                    margin: 5px;
-                }
-                .breadcrumb_last {
-                    font-size: 14px;
-                    margin: 5px;
-                    color: #7f8c8d;
-                }
-
-                @include media-max(mobile-max) {
-                    padding: 0 30px;
-                }
-                @include media-max(md) {
-                    padding: 0 20px;
-                }
-                @include media-max(sm) {
-                    padding: 0 20px;
-                }
-            }
-        }
-
         /* 1. Hero Section */
         .academy-hero-section {
             position: relative;
@@ -256,7 +215,6 @@ body {
                         font-weight: bold;
                         cursor: pointer;
                         width: fit-content;
-                        transition: $transition;
                         @include media-max(mobile-max) {
                             margin-right: 0px;
                         }
@@ -370,8 +328,7 @@ body {
                             font-weight: bold;
                             cursor: pointer;
                             width: fit-content;
-                            transition: $transition;
-
+                            
                             span {
                                 font-size: 16px;
                                 font-style: normal;
@@ -448,7 +405,6 @@ body {
                             font-weight: bold;
                             cursor: pointer;
                             width: fit-content;
-                            transition: $transition;
 
                             span {
                                 font-size: 16px;

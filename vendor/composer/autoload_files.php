@@ -23,5 +23,6 @@ return array(
     '701a5f9ee113dcb5a7e2c6b8dfd37c80' => $baseDir . '/lib/EducationHub/wbsEducationHub.php',
     '66a396d68e58555b0f599c6d2fe86808' => $baseDir . '/lib/appStoreProductDetail/wbsAppStoreProductDetail.php',
     '21e002bf9b9fc30856399775ee9a729e' => $baseDir . '/lib/academyShowcase/wbsAcademyShowcase.php',
+    '65b4b2c77d7b4b2a5aa8a97516dd3910' => $baseDir . '/lib/twoaagShowcase/wbsTwoaagShowcase.php',
     '72347806510dcd929b8fdeb57ca59266' => $baseDir . '/lib/tableOfContents/wbsTableOfContents.php',
 );

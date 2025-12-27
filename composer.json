@@ -30,6 +30,7 @@
       "lib/EducationHub/wbsEducationHub.php",
       "lib/appStoreProductDetail/wbsAppStoreProductDetail.php",
       "lib/academyShowcase/wbsAcademyShowcase.php",
+      "lib/twoaagShowcase/wbsTwoaagShowcase.php",
       "lib/tableOfContents/wbsTableOfContents.php"
       
     ]

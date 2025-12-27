@@ -30,45 +30,8 @@
   margin: 0px;
   padding: 0px;
   width: 100%;
-  /* Academy Section Variables */
-  /* Breadcrumb */
   /* 1. Hero Section */
   /* 2. Box section */
-}
-.main-content .academy-container .breadcrumb-1 {
-  align-self: stretch;
-}
-.main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
-  text-align: right;
-  max-width: 100%;
-  padding: 0 45px;
-}
-.main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper .breadcrumb-logo {
-  display: inline-block;
-  height: 15px;
-  width: auto;
-  vertical-align: middle;
-  margin: 5px;
-}
-.main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper .breadcrumb_last {
-  font-size: 14px;
-  margin: 5px;
-  color: #7f8c8d;
-}
-@media (max-width: 849.98px) {
-  .main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
-    padding: 0 30px;
-  }
-}
-@media (max-width: 768px) {
-  .main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
-    padding: 0 20px;
-  }
-}
-@media (max-width: 480px) {
-  .main-content .academy-container .breadcrumb-1 .breadcrumb-wrapper {
-    padding: 0 20px;
-  }
 }
 .main-content .academy-container .academy-hero-section {
   position: relative;
@@ -232,7 +195,6 @@
   cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
-  transition: 0.3s ease;
 }
 @media (max-width: 849.98px) {
   .main-content .academy-container .academy-box-section .academy-TheWorldOfAppsAndGames-section .academy-box-content .academy-box-btn {
@@ -356,7 +318,6 @@
   cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
-  transition: 0.3s ease;
 }
 .main-content .academy-container .academy-box-section .academy-twin-section .academy-comprehensiveAppleTutorials .academy-box-content .academy-box-btn span {
   font-size: 16px;
@@ -434,7 +395,6 @@
   cursor: pointer;
   width: -moz-fit-content;
   width: fit-content;
-  transition: 0.3s ease;
 }
 .main-content .academy-container .academy-box-section .academy-twin-section .academy-newsAndAnalysis .academy-box-content .academy-box-btn span {
   font-size: 16px;
