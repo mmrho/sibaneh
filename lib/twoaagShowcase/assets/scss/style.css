@@ -47,9 +47,39 @@
   width: 100%;
 }
 .main-content .twoaag-container .twoaag-hero-section .twoaag-hero-img {
+  display: flex;
   width: 100%;
-  max-height: 500px;
-  aspect-ratio: 1/2;
+  margin: 50px 0px;
+}
+.main-content .twoaag-container .twoaag-hero-section .twoaag-hero-img .cat-hero-img-d {
+  display: block;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  max-width: none;
+}
+@media (max-width: 849.98px) {
+  .main-content .twoaag-container .twoaag-hero-section .twoaag-hero-img .cat-hero-img-d {
+    display: none;
+  }
+}
+.main-content .twoaag-container .twoaag-hero-section .twoaag-hero-img .cat-hero-img-m {
+  display: none;
+}
+@media (max-width: 849.98px) {
+  .main-content .twoaag-container .twoaag-hero-section .twoaag-hero-img .cat-hero-img-m {
+    display: block;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    max-width: none;
+  }
 }
 .main-content .twoaag-container .twoaag-hero-section .twoaag-badge {
   color: #1d1d1f;

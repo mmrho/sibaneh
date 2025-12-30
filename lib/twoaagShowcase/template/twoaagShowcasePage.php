@@ -1,7 +1,10 @@
 <div class="twoaag-container">
     <section class="twoaag-hero-section">
-        <img src="<?php echo get_template_directory_uri(); ?>/images/temp/twoaagShowcase.png" alt="آکادمی سیبانه" class="twoaag-hero-img">
-        <h1 class="twoaag-main-title">دنیای اپلیکیشن و بازی</h1>
+    <div class="twoaag-hero-img">
+            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/twoaag-hero-desktop.png" alt="دنیای اپلیکیشن و بازی" class="cat-hero-img-d">
+            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/twoaag-hero-mobile.png" alt="دنیای اپلیکیشن و بازی" class="cat-hero-img-m">
+        </div>
+    <h1 class="twoaag-main-title">دنیای اپلیکیشن و بازی</h1>
         <span class="twoaag-badge">مرجع دانلود معرفی و آموزش تخصصی اپلیکیشن های آیفون و آیپد</span>
         <span class="twoaag-hero-search-desc">اپلیکیشن مورد نظر خود را جستجو کنید</span>
         <div class="twoaag-search-input-wrapper">

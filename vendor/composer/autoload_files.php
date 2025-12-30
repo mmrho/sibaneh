@@ -25,5 +25,6 @@ return array(
     '21e002bf9b9fc30856399775ee9a729e' => $baseDir . '/lib/academyShowcase/wbsAcademyShowcase.php',
     '65b4b2c77d7b4b2a5aa8a97516dd3910' => $baseDir . '/lib/twoaagShowcase/wbsTwoaagShowcase.php',
     '1a5164408dde0f58b7b1ba17629e6e11' => $baseDir . '/lib/comprehensiveAppleTutorials/wbsComprehensiveAppleTutorials.php',
+    'deaf86165834963c604fa84cd3ef615c' => $baseDir . '/lib/reviewAndIntroductionOfApplications/wbsReviewAndIntroductionOfApplications.php',
     '72347806510dcd929b8fdeb57ca59266' => $baseDir . '/lib/tableOfContents/wbsTableOfContents.php',
 );

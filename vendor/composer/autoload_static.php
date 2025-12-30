@@ -26,6 +26,7 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         '21e002bf9b9fc30856399775ee9a729e' => __DIR__ . '/../..' . '/lib/academyShowcase/wbsAcademyShowcase.php',
         '65b4b2c77d7b4b2a5aa8a97516dd3910' => __DIR__ . '/../..' . '/lib/twoaagShowcase/wbsTwoaagShowcase.php',
         '1a5164408dde0f58b7b1ba17629e6e11' => __DIR__ . '/../..' . '/lib/comprehensiveAppleTutorials/wbsComprehensiveAppleTutorials.php',
+        'deaf86165834963c604fa84cd3ef615c' => __DIR__ . '/../..' . '/lib/reviewAndIntroductionOfApplications/wbsReviewAndIntroductionOfApplications.php',
         '72347806510dcd929b8fdeb57ca59266' => __DIR__ . '/../..' . '/lib/tableOfContents/wbsTableOfContents.php',
     );
 

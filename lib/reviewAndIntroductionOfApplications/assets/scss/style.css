@@ -1,0 +1,486 @@
+/* ==========================================================================
+   comprehensiveAppleTutorials Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 0px;
+  margin: 0px;
+  background-color: #FFFFFF;
+  width: 100%;
+}
+.main-content .RAIOA-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-title-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  margin: 50px 0px;
+  padding: 0px 155px;
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-title-section {
+    padding: 35px 24px;
+  }
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-title-section h1 {
+  text-align: right;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-wrap: wrap;
+  color: #1d1d1f;
+  margin: 0px;
+  padding: 0px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 155px;
+  width: 100%;
+  background: #fbfbfd;
+}
+@media (max-width: 849.98px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section {
+    padding: 24px 24px 24px 0px;
+  }
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section.column-cards {
+    padding: 24px;
+  }
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-header .RAIOA-title {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  margin: 0;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-header .RAIOA-filter-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 100px;
+  background: #fff;
+  padding: 10px 24px;
+  cursor: pointer;
+  color: #000;
+  transition: 0.3s;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-header .RAIOA-filter-btn i {
+  font-size: 24px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-header .RAIOA-filter-btn span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-header .RAIOA-filter-btn:hover {
+  background: #f9f9f9;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 24px;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0px;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 849.98px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track.track-column {
+    flex-direction: column;
+  }
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card {
+  background: #fff;
+  border-radius: 24px;
+  border: 1px solid #fff;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: 0.3s;
+  cursor: pointer;
+}
+@media (min-width: 850px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card {
+    width: calc(33.33% - 11px);
+  }
+}
+@media (max-width: 849.98px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card {
+    width: 80%;
+  }
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card.full-card {
+    width: 100%;
+  }
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card img {
+  width: 100%;
+  max-height: 270px;
+  aspect-ratio: 16/10;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card .RAIOA-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 12px;
+  padding: 16px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card .RAIOA-card-body .RAIOA-cat {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #707070;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card .RAIOA-card-body .RAIOA-cat span {
+  margin-left: 8px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card .RAIOA-card-body .RAIOA-card-title {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  color: #1d1d1f;
+  overflow: hidden;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-slider-track .RAIOA-card .RAIOA-card-body .RAIOA-status {
+  color: #e95d34;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  margin: 0px;
+  padding: 0px;
+  padding-left: 16px;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container .RAIOA-arrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 12px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container .RAIOA-arrows .RAIOA-arrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #f5f5f8;
+  border: none;
+  width: 37px;
+  height: 37px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0px;
+  margin: 0px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container .RAIOA-arrows .RAIOA-arrow i {
+  font-size: 20px;
+  color: #858585;
+  padding: 0px;
+  margin: 0px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container .RAIOA-dots {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container .RAIOA-dots .RAIOA-dot {
+  width: 8px;
+  height: 8px;
+  aspect-ratio: 1/1;
+  background: #cdcdcd;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-slider-wrapper .RAIOA-nav-container .RAIOA-dots .RAIOA-dot.active {
+  background: #1d1d1f;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-center-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 56px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-center-btn .RAIOA-more-btn,
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-section .RAIOA-center-btn .RAIOA-archive-btn {
+  background: #f5f5f8;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  transition: 0.3s;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background: #fbfbfd;
+  gap: 24px;
+  padding: 60px 20px;
+  text-align: center;
+  margin: 0px;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section .RAIOA-search-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section .RAIOA-search-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  max-width: 606px;
+  min-width: 320px;
+  height: 64px;
+  padding: 0 16px;
+  gap: 16px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section .RAIOA-search-box input {
+  flex: 1;
+  border-radius: 100px;
+  border: 1px solid #cdcdcd;
+  background: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 48px;
+  padding-right: 50px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section .RAIOA-search-box input::-moz-placeholder {
+  color: #cdcdcd;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section .RAIOA-search-box input::placeholder {
+  color: #cdcdcd;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-search-section .RAIOA-search-box i {
+  position: absolute;
+  top: 22px;
+  right: 30px;
+  font-size: 20px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 24px 155px;
+  width: 100%;
+  background: #fff;
+}
+@media (max-width: 849.98px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section {
+    padding: 24px 24px;
+  }
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-header .RAIOA-title {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #1d1d1f;
+  margin: 0;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 24px;
+  width: 100%;
+  padding-bottom: 50px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  padding: 0px;
+  padding-bottom: 24px;
+  background: #fff;
+  border-radius: 0px;
+  margin: 0px;
+  gap: 8px;
+  border-bottom: 1px solid #f5f5f8;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item .RAIOA-list-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 0px;
+  gap: 12px;
+  width: 100%;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item .RAIOA-list-content .RAIOA-cat {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: #858585;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item .RAIOA-list-content .RAIOA-list-title {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  color: #1d1d1f;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item .RAIOA-list-content .RAIOA-status {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #e95d34;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item .RAIOA-list-img {
+  width: 230px;
+  height: 140px;
+  border-radius: 16px;
+  border: 1px solid #f5f5f8;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 849.98px) {
+  .main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-list-container .RAIOA-list-item .RAIOA-list-img {
+    width: 140px;
+    height: 140px;
+    aspect-ratio: 1/1;
+  }
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-center-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 56px;
+}
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-center-btn .RAIOA-more-btn,
+.main-content .RAIOA-container .RAIOA-wrapper .RAIOA-more-section .RAIOA-center-btn .RAIOA-archive-btn {
+  background: #f5f5f8;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  transition: 0.3s;
+}/*# sourceMappingURL=style.css.map */
