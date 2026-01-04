@@ -83,7 +83,239 @@ $sibaneh_orange_color: #ff6b6b;
             z-index: 95;
         }
 
-        // --- Morphing Background ---
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1024px;
+            z-index: 102;
+            .site-header-brand {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 32px;
+                height: 32px;
+                .site-header-logo {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100%;
+                    .site-header-top-brand-logo {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .site-nav-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                align-content: center;
+                width: 100%;
+                max-width: 800px;
+                .site-nav {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    align-content: center;
+                    width: 100%;
+                    .site-nav-list {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        align-content: center;
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        width: 100%;
+
+                        .site-nav-item {
+                            
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: center;
+                            align-content: center;
+                            z-index: 110;
+                            padding-right: calc(1px + 1%);
+                            padding-left: calc(1px + 1%);
+                           
+
+                            .site-nav-link {
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                justify-content: center;
+                                align-content: center;
+                                width: 100%;
+                                
+                                span {
+                                    display: flex;
+                                    align-items: center;
+                                    text-decoration: none;
+                                    color: #111111;
+                                    font-size: 12px;
+                                    font-weight: 300;
+                                    line-height: 36px;
+                                    text-wrap: nowrap;
+                                    cursor: pointer;
+                                    transition: color 0.3s ease;
+                                    
+                                }
+                            }
+                            &:hover {
+                                color: #a5957b;
+                                .site-nav-link span {
+                                    color: #666;
+                                }
+                            }
+
+                            // --- MEGA MENU (DESKTOP) ---
+                            .mega-menu {
+                                display: block !important;
+                                position: absolute !important;
+                                width: 100vw !important;
+                                left: 0 !important;
+                                top: 100% !important;
+                                background: transparent !important;
+                                box-shadow: none !important;
+                                border: none !important;
+                                z-index: 101;
+                                opacity: 0;
+                                visibility: hidden;
+                                pointer-events: none;
+                                transition:
+                                    opacity 0.15s ease,
+                                    visibility 0s linear 0.15s;
+
+                                &.is-active {
+                                    opacity: 1;
+                                    visibility: visible;
+                                    pointer-events: auto;
+                                    transition:
+                                        opacity 0.3s ease 0.1s,
+                                        visibility 0s linear 0s;
+
+                                    .mega-menu-container .mega-menu-content ul li {
+                                        opacity: 1 !important;
+                                    }
+                                }
+
+                                .mega-menu-container {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: flex-start;
+                                    width: 100%;
+                                    max-width: 1024px;
+                                    margin: 0 auto;
+                                    padding: 40px 20px;
+
+                                    .mega-menu-content {
+                                        display: flex;
+                                        gap: 40px;
+                                        flex: 1;
+                                        .submenu-column {
+                                            min-width: 200px;
+                                            h3 {
+                                                font-size: 14px;
+                                                font-weight: 500;
+                                                margin-bottom: 15px;
+                                                border-bottom: 1px solid #eee;
+                                                padding-bottom: 8px;
+                                            }
+
+                                            ul {
+                                                padding: 0;
+                                                margin: 0;
+                                                list-style: none;
+
+                                                li {
+                                                    margin-bottom: 8px;
+                                                    opacity: 0;
+
+                                                    // Keyframes trigger for Desktop
+                                                    .is-active & {
+                                                        @for $i from 1 through 30 {
+                                                            &:nth-child(#{$i}) {
+                                                                animation: desktopSlideUp
+                                                                    $desktop_menu_open_duration
+                                                                    $desktop_menu_easing
+                                                                    forwards;
+                                                                animation-delay: #{($i * $desktop_item_stagger_delay)};
+                                                            }
+                                                        }
+                                                    }
+
+                                                    a {
+                                                        display: flex;
+                                                        align-items: center;
+                                                        gap: 8px;
+                                                        padding-right: 20px;
+                                                        color: #666;
+                                                        text-decoration: none;
+                                                        font-size: 14px;
+                                                        font-weight: 200;
+                                                        line-height: 44px;
+                                                        transition: color 0.3s ease;
+                                                        &:hover {
+                                                            color: #a5957b;
+                                                            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                                                            i {
+                                                                display: block;
+                                                                color: #a5957b;
+                                                            }
+                                                        }
+                                                        i {
+                                                            display: none;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .site-header-icons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                gap: 24px;
+                button {
+                    border: none;
+                    background-color: transparent;
+                    cursor: pointer;
+                    i {
+                        color: #333336;
+                        font-size: 16px;
+                    }
+                }
+
+                a {
+                    i {
+                        color: #333336;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+
+       
         .mega-menu-background {
             position: absolute;
             top: 100%;
@@ -110,7 +342,6 @@ $sibaneh_orange_color: #ff6b6b;
             }
         }
 
-        // --- Overlay ---
         .desktop-nav-overlay {
             position: fixed;
             top: 0;
@@ -135,326 +366,6 @@ $sibaneh_orange_color: #ff6b6b;
                 transition:
                     opacity 0.3s ease,
                     visibility 0s linear;
-            }
-        }
-
-        .site-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 1024px;
-            z-index: 102;
-
-            .site-header-top-brand {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .site-header-top-brand-logo {
-                    width: 32px;
-                    height: 32px;
-                }
-            }
-
-            .site-nav {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                position: static !important;
-                width: 100%;
-
-                .site-nav-list {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: clamp(15px, 2vw, 25px);
-                    margin: 0;
-                    padding: 0;
-                    list-style: none;
-
-                    .site-nav-item {
-                        position: static !important;
-                        z-index: 110;
-
-                        .site-nav-link {
-                            span {
-                                display: flex;
-                                align-items: center;
-                                text-decoration: none;
-                                color: #111111;
-                                font-size: 12px;
-                                font-weight: 300;
-                                line-height: 36px;
-                                cursor: pointer;
-                                transition: color 0.3s ease;
-                            }
-                        }
-                        &:hover {
-                            color: #a5957b;
-                            .site-nav-link span {
-                                color: #666;
-                            }
-                        }
-
-                        // --- MEGA MENU (DESKTOP) ---
-                        .mega-menu {
-                            display: block !important;
-                            position: absolute !important;
-                            width: 100vw !important;
-                            left: 0 !important;
-                            top: 100% !important;
-                            background: transparent !important;
-                            box-shadow: none !important;
-                            border: none !important;
-                            z-index: 101;
-                            opacity: 0;
-                            visibility: hidden;
-                            pointer-events: none;
-                            transition:
-                                opacity 0.15s ease,
-                                visibility 0s linear 0.15s;
-
-                            &.is-active {
-                                opacity: 1;
-                                visibility: visible;
-                                pointer-events: auto;
-                                transition:
-                                    opacity 0.3s ease 0.1s,
-                                    visibility 0s linear 0s;
-
-                                .mega-menu-container .mega-menu-content ul li {
-                                    opacity: 1 !important;
-                                }
-                            }
-
-                            .mega-menu-container {
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: flex-start;
-                                width: 100%;
-                                max-width: 1024px;
-                                margin: 0 auto;
-                                padding: 40px 20px;
-
-                                .mega-menu-content {
-                                    display: flex;
-                                    gap: 40px;
-                                    flex: 1;
-                                    .submenu-column {
-                                        min-width: 200px;
-                                        h3 {
-                                            font-size: 14px;
-                                            font-weight: 500;
-                                            margin-bottom: 15px;
-                                            border-bottom: 1px solid #eee;
-                                            padding-bottom: 8px;
-                                        }
-
-                                        ul {
-                                            padding: 0;
-                                            margin: 0;
-                                            list-style: none;
-
-                                            li {
-                                                margin-bottom: 8px;
-                                                opacity: 0;
-
-                                                // Keyframes trigger for Desktop
-                                                .is-active & {
-                                                    @for $i from 1 through 30 {
-                                                        &:nth-child(#{$i}) {
-                                                            animation: desktopSlideUp
-                                                                $desktop_menu_open_duration
-                                                                $desktop_menu_easing
-                                                                forwards;
-                                                            animation-delay: #{($i * $desktop_item_stagger_delay)};
-                                                        }
-                                                    }
-                                                }
-
-                                                a {
-                                                    display: flex;
-                                                    align-items: center;
-                                                    gap: 8px;
-                                                    padding-right: 20px;
-                                                    color: #666;
-                                                    text-decoration: none;
-                                                    font-size: 14px;
-                                                    font-weight: 200;
-                                                    line-height: 44px;
-                                                    transition: color 0.3s ease;
-                                                    &:hover {
-                                                        color: #a5957b;
-                                                        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                                                        i {
-                                                            display: block;
-                                                            color: #a5957b;
-                                                        }
-                                                    }
-                                                    i {
-                                                        display: none;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            .site-header-icons {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            // Search & Buttons
-            .search-container {
-                position: relative;
-                flex-shrink: 0;
-                .search-icon {
-                    background: none;
-                    border: none;
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                }
-                .search-bar {
-                    display: none;
-                    position: absolute;
-                    top: 100%;
-                    right: 0;
-                    background: #fff;
-                    border: 1px solid #ddd;
-                    padding: 0.5rem;
-                    border-radius: 0.5rem;
-                    input {
-                        border: none;
-                        outline: none;
-                        padding: 0.25rem 0.5rem;
-                    }
-                }
-            }
-            .service-button {
-                background: linear-gradient(
-                    120deg,
-                    $sibaneh_blue_color 0%,
-                    $sibaneh_pink_color 40%,
-                    $sibaneh_pink_color 60%,
-                    $sibaneh_orange_color 100%
-                );
-                color: white;
-                border: none;
-                padding: 10px 16px;
-                border-radius: 8px;
-                font-size: 16px;
-                white-space: nowrap;
-                &:hover {
-                    color: #000;
-                }
-            }
-            .login-button {
-                padding: 10px 16px;
-                border-radius: 8px;
-                font-size: 16px;
-                white-space: nowrap;
-                background: none;
-                border: 1px solid #f857a6;
-                color: #000;
-                &:hover {
-                    color: white;
-                    background: linear-gradient(
-                        120deg,
-                        $sibaneh_blue_color 0%,
-                        $sibaneh_pink_color 40%,
-                        $sibaneh_pink_color 60%,
-                        $sibaneh_orange_color 100%
-                    );
-                }
-            }
-        }
-        .site-header-icons {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
-            gap: 24px;
-            button {
-                border: none;
-                background-color: transparent;
-                cursor: pointer;
-                i {
-                    color: #333336;
-                    font-size: 16px;
-                }
-            }
-
-            a {
-                i {
-                    color: #333336;
-                    font-size: 16px;
-                }
-            }
-        }
-
-        // Desktop Search Bar
-        .desktop-search-bar {
-            display: none !important;
-            flex-direction: column;
-            align-items: center;
-            position: absolute !important;
-            top: 100%;
-            right: 0;
-            width: 100%;
-            background: none;
-            z-index: 10000000 !important;
-            opacity: 0;
-            transition: opacity 0.35s ease 0.1s;
-            &.active {
-                display: flex !important;
-                opacity: 1 !important;
-            }
-            .search-container {
-                display: flex;
-                flex-direction: column;
-                width: 70%;
-                .search-header {
-                    display: flex;
-                    width: 100%;
-                    padding: 8px;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                    .search-input-wrapper {
-                        flex: 1;
-                        display: flex;
-                        input {
-                            flex: 1;
-                            border: none;
-                            background: transparent;
-                            outline: none;
-                        }
-                    }
-                }
-                .search-content {
-                    width: 100%;
-                    padding: 32px 0;
-                    .search-suggestions,
-                    .search-results {
-                        display: flex;
-                        flex-direction: column;
-                        width: 100%;
-                        max-height: 450px;
-                        overflow-y: auto;
-                    }
-                    .search-results ul li {
-                        width: 100%;
-                        .search-results-blur {
-                            background-color: rgba(255, 255, 255, 0.4);
-                            padding: 16px;
-                        }
-                    }
-                }
             }
         }
 

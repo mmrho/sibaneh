@@ -14,7 +14,7 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         '6d7b86cc73223a83aea75823dfda9c5a' => __DIR__ . '/../..' . '/inc/functions/remove-email-required.php',
         '9f48162bcafc22cce4619c8bdca211d8' => __DIR__ . '/../..' . '/inc/functions/SMS-ir.php',
         '549f28ab2bed3ed0807f97062eb9a467' => __DIR__ . '/../..' . '/inc/functions/admin-menu.php',
-        'edd2c0a6c24f95966b7374e64523f7b5' => __DIR__ . '/../..' . '/inc/functions/start_session.php',
+        '02df0a2ae58bdeb81064ee9774f58fde' => __DIR__ . '/../..' . '/inc/functions/start-session.php',
         'eddb9150cab1d47ade3e2ff708538b65' => __DIR__ . '/../..' . '/inc/functions/wp-enqueue.php',
         '1de63ed172445026057d3c5bc9f63de5' => __DIR__ . '/../..' . '/inc/functions/disable-wp-admin.php',
         'c208f475b61717233f8225fa0353d0ae' => __DIR__ . '/../..' . '/inc/functions/theme-options.php',
@@ -27,6 +27,7 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         '65b4b2c77d7b4b2a5aa8a97516dd3910' => __DIR__ . '/../..' . '/lib/twoaagShowcase/wbsTwoaagShowcase.php',
         '1a5164408dde0f58b7b1ba17629e6e11' => __DIR__ . '/../..' . '/lib/comprehensiveAppleTutorials/wbsComprehensiveAppleTutorials.php',
         'deaf86165834963c604fa84cd3ef615c' => __DIR__ . '/../..' . '/lib/reviewAndIntroductionOfApplications/wbsReviewAndIntroductionOfApplications.php',
+        '09c14540d578b5fb319fc86d8f5803a5' => __DIR__ . '/../..' . '/lib/cas-app-training/wbs-cas-app-training.php',
         '72347806510dcd929b8fdeb57ca59266' => __DIR__ . '/../..' . '/lib/tableOfContents/wbsTableOfContents.php',
     );
 

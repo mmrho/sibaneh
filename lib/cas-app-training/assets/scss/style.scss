@@ -1,0 +1,682 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixin";
+/* ==========================================================================
+   cas-app-training Styles
+   ========================================================================== */
+body {
+    @include media-max(mobile-max) {
+        padding-top: 0px !important;
+
+        &.scrolled {
+            padding-top: 0px !important;
+        }
+    }
+}
+#site-header {
+    .mobile-header {
+        .mobile-header-container {
+            position: sticky !important;
+        }
+    }
+}
+
+.main-content {
+    padding: 0px;
+    padding: 0px;
+    background-color: #fff;
+    .cas-app-training-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        gap: 24px;
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+
+        .cas-app-training-hero-section {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            padding: 25px;
+            margin-bottom: 36px;
+            background-color: #fbfbfd;
+            width: 100%;
+
+            .cas-app-training-hero-img {
+                display: flex;
+                width: 100%;
+                margin: 50px 0px;
+                .cas-app-training-hero-img-d {
+                    display: block;
+                    width: 100vw;
+                    position: relative;
+                    left: 50%;
+                    right: 50%;
+                    margin-left: -50vw;
+                    margin-right: -50vw;
+                    max-width: none;
+                    @include media-max(mobile-max) {
+                        display: none;
+                    }
+                }
+                .cas-app-training-hero-img-m {
+                    display: none;
+                    @include media-max(mobile-max) {
+                        display: block;
+                        width: 100vw;
+                        position: relative;
+                        left: 50%;
+                        right: 50%;
+                        margin-left: -50vw;
+                        margin-right: -50vw;
+                        max-width: none;
+                    }
+                }
+            }
+
+            .cas-app-training-badge {
+                // position: absolute;
+                //top: 490px;
+                //left: 50%;
+                // transform: translateX(-50%);
+                color: #1d1d1f;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-bottom: 0px;
+            }
+
+            .cas-app-training-main-title {
+                // position: absolute;
+                //top: 490px;
+                //left: 50%;
+                // transform: translateX(-50%);
+                font-size: 48px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                max-width: 70%;
+                color: #1d1d1f;
+                margin-bottom: 10px;
+                @include media-max(mobile-max) {
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                }
+            }
+
+            .cas-app-training-hero-desc {
+                color: #1d1d1f;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 48px;
+                max-width: 70%;
+                margin-bottom: 18px;
+            }
+            .cas-app-training-slogan {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                gap: 8px;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+                white-space: nowrap;
+                /* Gradient logic applied to the entire container */
+                background: var(
+                    --neww,
+                    linear-gradient(
+                        109deg,
+                        var(--PRIMARY-COLORS-mac-store, #34267b) 0%,
+                        var(--PRIMARY-COLORS-business, #684bf6) 15.95%,
+                        var(--PRIMARY-COLORS-fix, #3873e9) 36.11%,
+                        var(--PRIMARY-COLORS-app-store, #52b3f9) 57.22%,
+                        var(--PRIMARY-COLORS-code, #e95d34) 86.76%
+                    )
+                );
+
+                /* Clipping the background to all text/icon content inside */
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                i {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+            }
+        }
+        .cas-app-training-section-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-items: center;
+            gap: 64px;
+            max-width: 1024px;
+            margin: 0;
+            padding: 0;
+            @include media-max(mobile-max) {
+                padding: 24px;
+                width: 100%;
+            }
+            .cas-app-training-most-visited-tutorials-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                width: 100%;
+                .cas-app-training-most-visited-tutorials-container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    gap: 64px;
+                    width: 100%;
+                    padding: 10px;
+
+                    .cas-app-training-title {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                    }
+                    .cas-app-training-box-wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                        gap: 64px;
+                        @include media-max(mobile-max) {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 64px;
+                        }
+                        .cas-app-training-box {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-content: center;
+                            align-items: center;
+                            width: auto;
+                            height: 145px;
+                            i {
+                                font-size: 56px;
+                            }
+                            .cas-app-training-box-title {
+                                max-width: 140px;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                                text-align: center;
+                                text-wrap: wrap;
+                                text-decoration-line: underline;
+                                text-decoration-style: solid;
+                                color: #0073e3;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .cas-app-training-search-section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                background: #fff;
+                gap: 24px;
+                padding: 60px 20px;
+                text-align: center;
+                margin: 0px;
+                width: 100%;
+
+                .cas-app-training-search-title {
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    color: #1d1d1f;
+                    margin: 0px;
+                }
+
+                .cas-app-training-search-box {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    max-width: 606px;
+                    min-width: 320px;
+                    height: 64px;
+                    padding: 0 16px;
+                    gap: 16px;
+                    input {
+                        flex: 1;
+                        border-radius: 100px;
+                        border: 1px solid #cdcdcd;
+                        background: #fff;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: 48px;
+                        padding-right: 50px;
+                        &::placeholder {
+                            color: #cdcdcd;
+                        }
+                    }
+                    i {
+                        position: absolute;
+                        top: 22px;
+                        right: 30px;
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            .cas-app-training-discover-new-features-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                width: 100%;
+                .cas-app-training-discover-new-features-container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    gap: 64px;
+                    width: 100%;
+                    padding: 10px;
+
+                    .cas-app-training-title {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                    }
+                    .cas-app-training-box-wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                        gap: 64px;
+                        @include media-max(mobile-max) {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 64px;
+                        }
+                        .cas-app-training-box {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-content: center;
+                            align-items: center;
+                            width: auto;
+                            height: 145px;
+                            .cas-app-training-box-i {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: center;
+                                align-items: center;
+                                align-content: center;
+                                background-color: #0073E3;
+                                border-radius: 12px;
+                                width: 72px;
+                                height: 72px;
+                                aspect-ratio: 1/1;
+                                i {
+                                    font-size: 48px;
+                                    color: white;
+                                }
+                            }
+                            .cas-app-training-box-title {
+                                max-width: 140px;
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: normal;
+                                text-align: center;
+                                text-wrap: wrap;
+                                text-decoration-line: underline;
+                                text-decoration-style: solid;
+                                color: #0073e3;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .cas-app-training-card-section {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                gap: 64px;
+                padding: 24px 155px;
+                width: 100%;
+                background: #fff;
+                @include media-max(mobile-max) {
+                    padding: 24px 24px 24px 0px;
+                    &.column-cards {
+                        padding: 24px;
+                    }
+                }
+                .cas-app-training-header {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+
+                    .cas-app-training-title {
+                        font-size: 18px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                        color: #1d1d1f;
+                        margin: 0;
+                    }
+                }
+                .cas-app-training-slider-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    gap: 24px;
+                    width: 100%;
+                    .cas-app-training-slider-track {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 16px;
+                        overflow-x: auto;
+                        scroll-behavior: smooth;
+                        scrollbar-width: none;
+                        padding: 0px;
+                        width: 100%;
+
+                        &::-webkit-scrollbar {
+                            display: none;
+                        }
+
+                        &.track-column {
+                            @include media-max(mobile-max) {
+                                flex-direction: column;
+                            }
+                        }
+
+                        .cas-app-training-card {
+                            background: #fff;
+                            border: 1px solid #fff;
+                            overflow: hidden;
+                            flex-shrink: 0;
+                            transition: 0.3s;
+                            cursor: pointer;
+                            @include media-min(desktop-min) {
+                                width: calc(50% - 11px);
+                            }
+                            @include media-max(mobile-max) {
+                                width: calc(80%);
+                                &.full-card {
+                                    width: 100%;
+                                }
+                            }
+
+                            img {
+                                width: 100%;
+                                max-height: 270px;
+                                aspect-ratio: 16/10;
+                                object-fit: cover;
+                            }
+
+                            .cas-app-training-card-body {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: flex-start;
+                                align-content: flex-start;
+                                gap: 12px;
+                                padding: 0px;
+
+                                .cas-app-training-card-title {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    align-items: center;
+                                    align-content: center;
+                                    gap: 8px;
+                                    margin: 0;
+                                    padding: 0;
+                                    span {
+                                        font-size: 12px;
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 32px;
+                                        color: #0073e3;
+                                        overflow: hidden;
+                                        width: 100%;
+                                    }
+                                    i {
+                                        font-size: 23px;
+                                        color: #0073e3;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .cas-app-training-center-btn {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    text-align: center;
+                    margin-bottom: 56px;
+
+                    .cas-app-training-more-btn,
+                    .cas-app-training-archive-btn {
+                        background: #f5f5f8;
+                        border: none;
+                        padding: 12px 24px;
+                        border-radius: 100px;
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                        color: #000;
+                        transition: 0.3s;
+                    }
+                }
+            }
+
+            .cas-app-training-complete-sibaneh-comprehensive-training-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                width: 100%;
+                .cas-app-training-complete-sibaneh-comprehensive-training-container {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    gap: 64px;
+                    width: 100%;
+                    padding: 10px;
+
+                    .cas-app-training-title {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                    }
+                    .cas-app-training-box-wrapper {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-content: center;
+                        align-items: center;
+                        gap: 64px;
+                        @include media-max(mobile-max) {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 64px;
+                        }
+                        .cas-app-training-box {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-content: center;
+                            align-items: center;
+                            width: auto;
+                            height: 145px;
+                            i {
+                                font-size: 56px;
+                            }
+                            .cas-app-training-box-title {
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: normal;
+                                text-align: center;
+                                text-wrap: wrap;
+                                color: #1d1d1f;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .comprehensive-training-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background: none;
+                overflow: hidden;
+                width: 100%;
+                .container {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    align-content: center;
+                    width: 100%;
+                    max-width: 980px;
+                    margin: 0 50px;
+                    padding: 20px 0;
+                    gap: 16px;
+                    @include media-max(mobile-max) {
+                        margin: 0 40px;
+                        max-width: 575px;
+                        padding: 18px 0;
+                    }
+                    @include media-max(md) {
+                        margin: 0 30px;
+                        max-width: 485px;
+                        padding: 16px 0;
+                    }
+                    @include media-max(sm) {
+                        margin: 0 20px;
+                        max-width: 385px;
+                        padding: 14px 0;
+                    }
+                    h2 {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                        margin: 0 0 10px 0;
+                        @include media-max(mobile-max) {
+                            font-size: 18px;
+                        }
+                        @include media-max(md) {
+                            font-size: 18px;
+                        }
+                        @include media-max(sm) {
+                            font-size: 18px;
+                        }
+                    }
+                    .app-list {
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        overflow-x: auto;
+                        scroll-snap-type: x proximity;
+                        gap: 20px;
+                        -webkit-overflow-scrolling: touch;
+                        scroll-behavior: smooth;
+                        .app-item {
+                            border-radius: 10px;
+                            padding: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 8px;
+
+                            img {
+                                width: 180px;
+                                height: 180px;
+                                aspect-ratio: 1/1;
+                                border-radius: 20px;
+                                object-fit: cover;
+                            }
+                            h3 {
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: normal;
+                                color: #0073e3;
+                                text-align: right;
+                            }
+                            p {
+                                font-size: 13px;
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 28px;
+                                color: #707070;
+                                text-align: right;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

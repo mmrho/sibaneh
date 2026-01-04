@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icons';
-  src:  url('fonts/icons.eot?r9ef3s');
-  src:  url('fonts/icons.eot?r9ef3s#iefix') format('embedded-opentype'),
-    url('fonts/icons.ttf?r9ef3s') format('truetype'),
-    url('fonts/icons.woff?r9ef3s') format('woff'),
-    url('fonts/icons.svg?r9ef3s#icons') format('svg');
+  src:  url('fonts/icons.eot?asgq5');
+  src:  url('fonts/icons.eot?asgq5#iefix') format('embedded-opentype'),
+    url('fonts/icons.ttf?asgq5') format('truetype'),
+    url('fonts/icons.woff?asgq5') format('woff'),
+    url('fonts/icons.svg?asgq5#icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,43 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-play-in-circle-sbh:before {
+  content: "\e94b";
+  color: #0073e3;
+}
+.icon-repair-training-sbh:before {
+  content: "\e94c";
+}
+.icon-apple-logo-sbh:before {
+  content: "\e94d";
+  color: #0073e3;
+}
+.icon-web-accessibility-sbh:before {
+  content: "\e94e";
+  color: #0073e3;
+}
+.icon-necessary-sbh:before {
+  content: "\e951";
+}
+.icon-video-editing-sbh:before {
+  content: "\e952";
+}
+.icon-remove-watermark-sbh:before {
+  content: "\e953";
+}
+.icon-a-a-sbh:before {
+  content: "\e954";
+}
+.icon-enable-search-sbh:before {
+  content: "\e955";
+}
+.icon-filter-sbh:before {
+  content: "\e956";
+}
+.icon-localized-based-on-iranian-user-needs-sbh:before {
+  content: "\e957";
+  color: #e95d34;
+}
 .icon-diagnostics-sbh:before {
   content: "\e93f";
 }

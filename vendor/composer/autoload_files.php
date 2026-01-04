@@ -13,7 +13,7 @@ return array(
     '6d7b86cc73223a83aea75823dfda9c5a' => $baseDir . '/inc/functions/remove-email-required.php',
     '9f48162bcafc22cce4619c8bdca211d8' => $baseDir . '/inc/functions/SMS-ir.php',
     '549f28ab2bed3ed0807f97062eb9a467' => $baseDir . '/inc/functions/admin-menu.php',
-    'edd2c0a6c24f95966b7374e64523f7b5' => $baseDir . '/inc/functions/start_session.php',
+    '02df0a2ae58bdeb81064ee9774f58fde' => $baseDir . '/inc/functions/start-session.php',
     'eddb9150cab1d47ade3e2ff708538b65' => $baseDir . '/inc/functions/wp-enqueue.php',
     '1de63ed172445026057d3c5bc9f63de5' => $baseDir . '/inc/functions/disable-wp-admin.php',
     'c208f475b61717233f8225fa0353d0ae' => $baseDir . '/inc/functions/theme-options.php',
@@ -26,5 +26,6 @@ return array(
     '65b4b2c77d7b4b2a5aa8a97516dd3910' => $baseDir . '/lib/twoaagShowcase/wbsTwoaagShowcase.php',
     '1a5164408dde0f58b7b1ba17629e6e11' => $baseDir . '/lib/comprehensiveAppleTutorials/wbsComprehensiveAppleTutorials.php',
     'deaf86165834963c604fa84cd3ef615c' => $baseDir . '/lib/reviewAndIntroductionOfApplications/wbsReviewAndIntroductionOfApplications.php',
+    '09c14540d578b5fb319fc86d8f5803a5' => $baseDir . '/lib/cas-app-training/wbs-cas-app-training.php',
     '72347806510dcd929b8fdeb57ca59266' => $baseDir . '/lib/tableOfContents/wbsTableOfContents.php',
 );

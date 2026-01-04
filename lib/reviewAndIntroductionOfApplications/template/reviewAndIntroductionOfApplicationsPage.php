@@ -73,7 +73,6 @@
                 </div>
             </div>
         </section>
-
         <section class="RAIOA-search-section">
             <h3 class="RAIOA-search-title">بررسی‌های تخصصی را کشف کنید</h3>
             <div class="RAIOA-search-box">
@@ -81,7 +80,6 @@
                 <input type="text" placeholder="جستجو در دنیای اپلیکیشن و بازی...">
             </div>
         </section>
-
         <section class="RAIOA-section">
             <div class="RAIOA-header">
                 <h2 class="RAIOA-title">بررسی و معرفی‌های منتخب</h2>
@@ -159,7 +157,6 @@
                 <button class="RAIOA-more-btn">مشاهده بیشتر</button>
             </div>
         </section>
-
         <section class="RAIOA-more-section">
             <div class="RAIOA-header">
                 <h2 class="RAIOA-title">بررسی و معرفی‌های بیشتر</h2>

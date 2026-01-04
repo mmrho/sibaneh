@@ -20,7 +20,7 @@
       "inc/functions/remove-email-required.php",
       "inc/functions/SMS-ir.php",
       "inc/functions/admin-menu.php",
-      "inc/functions/start_session.php",
+      "inc/functions/start-session.php",
       "inc/functions/wp-enqueue.php",
       "inc/functions/disable-wp-admin.php",
       "inc/functions/theme-options.php",
@@ -33,6 +33,7 @@
       "lib/twoaagShowcase/wbsTwoaagShowcase.php",
       "lib/comprehensiveAppleTutorials/wbsComprehensiveAppleTutorials.php",
       "lib/reviewAndIntroductionOfApplications/wbsReviewAndIntroductionOfApplications.php",
+      "lib/cas-app-training/wbs-cas-app-training.php",
       "lib/tableOfContents/wbsTableOfContents.php"
       
     ]
